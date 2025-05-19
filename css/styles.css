@@ -21,7 +21,6 @@
   width: 250px;
 }
 
-
     /*------------- BUTTONS -------------*/
     /*-----------------------------------------------*/
 .btn-custom {
@@ -55,7 +54,7 @@
     height: 50px;
     margin-right: 0px;
 }
-        /*------------- CHART BTN -------------*/
+        /*------------- CHAT BTN -------------*/
         /*-----------------------------------------------*/
 .btn-cart {
     width: 50px;
@@ -76,6 +75,7 @@
 .btn-cart:hover img {
   filter: invert(100%);
 }
+
         /*------------- ABOUT US BTN -------------*/
         /*-----------------------------------------------*/
 .btn-aboutUs {
@@ -257,7 +257,8 @@
     /*------------- HOVER -------------*/
     /*------------------------------------------*/
 .button-search:hover {
-    background-color: rgba(0, 51, 102, 1);
+    background-color:rgba(235, 151, 46, 1);
+    border: 2px solid rgba(235, 151, 46, 1);
     color: white;
 }
 
@@ -369,8 +370,8 @@
 .cards-container {
   display: flex;
   gap: 30px;
-  justify-content: center;
-  padding: 40px 0;
+  justify-content: flex-end;
+  padding: 40px 105px 40px 105px;
   background-color: #005090;
 }
 
@@ -490,7 +491,6 @@
   color: white;
 }
 
-
 /*------------- HOVER EFFECTS -------------*/
 /*-----------------------------------------------*/
 .duck-container {
@@ -536,5 +536,292 @@
   font-family: 'Poppins', sans-serif;
   color: #ffffff;
 }
+
+/*------------- ABOUT US - SECTION -------------*/
+/*-----------------------------------------------*/
+
+.aboutUs-container{
+  margin-left: 186px;
+  margin-top: 120px;
+  color: rgba(0, 51, 102, 1);
+  font-family: 'Poppins', sans-serif;
+}
+
+#aboutUs-title{
+  font-size: 64px;
+  font-weight: 700;
+}
+
+#aboutUs-subtitle{
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 69px;
+  line-height: 54px;
+}
+
+.aboutUs-paragraphs{
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 42px;
+  margin-top: 50px;
+}
+
+/*------------- FOOTER -------------*/
+/*-----------------------------------------------*/
+.footer-container {
+  border-top: 1px solid rgba(0, 51, 102, 0.3);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 130px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content a {
+  text-decoration: none;
+  color: rgba(0, 51, 102, 1);
+  font-weight: bold;
+  margin: 0 10px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.footer-content a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #002f6c;
+  transition: width 0.3s ease;
+}
+
+.footer-content a:hover::after {
+  width: 100%;
+}
+ 
+.footer-description {
+  margin: 10px 0;
+  color: rgba(0, 51, 102, 1);
+}
+
+.footer-logo {
+  width: 178.73px;
+  margin-top: 10px;
+}
+
+/*------------- FAQ - SECTION -------------*/
+/*-----------------------------------------------*/
+
+.faq-section{
+  margin-left: 300px;
+  margin-top: 120px;
+  color: rgba(0, 51, 102, 1);
+  font-family: 'Poppins', sans-serif;
+}
+
+#faq-title{
+  font-size: 64px;
+  font-weight: 700;
+}
+
+#faq-subtitle{
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 69px;
+  line-height: 54px;
+}
+
+.faq-item{
+  margin-top: 20px;
+  margin-left: 200px;
+}
+
+.faq-item.active .faq-question {
+    background: rgba(255, 207, 65, 0.2);
+}
+
+.faq-question {
+  background-color: #f5f5f5;
+  border: none;
+  width: 843px;
+  text-align: left;
+  padding: 1rem 1.2rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s;
+  color: #002f6c;
+  margin-top: 29px;
+}
+
+.faq-question:hover {
+  background-color: #ececec;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  margin-top: 0.5rem;
+  padding: 0 1.2rem;
+  font-size: 1rem;
+  color: #002f6c;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  width: 843px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 400px;
+  padding: 1rem 1.2rem;
+}
+
+.faq-item i.arrow {
+  transition: transform 0.3s ease;
+  color: #f4a300;
+}
+
+.faq-item.active i.arrow {
+  transform: rotate(180deg);
+}
+
+.highlighted {
+  color: #f4a300;
+  font-weight: bold;
+}
+
+.final-msg {
+  margin-top: 30px;
+  font-size: 14px;
+  margin-left: 352px;
+  color: black;
+  font-weight: 600;
+}
+
+.final-msg a {
+  color: #f4a300;
+  text-decoration: none;
+}
+
+/*------------- CONTACTS - SECTION -------------*/
+/*-----------------------------------------------*/
+
+.contacts-section {
+  display: flex;
+  justify-content: justify;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  color: rgba(0, 51, 102, 1);
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+#contacts-title {
+    font-size: 64px;
+    font-weight: 700;
+    margin-left: 186px;
+    width: calc(100% - 186px);
+    text-align: justify
+}
+
+#contacts-subtitle {
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 69px;
+    line-height: 54px;
+    margin-left: 186px;
+    width: calc(100% - 186px); 
+    text-align: justify
+}
+
+.contact-box {
+  background-color: #F3F3F3;
+  padding: 0;
+  border-radius: 15px;
+  margin: 50px auto;
+  width: 80%;
+  max-width: 1100px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-header {
+  background-color: #005090;
+  padding: 20px;
+  text-align: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+}
+
+.contact-header h1 {
+  color: #FFFFFF;
+  font-size: 28px;
+  margin: 0;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  gap: 30px;
+}
+
+.left-side,
+.right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contacts-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacts-item label {
+  color: #003366;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.contacts-item input {
+  width: 441px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: #ffffff;
+}
+
+.contacts-item textarea {
+  width: 390px;
+  height: 269px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #ffffff;
+  resize: none;
+}
+
+.btn-send {
+  width: 200px;
+  height: 50px;
+  border-radius: 15px;
+  margin-top: 10px;
+  align-self: center;
+  background-color: white;
+  margin-top: 64px;
+}
+
+
+
+
 
 
