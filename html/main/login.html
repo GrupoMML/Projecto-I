@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>TeachMe - Login</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -21,34 +21,69 @@
             <button class="btn-custom btn-store">Loja</button>
             <button class="btn-custom btn-aboutUs">Sobre nós</button>
             <button class="btn-custom btn-faq">?</button>
-            <input type="text" class="search-input" placeholder="Pesquisar...">
+            <input type="text" class="search-input">
             <button class="search-custom btn-search">
                 <img src="../../images/webapp/search_black.png" alt="Search Icon"> <!-- ALTERAR, ISTO É UMA IMAGEM TESTE -->
             </button>
         </div>
     </header>
 
-    <!-- HoverDuck -->
+    <!------------- LOGIN SECTION - HEADERS ------------->
+    <!----------------------------------------------------->
+    <section class="login-section">
+        <h1 class="loginHeaders">Não tens registo?</h1>
+        <h1 class="loginHeaders">Que bom que <br> está de volta!</h1>
+    </section>
+
+    <!------------- DUCKS CONTAINER ------------->
+    <!----------------------------------------------->
     <div class="duck-container">
         <div>
             <div class="wrapper">
                 <img src="../../images/webapp/hoverDuck.png" alt="imagem pato">
-            </div>
-            <div class="DMText">
-                <h2>Sou um DuckMaster</h2>
-                <h3>Amo ensinar!</h3>
             </div>
         </div>
         <div>
             <div class="wrapper">
                 <img src="../../images/webapp/hoverDuckling.png" alt="imagem pato">
             </div>
-            <div class="DMText">
-                <h2>Sou um Duckling</h2>
-                <h3>Eu quero aprender!</h3>
-            </div>
         </div>
     </div>
-        
+
+    <!------------- INFO SECTION ------------->
+    <!----------------------------------------------->
+    <div class="login-content">
+        <div class="login-item">
+            <label for="email">Utilizador ou E-mail:*</label>
+            <input type="email" id="login-email" name="email" required>
+        </div>
+        <div class="login-item">
+            <label for="password">Palavra-passe:*</label>
+            <input type="text" id="login-password" name="password" required>
+        </div>
+        <div class="login-item">
+            <label for="keepConnected">
+                <input type="checkbox" id="login-keepConnected" name="keepConnected">
+                Manter conexão
+            </label>
+        </div>
+        <button type="submit" class="btn-custom btn-login">Iniciar Sessão</button>
+    </div>
+
+    <!------------- FOOTER ------------->
+    <!----------------------------------------------->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <a href="#">Home</a> |
+            <a href="#">Contactos</a> |
+            <a href="#">Loja</a> |
+            <a href="#">Termos e condições</a> |
+            <a href="#">Política de Privacidade</a> |
+            <a href="#">FAQ</a> 
+            <p class="footer-description">Site educativo ao cumprimento do Projeto I</p>
+            <img src="../../images/webapp/logo.png" alt="TeachMe Logo" class="footer-logo">
+        </div>
+    </footer>
+
 </body>
 </html>
