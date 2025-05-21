@@ -1295,7 +1295,7 @@
 /* ----------------------------------------- */
 
 /*------------- DELETE ACCOUNT - SECTION -------------*/
-/*-----------------------------------------------*/
+/*---------------------------------------------------------------*/
 .deleteAccount-container{
   margin-left: 186px;
   margin-top: 120px;
@@ -1394,5 +1394,72 @@
   background-color: #005090;
   color: white;
 }
+
+/*------------- DELETE ACCOUNT OVERLAY - SECTION -------------*/
+/*---------------------------------------------------------------*/
+.delA_overlay-container{
+  font-family: 'Poppins' sans-serif;
+  text-align: center;
+  margin-top: 300px;
+}
+
+#delaA_overlay_img{
+  width: 250px;
+}
+
+.delA_overlay-checkboxContainer {
+  margin-top: 30px;         
+  margin-bottom: 40px;      
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.delA_overlay-checkboxContainer input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background-color: rgba(0, 51, 102, 1);
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  border: none;
+}
+
+.delA_overlay-checkboxContainer input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  left: 5.3px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid #EB972E;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease 0.1s;
+}
+
+.delA_overlay-checkboxContainer input[type="checkbox"]:checked::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+.checkbox-text {
+  display: inline-block;
+  text-align: justify;
+  font-size: 18px;
+  line-height: 28px;
+  vertical-align: top;
+  max-width: 100%;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+
+
 
 
