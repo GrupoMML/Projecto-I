@@ -1648,3 +1648,54 @@
   width: 178.73px;
   margin-top: 10px;
 }
+
+/*------------- TEACHERS PER DISCIPLINE - SECTION -------------*/
+/*-------------------------------------------------------------------*/
+.disciplines-container2 {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-weight: 700;
+  margin-left: 326px;
+}
+
+#disciplines-title {
+  color: rgba(0, 51, 102, 1);
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+.grid-container2 {
+  display: grid;
+  grid-template-columns: repeat(2, 220px);
+  grid-template-rows: repeat(4, 262px);   
+  gap: 50px;
+  justify-content: center;
+}
+
+.rectangle2_2 {
+  position: relative;
+  width: 220px;
+  height: 262px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.rectangle2_2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.prof-name {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
