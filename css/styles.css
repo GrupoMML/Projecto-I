@@ -1934,3 +1934,143 @@
   height: 50px;
   margin-top: 20px;
 }
+
+/*------------- FORM TEACHERS - SECTION -------------*/
+/*-------------------------------------------------------------------*/
+.formTeachers-container {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  margin-left: 326px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#formTeachers-title {
+  color: rgba(0, 51, 102, 1);
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+.formTeachers-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.formTeachers-item label {
+  align-self: flex-start;
+  margin-left: calc(50% - 210px); 
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.formTeachers-item input[type="email"],
+.formTeachers-item input[type="number"],
+.formTeachers-item input[type="text"] {
+  width: 420px;
+  height: 37px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: rgba(217, 217, 217, 0.6);
+}
+
+.formTeachers-item input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background-color: rgba(255, 203, 46, 0.6);
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  border: none;
+}
+
+.formTeachers-item input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  left: 5.3px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid rgba(10, 22, 113, 1);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease 0.1s;
+}
+
+.formTeachers-item input[type="checkbox"]:checked::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+.disciplines-label {
+  align-self: flex-start;
+  margin-left: calc(50% - 210px);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.disciplines-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 90px;
+  width: 420px;
+}
+
+.disciplines-grid label {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  background-color: rgba(255, 207, 65, 0.2);
+  border: 1px solid rgba(255, 207, 65, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+}
+
+.textarea-label {
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 1px;
+}
+
+.textarea-wrapper hr {
+  border: none;
+  border-top: 1px solid #aaa;
+  margin-bottom: 5px;
+}
+
+.textarea-wrapper textarea {
+  background-color: transparent;
+  border: none;
+  resize: none;
+  height: 250px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #000;
+}
+
+.btn-accept {
+  width: 200px;
+  height: 50px;
+  margin-top: 20px;
+}
