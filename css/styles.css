@@ -2580,3 +2580,137 @@
 .delete-account a:hover::after {
   width: 100%;
 }
+
+/*------------- SETTINGS - ADMIN - SECTION -------------*/
+/*-------------------------------------------------------------------*/
+
+.settingsAdmin-container{
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-family: 'Poppins' sans-serif;
+}
+
+.settingsAdmin-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #003366;
+  background: linear-gradient(to right, #d6e3f3, #fde8c9);
+}
+
+.profile-section,
+.disciplines-section {
+  padding: 30px 40px;
+  background-color: #fff;
+}
+
+.profile-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-header img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.edit-icon {
+  position: absolute;
+  left: 55px;
+  bottom: 10px;
+  background-color: #FFCF41;
+  color: #005090;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.greeting {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+.btn-edit {
+  margin-left: auto;
+  background-color: #f2f2f2;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.profile-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 15px;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-field label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.profile-field input,
+.profile-field select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #e7e7e7;
+  font-size: 14px;
+}
+
+.btn-custom3 {
+  background-color: #ED4C5C;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-custom3:hover {
+  background-color: #F3F3F3;
+  color: black;
+}
+
+.btn-logout {
+  grid-column: 1 / -1; 
+  justify-self: center;
+  background-color: #f34e5e;
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  width: 329px;
+  height: 59.363px;
+}
+
+
