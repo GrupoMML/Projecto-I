@@ -2216,7 +2216,7 @@
   color: black;
 }
 
-.btn-logout{
+.btn-logout2{
   grid-column: 2; 
   margin-top: 0;
   background-color: #f34e5e;
@@ -2867,6 +2867,7 @@
 .commentInput-box button:hover {
   background-color: white;
   color: #003366;
+  transition: all 0.6s ease;
 }
 
 .commentInput-box button i {
