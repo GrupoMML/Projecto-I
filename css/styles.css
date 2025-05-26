@@ -1517,11 +1517,12 @@
 }
 
 .side-menu {
-  position: sticky;
+  position: fixed;
+  z-index: 9;
   top: 0;
-  width: 326px;
+  width: 290px;
   height: 100vh;
-  background: rgba(0, 80, 144, 0.30);
+  background: #B3CBDE;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1529,15 +1530,14 @@
 }
 
 .menu-brand {
-  margin-top: 54px;
-  margin-bottom: 40px;
+  margin: 13px 0px 10px 0px;
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
 .logo-img {
-  max-width: 80%;
+  max-width: 87%;
   height: auto;
 }
 
