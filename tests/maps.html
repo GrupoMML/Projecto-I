@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Projecto I - Meu primeiro Mapa</title>
+  <style>
+    #meumapa {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div id="meumapa">
+<script>
+  function initMap() {
+    const mapOptions = {
+  
+      center: { lat: 41.14961, lng: -8.61099 },
+      zoom: 10,
+    };
+
+    new google.maps.Map(document.getElementById("meumapa"), mapOptions);
+  }
+</script>
+
+<!-- Load the Google Maps API -->
+<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBud4PuIVauMnMYRnP8rSiKNbQ-lJW6LU0&callback=initMap">    
+</script>
+    
+</div>
+
+
+</body>

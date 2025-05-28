@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Projecto I - Meu primeiro Mapa</title>
+  <style>
+    #meumapa {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div id="meumapa">
+<script>
+  function initMap() {
+    const mapOptions = {
+  
+      center: { lat: 41.14961, lng: -8.61099 },
+      zoom: 10,
+    };
+
+    new google.maps.Map(document.getElementById("meumapa"), mapOptions);
+  }
+</script>
+
+<!-- Load the Google Maps API -->
+<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBud4PuIVauMnMYRnP8rSiKNbQ-lJW6LU0&callback=initMap">    
+</script>
+    
+</div>
+
+
+</body>
+</html>
+-------------------------------------
+aula01.html
+https://developers.google.com/maps/documentation/javascript/maptypes?hl=pt-br#BasicMapTypes
+
+------------------------------------
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Projecto I - Meu primeiro Mapa</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #meumapa {
+      height: 100%;
+      width: 100%;
+    }
+
+    #controls {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 5;
+      background: white;
+      padding: 8px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<!-- selecção do tipo de mapa -->
+<div id="controls">
+  <label for="mapType">Tipo de Mapa:</label>
+  <select id="mapType">
+    <option value="roadmap">Padrão</option>
+    <option value="satellite">Satélite</option>
+    <option value="hybrid">Híbrido</option>
+    <option value="terrain">Terreno</option>
+  </select>
+</div>
+
+<!-- Mapa Container -->
+<div id="meumapa"></div>
+
+<script>
+  let map;
+
+  function initMap() {
+    const mapOptions = {
+      center: { lat: 41.14961, lng: -8.61099 },
+      zoom: 10,
+      mapTypeId: 'roadmap'
+    };
+
+    map = new google.maps.Map(document.getElementById("meumapa"), mapOptions);
+
+    // mudança de tipo de mapa
+    document.getElementById("mapType").addEventListener("change", function () {
+      map.setMapTypeId(this.value);
+    });
+  }
+</script>
+
+<!-- Carregar o Google Maps API -->
+<script async defer 
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBud4PuIVauMnMYRnP8rSiKNbQ-lJW6LU0&callback=initMap">
+</script>
+
+</body>
+</html>
+
+--------------------------------------
+aula02.html
+-------------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Projecto I - Meu primeiro Mapa</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #meumapa {
+      height: 100%;
+      width: 100%;
+    }
+
+    #controls {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 5;
+      background: white;
+      padding: 8px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Combo Box for Map Type Selection -->
+<div id="controls">
+  <label for="mapType">Tipo de Mapa:</label>
+  <select id="mapType">
+    <option value="roadmap">Padrão</option>
+    <option value="satellite">Satélite</option>
+    <option value="hybrid">Híbrido</option>
+    <option value="terrain">Terreno</option>
+  </select>
+</div>
+
+<!-- Map Container -->
+<div id="meumapa"></div>
+
+<script>
+  let map;
+
+  function initMap() {
+    const mapOptions = {
+      center: { lat: 41.14961, lng: -8.61099 },
+      zoom: 10,
+      zoomControl: true,
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_TOP
+      },
+      
+      streetViewControl: true,
+      streetViewControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
+      },
+      fullscreenControl: false,
+      fullscreenControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
+      },
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+        position: google.maps.ControlPosition.TOP_RIGHT,
+        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain']
+      },
+      mapTypeId: 'roadmap'
+    };
+
+    map = new google.maps.Map(document.getElementById("meumapa"), mapOptions);
+
+    // Handle map type change
+    document.getElementById("mapType").addEventListener("change", function () {
+      map.setMapTypeId(this.value);
+
+   });
+
+;
+
+    
+  }
+
+
+
+
+</script>
+
+<!-- Load the Google Maps API -->
+<script async defer 
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBud4PuIVauMnMYRnP8rSiKNbQ-lJW6LU0&callback=initMap">
+</script>
+
+</body>
+</html>
