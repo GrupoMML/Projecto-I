@@ -11,9 +11,10 @@ class Quizz{
         answer2 = '',
         answer3 = '',
         answer4 = '',
-        correctAnswer = ''
+        correctAnswer = '',
+        time = ''
     ]
-    constructor(quizzID, quizzName, quizzDiscipline, question, questionID, questionDescription, answer1, answer2, answer3, answer4, correctAnswer){
+    constructor(quizzID, quizzName, quizzDiscipline, question, questionID, questionDescription, answer1, answer2, answer3, answer4, correctAnswer, time){
         this.quizzID = quizzID
         this.quizzName = quizzName
         this.quizzDiscipline = quizzDiscipline
@@ -25,5 +26,6 @@ class Quizz{
         this.answer3 = answer3
         this.answer4 = answer4
         this.correctAnswer = correctAnswer
+        this.time = time
     }
 }
