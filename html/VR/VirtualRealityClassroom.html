@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeachMe - Virtual Reality Classroom</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="classroom" src='classroomTextures/classroom3.glb'></a-asset-item>
+            <a-asset-item id="duckmaster" src='./duckTextures/duckmaster.glb'></a-asset-item>
+            <img src="../../images/VR/poster a3.png" alt="poster" id="poster">
+        </a-assets>
+
+        <!------------- CLASSROOM  ------------->
+        <!----------------------------------------------->
+        <a-entity gltf-model='#classroom' scale="0.5 0.5 0.5" position="-20 -50 -10"></a-entity>
+
+        <!------------- DUCKMASTER  ------------->
+        <!----------------------------------------------->
+        <a-entity gltf-model='#duckmaster' scale="20 20 20" position="-18.776 -6 203" rotation="0 -180 0 "></a-entity>
+
+        <!------------- DUCKLING  ------------->
+        <!----------------------------------------------->
+        <!-- <a-entity gltf-model='#duck' scale="50 50 50" position="-20.000 3.362 159.991" rotation="0 -180 0 "></a-entity> -->
+
+        <!------------- POSTER  ------------->
+        <!----------------------------------------------->
+        <a-plane src="#poster" height="80" width="77.5" position="116.7 32 239" rotation="0 180 0"></a-plane>
+
+        <!------------- WALL POSTER  ------------->
+        <!----------------------------------------------->
+        <a-plane src="#poster" height="90" width="70" position="-220.5 21.406 61.937" rotation="0 90 0"></a-plane>
+
+        <!------------- WALL ------------->
+        <!----------------------------------------------->
+        <a-box src="./classroomTextures/textures/wallConcrete_baseColor.png" height="165" width="368" position="-19.924 31.842 0.000" color="#848A77"></a-box>
+        
+        <a-entity id="rig" position="-200 20 230">
+            <a-camera id="camera"></a-camera>
+        </a-entity>
+    </a-scene>
+</body>
+</html>
+
