@@ -1049,11 +1049,12 @@
   content: "";
   position: absolute;
   top: 0;
-  left: 326px; 
-  width: calc(100% - 326px); 
+  left: 290px;
+  width: calc(100% - 290px);
   height: 1px;
   background-color: rgba(0, 51, 102, 0.3);
 }
+
 
 .footer-content-smaller a {
   text-decoration: none;
@@ -1087,6 +1088,71 @@
 .footer-logo-smaller {
   width: 178.73px;
   margin-top: 10px;
+}
+
+.footer-container-smaller {
+  border-top: none;
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 130px;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+}
+
+.footer-container-smaller::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 51, 102, 0.3);
+}
+
+.footer-content-smaller a {
+  text-decoration: none;
+  color: rgba(0, 51, 102, 1);
+  font-weight: bold;
+  margin: 0 5px;
+  position: relative;
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.footer-content-smaller a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #002f6c;
+  transition: width 0.3s ease;
+}
+
+.footer-content-smaller a:hover::after {
+  width: 100%;
+}
+
+.footer-description-smaller {
+  margin: 10px 0;
+  color: rgba(0, 51, 102, 1);
+  font-size: 13px;
+}
+
+.footer-logo-smaller {
+  width: 140px;
+  margin-top: 10px;
+}
+
+@media (max-width: 400px) {
+  .footer-content-smaller a {
+    display: block;
+    margin: 8px 0;
+  }
+  .footer-logo-smaller {
+    width: 100px;
+  }
 }
 
 /*------------- STUDENT INFO - SECTION -------------*/
@@ -1195,7 +1261,8 @@
 .description-box2 strong {
   display: block;
   margin-bottom: 10px;
-  font-size: 15px;
+  font-size: 20px;
+  text-align: center;
 }
 
 hr {
@@ -2350,6 +2417,386 @@ hr {
 @media (max-width: 1500px) {
   .duckmaster-image {
     display: none;
+  }
+}
+
+/*------------- SIDE MENU -------------*/
+/*-------------------------------------------------------------------*/
+.side-menu {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  width: 290px;
+  height: 100vh;
+  background: #B3CBDE;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+}
+
+.menu-brand {
+  margin: 13px 0px 10px 0px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-img {
+  max-width: 87%;
+  height: auto;
+}
+
+.menu-nav {
+  width: 100%;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.menu-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-nav li {
+  font-size: 16px;
+  color: #003366;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.menu-nav li i {
+  color: #003366;
+}
+
+.menu-progress {
+  background: #003366;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.menu-progress .level {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.menu-progress .xp,
+.menu-progress .coins {
+  margin-bottom: 3px;
+  color: #EB972E;
+}
+
+.menu-config {
+  color: #EB972E;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.menu-items {
+  display: flex;
+  align-items: center;
+  color: #003366;
+  margin: 12px 0 12px 40px;
+  font-size: 17px;
+  font-weight: 500;
+  gap: 10px;
+}
+
+.menu-items p {
+  margin-bottom: 0;
+}
+
+.menu-items i {
+  width: 22px;
+}
+
+.menu-items:hover {
+  color: #0055aa;
+  cursor: pointer;
+}
+
+.fa-cart-shopping{
+  font-size: 25px;
+}
+
+.user-level-container {
+  display: grid;
+  color: white;
+  padding: 0;
+  margin: 300px 0 0 30px;
+  background-color: #003366;
+  border-radius: 15px;
+  height: 130px;
+  width: 230px;
+  grid-template-areas:
+    "level progres"
+    "bar bar"
+    "ranking ranking";
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.user-level-figure {
+  grid-area: level;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+
+#user-level-progress {
+  grid-area: progres;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 18px;
+}
+
+.user-level-progress-bar {
+  grid-area: bar;
+  height: 5px;
+  width: 180px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin: 0 10px 0 10px;
+  display: flex;
+}
+
+.user-level-progress-bar::after {
+  background-color:#EB972E;
+  width:40%;
+  border-radius: 5px;
+  margin: 0 10px 0 10px;
+  content: "";
+  left: 0;
+  margin: 0;
+}
+
+.fa-certificate {
+  position: relative;
+  font-size: 50px;
+  color: #ffffff;
+  margin-left: 40px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.fa-certificate::after {
+  font-size: 24px; 
+  top: 10px;
+  content: attr(data-qtd); 
+  text-align: center;
+  color: #003366;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#user-ranking {
+  color: #EB972E;
+  font-size: 14px;
+  grid-area: ranking;
+  text-align: center;
+}
+
+.settings {
+  margin-left: 60px;
+}
+
+/*------------- STUDENTS INFO - SECTION -------------*/
+/*-------------------------------------------------------------------*/
+.side-menu {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  width: 290px;
+  height: 100vh;
+  background: #B3CBDE;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 900px) {
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    transform: translateX(-100%);
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  }
+  .side-menu.active {
+    transform: translateX(0);
+  }
+}
+
+/* Logo */
+.menu-brand {
+  margin: 13px 0 10px 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-img {
+  max-width: 87%;
+  height: auto;
+}
+
+.menu-items {
+  display: flex;
+  align-items: center;
+  color: #003366;
+  margin: 12px 0 12px 40px;
+  font-size: 17px;
+  font-weight: 500;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.menu-items p {
+  margin-bottom: 0;
+}
+
+.menu-items i {
+  width: 22px;
+}
+
+.menu-items:hover {
+  color: #0055aa;
+}
+
+.user-level-container {
+  display: grid;
+  color: white;
+  padding: 0;
+  margin: 300px 0 0 30px;
+  background-color: #003366;
+  border-radius: 15px;
+  height: 130px;
+  width: 230px;
+  grid-template-areas:
+    "level progres"
+    "bar bar"
+    "ranking ranking";
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .user-level-container {
+    margin: 20px auto;
+    width: 90%;
+    grid-template-areas:
+      "level progres ranking"
+      "bar bar bar";
+    height: auto;
+  }
+}
+
+.studentsInfo-card {
+  max-width: 800px;
+  margin: 20px auto 30px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.studentsInfo-card-header {
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #003366;
+  background: linear-gradient(to right, #cce0f5, #fde8c9);
+}
+
+.studentsInfo-card-header.no-bg {
+  background: none;
+}
+
+.students-profileInfo {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.students-leftInfo {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (max-width: 700px) {
+  .students-leftInfo {
+    width: 100%;
+  }
+}
+
+.students-rightInfo {
+  width: 45%;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .students-rightInfo {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+.students-rightInfo img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.disciplines {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.complications-flex {
+  flex-direction: row;
+}
+
+@media (max-width: 700px) {
+  .disciplines {
+    flex-direction: column;
   }
 }
 
