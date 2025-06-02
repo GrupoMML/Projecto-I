@@ -1525,7 +1525,6 @@
   background: #B3CBDE;
   display: flex;
   flex-direction: column;
-  align-items: center;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -3126,3 +3125,7 @@ hr {
   border-top: 1px solid #ccc;
   margin: 0 30px;
 }
+
+/*------------- STUDENTS - SECTION -------------*/
+/*---------------------------------------------------*/
+

@@ -9,10 +9,357 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://kit.fontawesome.com/ee23fe444a.js" crossorigin="anonymous"></script>
     <style>
         .menu-items {
-            text-align: left;
-            margin: 0px 20px 0px 20px;
+            display: flex;
+            align-items: center;
+            color: #003366;
+            margin: 12px 0 12px 40px;
+            font-size: 17px;
+            font-weight: 500;
+            gap: 10px;
+        }
+
+        .menu-items p {
+            margin-bottom: 0;
+        }
+
+        .menu-items i {
+            width: 22px;
+        }
+
+        .menu-items:hover {
+            color: #0055aa;
+            cursor: pointer;
+        }
+
+        .fa-cart-shopping{
+            font-size: 25px;
+        }
+
+        .user-level-container {
+            display: grid;
+            color: white;
+            padding: 0;
+            margin: 300px 0 0 30px;
+            background-color: #003366;
+            border-radius: 15px;
+            height: 130px;
+            width: 230px;
+            grid-template-areas:
+                "level progres"
+                "bar bar"
+                "ranking ranking";
+            justify-content: center;
+            align-items: center;
+            column-gap: 10px;
+        }
+
+        .user-level-figure {
+            grid-area: level;
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+        }
+
+        #user-level-progress {
+            grid-area: progres;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            font-size: 18px;
+        }
+
+        .user-level-progress-bar {
+            grid-area: bar;
+            height: 5px;
+            width: 180px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            margin: 0 10px 0 10px;
+            display: flex;
+        }
+
+        .user-level-progress-bar::after {
+            background-color:#EB972E;
+            width:40%;
+            border-radius: 5px;
+            margin: 0 10px 0 10px;
+            content: "";
+            left: 0;
+            margin: 0;
+        }
+
+        .fa-certificate {
+            position: relative;
+            font-size: 50px;
+            color: #ffffff;
+            margin-left: 40px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .fa-certificate::after {
+            font-size: 24px; 
+            top: 10px;
+            content: attr(data-qtd); 
+
+            text-align: center;
+            color: #003366;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #user-ranking {
+            color: #EB972E;
+            font-size: 14px;
+            grid-area: ranking;
+            text-align: center;
+        }
+
+        .settings {
+            margin-left: 60px;
+        }
+
+        .student-home-container {
+            display: flex;
+            margin: 0 auto 30px auto;
+            overflow: hidden;
+            height: 330px;
+            width: 700px;
+            gap: 30px;
+        }
+
+        .greeting-container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 390px;
+            height: 330px;
+            border-radius: 15px;
+            overflow: hidden;
+            gap: 20px;
+        }
+
+        .user-notification-area {
+            width: 100%;
+            height: 100%;
+            background-color: #FFF5D9;
+            border-radius: 15px;
+            padding: 10px;
+            overflow: hidden;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #notification-cards {
+            overflow-y: scroll;
+            height: 100%;
+            scrollbar-color: #003366 #FFF5D9;
+            scrollbar-width: thin;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        .user-duckling-container {
+            display: flex;
+            flex-direction: column;
+            margin-right: 0;
+            width: 270px;
+        }
+
+        .user-reviews {
+            display: flex;
+            margin: 22px 0 0 0;
+            padding-top: 20px;
+            justify-content: center;
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            cursor: pointer;
+            gap: 15px;
+            font-size: 20px;
+        }
+
+        .fa-ranking-star {
+            font-size: 24px;
+        }
+
+        .student-class-info-container {
+            display: flex;
+            width: 700px;
+            height: 300px;
+            margin: 0 auto 30px auto;
+            justify-content: center;
+            background-color: #FFF5D9;
+            border-radius: 15px;
+            font-size: 24px;
+            padding: 10px;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .student-class-info-container-content {
+            display: grid;
+            justify-content: first baseline;
+            width: 100%;
+            height: 100%;
+            gap: 10px;
+            grid-template-areas: 
+                "master-name class-name room-number class-date";
+        }
+
+        .student-askclass-info-container {
+            display: flex;
+            width: 700px;
+            height: 300px;
+            margin: 0 auto 30px auto;
+            justify-content: center;
+            background-color: #FFF5D9;
+            border-radius: 15px;
+            font-size: 24px;
+            padding: 10px;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .student-askclass-info-container-content {
+            display: grid;
+            justify-content: first baseline;
+            width: 100%;
+            height: 100%;
+            gap: 10px;
+            grid-template-areas: 
+                "master-name class-name class-date";
+        }
+
+        .students-duckling-style {
+            display: flex;
+            width: 700px;
+            height: 580px;
+            background-color: #FFCB2E;
+            border-radius: 15px;
+            margin: 0 auto 30px auto;
+            padding: 0 20px 20px 20px;
+            flex-direction: column;
+            grid-template-areas:
+                "style-head"
+                "style-body";
+        }
+
+        .style-head h3 {
+            width: 100%;
+            display: flex;
+            color: #003366;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            justify-content: center;
+            padding: 25px;
+            margin: 0;
+        }
+
+        .style-body {
+            display: grid;
+            width: 660px;
+            height: 100%;
+            gap: 20px;
+            grid-template-areas: 
+                "1-collumn 2-collumn";
+        }
+
+        .first-column-duckling-style{
+            display: flex;
+            flex-direction: column;
+            justify-content: top;
+            align-items: center;
+            width: 290px;
+            height: 100%;
+        }
+
+        .second-column-duckling-style {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 350px;
+            height: 100%;
+            gap: 20px;
+        }
+
+        .duckling-type-name {
+            display: flex;
+            width: 100%;
+            height: 47px;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #003366;
+            background-color: #EB972E;
+            margin-bottom: 10px;
+            border-radius: 15px;
+        }
+
+        .duckling-type-name p {
+            margin: 0;
+            padding: 10px;
+        }
+
+        .duckling-options {
+            display: flex;
+            height: 420px;
+            width: 100%;
+            border-radius: 15px;
+            flex-direction: column;
+            background-color: white;
+            padding: 15px;
+        }
+
+        .duckling-options-items {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            align-content: flex-start;
+        }
+
+        .duckling-options-item {
+            display: flex;
+            width: 80px;
+            height: 80px;
+            margin: 0;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            background-color: #EB972E;
+        }
+
+        .duckling-type-items {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .duckling-type-item {
+            display: flex;
+            width: 83px;
+            height: 85px;
+            margin: 0;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            background-color: #EB972E;
         }
     </style>
 </head>
@@ -29,7 +376,7 @@
             <button class="btn-custom btn-store">Loja</button>
             <button class="btn-custom btn-faq">?</button>
             <button class="btn-custom btn-cart">
-                <img src="../../images/webapp/cart.png" alt="Cart Icon">
+                <i class="fa-solid fa-cart-shopping"></i>
             </button>
             <input type="text" class="search-input">
             <button class="search-custom btn-search">
@@ -45,101 +392,177 @@
         <div class="menu-brand">
             <img src="../../images/webapp/logo.png" alt="TeachMe Logo" class="logo-img">
         </div>
-        <div class="menu-items">
-            <p>&#10095; Página principal</p>
+        <div class="menu-items" style="text-align: left">
+            <i class="fa-solid fa-house"></i>
+            <p>Página principal</p>
         </div>
         <div class="menu-items">
-            <p>&#10095; Calendário de aulas</p>
+            <i class="fa-solid fa-calendar-days"></i>
+            <p>Calendário de aulas</p>
         </div>
         <div class="menu-items">
-            <p>&#10095; Menssagens</p>
+            <i class="fa-solid fa-comments"></i>
+            <p>Menssagens</p>
         </div>
         <div class="menu-items">
-            <p>&#10095; Sala de aula</p>
+            <i class="fa-solid fa-vr-cardboard"></i>
+            <p>Sala de aula</p>
         </div>
         <div class="menu-items">
-            <p>&#10095; Disciplinas</p>
+            <i class="fa-solid fa-book"></i>
+            <p>Disciplinas</p>
         </div>
         <div class="menu-items">
-            <p>&#10095; Favoritos</p>
+            <i class="fa-solid fa-heart"></i>
+            <p>Favoritos</p>
         </div>
         <div class="menu-items">
-            <p>&#10095; Quizzes</p>
+            <i class="fa-solid fa-house"></i>
+            <p>Quizzes</p>
+        </div>
+
+        <div class="user-level-container">
+            <div class="user-level-figure">
+                <i data-qtd="4" class="fa-solid fa-certificate user-level" id="user-level"></i> <!-- Renderiza o nível do usuário -->
+            </div>
+            <div id="user-level-progress">800 / 2000</div>                                      <!-- Renderiza o progresso do nível do usuário -->
+            <!-- <hr style="grid-area: hr; margin: 0 10px 0 10px;"> -->
+            <div class="user-level-progress-bar">
+                <div class="user-level-progress-bar-fill"></div>
+            </div>
+            <div class="fa-solid fa-trophy" id="user-ranking"> 26 / 1000</div>                  <!-- Renderiza o ranking do usuário -->
+        </div>
+
+        <div class="menu-items settings">
+            <i class="fa-solid fa-gear"></i>
+            <p>Configurações</p>
         </div>
     </div>
-    
-    <!------------- SETTINGS - STUDENTS - SECTION ------------->
+
+    <!------------ STUDENT HOME PAGE ------------>
+    <!------------------------------------------->
+
+    <div class="student-home-container">
+        <div class="greeting-container">
+            <div class="greeting-text">
+                <h1 id="user-greeting">Bom dia, *!</h1>     <!-- Renderiza o greeting do utilizador -->
+            </div>
+            <div class="user-notification-area">
+                <p style="font-size: 24px; margin: 0;">Notificações</p>
+                <hr style="margin: 10px">
+                <div id="notification-cards">               <!-- Renderiza as notificações do utilizador -->
+                </div>
+            </div>
+        </div>
+
+        <div class="user-duckling-container">
+            <div>
+                <img src="../../images/webapp/userDucklingView.png" alt="" id="duckling-style" style="width: 270px;">
+            </div>
+
+            <div class="user-reviews">
+                <i class="fa-solid fa-ranking-star"></i>
+                <p>Ver avaliações</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="student-class-info-container">
+        <p style="margin: 0;">Aulas Marcadas</p>
+        <hr style="margin: 10px">
+        <div class="student-class-info-container-content">
+            <div class="master-name-container">
+                <p style="font-size: 18px;">Mestre</p>
+                <div id="masterName" style="grid-area: master-name;"></div>              <!-- Renderiza o nome do mestre -->
+            </div>
+            <div>
+                <p style="font-size: 18px;">Aula</p>
+                <div id="className" style="grid-area: class-name;"></div>               <!-- Renderiza o nome da aula -->
+            </div>
+            <div>
+                <p style="font-size: 18px;">Sala</p>
+                <div id="roomNumber" style="grid-area: room-number;"></div>              <!-- Renderiza o número da sala -->
+            </div>
+            <div>
+                <p style="font-size: 18px;">Data</p>
+                <div id="classDate" style="grid-area: class-date;"></div>               <!-- Renderiza a data da aula -->
+            </div>
+        </div>
+    </div>
+
+    <div class="student-askclass-info-container">
+        <p style="margin: 0;">Pedido de Aulas</p>
+        <hr style="margin: 10px">
+        <div class="student-askclass-info-container-content">
+            <div class="master-name-container">
+                <p style="font-size: 18px;">Mestre</p>
+                <div id="masterName" style="grid-area: master-name;"></div>              <!-- Renderiza o nome do mestre -->
+            </div>
+            <div>
+                <p style="font-size: 18px;">Aula</p>
+                <div id="className" style="grid-area: class-name;"></div>               <!-- Renderiza o nome da aula -->
+            </div>
+            <div>
+                <p style="font-size: 18px;">Data</p>
+                <div id="classDate" style="grid-area: class-date;"></div>               <!-- Renderiza a data da aula -->
+            </div>
+        </div>
+    </div>
+
+    <!------------- STUDENTS DUCKLING STYLE ------------->
     <!----------------------------------------------->
-    <div class="settingsStudents-container">
-        <div class="settingsStudents-header">Perfil</div>
-        <div class="profile-section">
-            <div class="profile-header">
-                <img src="https://i.imgur.com/BD0ynTn.png" alt="Foto de perfil" />
-                <i class="fa-solid fa-pencil edit-icon" title="Alterar foto"></i>
-                <div class="greeting">Bom dia,<br><strong>*!</strong></div>
-                <button class="btn-custom4 btn-edit">Alterar</button>
-            </div>
-            <div class="profile-fields">
-                <div class="profile-field">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="username@gmail.com" />
-                </div>
-                <div class="profile-field">
-                <label for="phone">Contacto</label>
-                <div class="phone-wrapper">
-                    <select name="indicative">
-                        <option selected>+351 | Portugal</option>
-                        <option>+33 | França </option>
-                        <option>+39 | Itália</option>
-                        <option>+49 | Alemanha</option>
-                        <option>+44 | Reino Unido</option>
-                    </select>
-                    <input type="text" placeholder="9XXXXXXXX" />
-                </div>
-                </div>
-                <div class="profile-field">
-                    <label for="password">Palavra-passe</label>
-                    <input type="password" id="password" placeholder="*************" />
-                </div>
-                <div class="profile-field">
-                    <label for="incapacity">Incapacidade</label>
-                    <select id="incapacity">
-                        <option disabled selected>X</option>
-                        <option>Sim</option>
-                        <option>Não</option>
-                    </select>
-                </div>
-                <div class="profile-field">
-                    <label for="cod-postal">Código Postal</label>
-                    <input type="text" id="cod-postal" placeholder="XXXX-XXX" />
-                </div>
 
-                <button class="btn-custom3 btn-logout2">Terminar Sessão</button>
+    <div class="students-duckling-style">
+        <div class="style-head" style="grid-area: style-head;">
+            <h3>Qual o seu estilo hoje?</h3>
+        </div>
+        <div class="style-body" style="grid-area: style-body;">
+            <div class="first-column-duckling-style" style="grid-area: 1-collumn">
+                <div class="duckling-type-name">
+                    <p id="type-color">Cor</p>
+                    <p id="type-clothing" hidden>Vestuário</p>
+                    <p id="type-head" hidden>Cabeça</p>
+                    <p id="type-accessories" hidden>Acessórios</p>
+                </div>
+                <div class="duckling-options" id="duckling-style-options">
+                    <div id="duckling-colors" class="duckling-options-items">
+                        <div id="color-1" class="duckling-options-item" style="background-color: #FFCF41;"></div>
+                        <div id="color-2" class="duckling-options-item" style="background-color: #EB972E;"></div>
+                        <div id="color-3" class="duckling-options-item" style="background-color: #D37600;"></div>
+                        <div id="color-4" class="duckling-options-item" style="background-color: #A66100;"></div>
+                    </div>
+                    <div id="duckling-clothes" class="duckling-options-items" hidden>
+                        <div id="clothing-1" class="duckling-options-item">1</div>
+                        <div id="clothing-2" class="duckling-options-item">2</div>
+                        <div id="clothing-3" class="duckling-options-item">3</div>
+                        <div id="clothing-4" class="duckling-options-item">4</div>
+                    </div>
+                    <div id="duckling-head" class="duckling-options-items" hidden>
+                        <div id="hair-1" class="duckling-options-item">1</div>
+                        <div id="hair-2" class="duckling-options-item">2</div>
+                        <div id="hair-3" class="duckling-options-item">3</div>
+                        <div id="hair-4" class="duckling-options-item">4</div>
+                    </div>
+                    <div id="duckling-accessories" class="duckling-options-items" hidden>
+                        <div id="accessory-1" class="duckling-options-item">1</div>
+                        <div id="accessory-2" class="duckling-options-item">2</div>
+                        <div id="accessory-3" class="duckling-options-item">3</div>
+                        <div id="accessory-4" class="duckling-options-item">4</div>
+                    </div>
+                </div>
+            </div>
+            <div class="second-column-duckling-style" style="grid-area: 2-collumn">
+                <div>
+                    <img src="/images/webapp/ducklingStyle.png" alt="Edição de pato" style="width: 350px;">
+                </div>
+                <div id="duckling-type" class="duckling-type-items">
+                    <div id="option-color" class="duckling-type-item">1</div>
+                    <div id="option-clothing" class="duckling-type-item">2</div>
+                    <div id="option-head" class="duckling-type-item">3</div>
+                    <div id="option-accessories" class="duckling-type-item">4</div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="settingsStudents-container">
-        <div class="settingsStudents-header">Disciplinas</div>
-        <div class="disciplines-section">
-            <div class="disciplines-grid2">
-                <label><input type="checkbox" /> Francês</label>
-                <label><input type="checkbox" /> Português</label>
-                <label><input type="checkbox" /> Inglês</label>
-                <label><input type="checkbox" /> História</label>
-                <label><input type="checkbox" /> Geografia</label>
-                <label><input type="checkbox" /> Geologia</label>
-                <label><input type="checkbox" /> Matemática</label>
-                <label><input type="checkbox" /> Física e Química</label>
-                <label><input type="checkbox" /> Biologia</label>
-            </div>
-        <button class="btn-custom4 btn-save">Guardar</button>
-        </div>
-    </div>
-
-    <div class="settingsStudents-container delete-account">
-        <button class="delete-button">APAGAR CONTA</button>
-        Clique <a href="#">aqui</a> para saber mais sobre eliminação de contas.
     </div>
 
     <!------------- FOOTER ------------->
@@ -157,5 +580,47 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const options = {
+                "option-clothing": {
+                    show: ["duckling-clothes", "type-clothing"],
+                    hide: ["duckling-colors", "type-color", "duckling-head", "type-head", "duckling-accessories", "type-accessories"]
+                },
+                "option-color": {
+                    show: ["duckling-colors", "type-color"],
+                    hide: ["duckling-clothes", "type-clothing", "duckling-head", "type-head", "duckling-accessories", "type-accessories"]
+                },
+                "option-head": {
+                    show: ["duckling-head", "type-head"],
+                    hide: ["duckling-colors", "type-color", "duckling-clothes", "type-clothing", "duckling-accessories", "type-accessories"]
+                },
+                "option-accessories": {
+                    show: ["duckling-accessories", "type-accessories"],
+                    hide: ["duckling-colors", "type-color", "duckling-clothes", "type-clothing", "duckling-head", "type-head"]
+                }
+            };
+
+            const ducklingType = document.getElementById("duckling-type");
+            if (!ducklingType) return;
+
+            ducklingType.addEventListener("click", function (e) {
+                const clickedId = e.target.id;
+                if (!options[clickedId]) return;
+
+                const { show, hide } = options[clickedId];
+
+                show.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.hidden = false;
+                });
+
+                hide.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.hidden = true;
+                });
+            });
+        });
+    </script>
 </body>
 </html>
