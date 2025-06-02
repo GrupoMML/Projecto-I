@@ -9,8 +9,9 @@
 <body>
     <a-scene>
         <a-assets>
-            <a-asset-item id="classroom" src='classroomTextures/classroom3.glb'></a-asset-item>
+            <a-asset-item id="classroom" src='classroomTextures/classroom4.glb'></a-asset-item>
             <a-asset-item id="duckmaster" src='./duckTextures/duckmaster.glb'></a-asset-item>
+            <a-asset-item id="duckling" src='./duckTextures/duckling.glb'></a-asset-item>
             <img src="../../images/VR/poster a3.png" alt="poster" id="poster">
         </a-assets>
 
@@ -24,7 +25,7 @@
 
         <!------------- DUCKLING  ------------->
         <!----------------------------------------------->
-        <!-- <a-entity gltf-model='#duck' scale="50 50 50" position="-20.000 3.362 159.991" rotation="0 -180 0 "></a-entity> -->
+        <a-entity gltf-model='#duckling' scale="13 13 13" position="-20.000 -12.5 32" rotation="0 0 0 "></a-entity>
 
         <!------------- POSTER  ------------->
         <!----------------------------------------------->
@@ -38,7 +39,7 @@
         <!----------------------------------------------->
         <a-box src="./classroomTextures/textures/wallConcrete_baseColor.png" height="165" width="368" position="-19.924 31.842 0.000" color="#848A77"></a-box>
         
-        <a-entity id="rig" position="-200 20 230">
+        <a-entity id="rig" position="0 30 50">
             <a-camera id="camera"></a-camera>
         </a-entity>
     </a-scene>
