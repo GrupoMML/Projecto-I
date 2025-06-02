@@ -3353,4 +3353,162 @@ hr {
   }
 }
 
+/*------------- DISCIPLINES - SECTION -------------*/
+/*---------------------------------------------------------------*/
+.disciplines-container{
+  font-family: 'Poppins' sans-serif;
+  text-align: center;
+  font-weight: 700;
+}
+
+#disciplines-title{
+  color: rgba(0, 51, 102, 1);
+  height: 75px;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 220px);
+  grid-template-rows: repeat(3, 262px);
+  gap: 50px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.rectangle2 {
+  width: 220px;
+  height: 262px;
+  background-color: #003366;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  gap: 15px;
+  transition: transform 0.2s;
+}
+
+.rectangle2:hover {
+  transform: scale(1.03);
+}
+
+.rectangle2 img {
+  width: 120px;
+  height: auto;
+}
+
+.side-menu {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  width: 290px;
+  height: 100vh;
+  background: #B3CBDE;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+}
+
+.menu-brand {
+  margin: 13px 0px 10px 0px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-img {
+  max-width: 87%;
+  height: auto;
+}
+
+.menu-nav {
+  width: 100%;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.menu-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-nav li {
+  font-size: 16px;
+  color: #003366;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.menu-nav li i {
+  color: #003366;
+}
+
+.menu-progress {
+  background: #003366;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.menu-progress .level {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.menu-progress .xp,
+.menu-progress .coins {
+  margin-bottom: 3px;
+  color: #EB972E;
+}
+
+.menu-config {
+  color: #EB972E;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 220px);
+    grid-template-rows: auto;
+    gap: 40px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 30px;
+    justify-content: center;
+  }
+  .rectangle2 {
+    width: 220px;
+    margin: 0 auto;
+  }
+}
+
 
