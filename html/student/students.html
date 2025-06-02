@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeachMe - Students Settings</title>
     <link rel="stylesheet" href="../../css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://kit.fontawesome.com/ee23fe444a.js" crossorigin="anonymous"></script>
     <style>
+        .photo-profile {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #003366;
+            margin-right: 20px;
+        }
+
         .menu-items {
             display: flex;
             align-items: center;
@@ -243,7 +252,7 @@
             height: 580px;
             background-color: #FFCB2E;
             border-radius: 15px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 20px auto;
             padding: 0 20px 20px 20px;
             flex-direction: column;
             grid-template-areas:
@@ -342,6 +351,10 @@
             background-color: #EB972E;
         }
 
+        .duckling-options-item:hover {
+            cursor: pointer;
+        }
+
         .duckling-type-items {
             display: flex;
             flex-direction: row;
@@ -349,21 +362,74 @@
             width: 100%;
             height: 100%;
             text-align: center;
+            margin-top: 220px;
         }
 
         .duckling-type-item {
             display: flex;
+            font-size: 30px;
             width: 83px;
             height: 85px;
             margin: 0;
             border-radius: 10px;
             justify-content: center;
             align-items: center;
+            background-color: #F3AC2E;
+        }
+
+        .duckling-type-item:hover {
+            cursor: pointer;
             background-color: #EB972E;
         }
+
+        .style-options {
+            position: absolute;
+            background-color: #A66100;
+            width: 350px;
+            height: 349px;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            border-radius: 20px;
+        }
+
+        .style-option-head {
+            position: absolute;
+            background-color: #A66100;
+            width: 100px;
+            height: 100px;
+            align-items: center;
+            justify-content: center;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            border-radius: 20px;
+        }
+
+        .style-back-save-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .style-button {
+            background-color: #FFCB2E;
+            border-radius: 10px;
+            height: 50px;
+            width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .style-button:hover {
+            cursor: pointer;
+            background-color: #ffb83d;
+        }
     </style>
-</head>
-<body>
+    </head>
+    <body>
 
 
     <!------------- HEADER  ------------->
@@ -378,10 +444,7 @@
             <button class="btn-custom btn-cart">
                 <i class="fa-solid fa-cart-shopping"></i>
             </button>
-            <input type="text" class="search-input">
-            <button class="search-custom btn-search">
-                <img src="../../images/webapp/search_black.png" alt="Search Icon"> 
-            </button>
+            <button class="btn-custom photo-profile" id="photo-profile"></button>
         </div>
     </header>
 
@@ -417,7 +480,7 @@
             <p>Favoritos</p>
         </div>
         <div class="menu-items">
-            <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-bolt"></i>
             <p>Quizzes</p>
         </div>
 
@@ -538,10 +601,10 @@
                         <div id="clothing-4" class="duckling-options-item">4</div>
                     </div>
                     <div id="duckling-head" class="duckling-options-items" hidden>
-                        <div id="hair-1" class="duckling-options-item">1</div>
-                        <div id="hair-2" class="duckling-options-item">2</div>
-                        <div id="hair-3" class="duckling-options-item">3</div>
-                        <div id="hair-4" class="duckling-options-item">4</div>
+                        <div id="head-1" class="duckling-options-item">1</div>
+                        <div id="head-2" class="duckling-options-item">2</div>
+                        <div id="head-3" class="duckling-options-item">3</div>
+                        <div id="head-4" class="duckling-options-item">4</div>
                     </div>
                     <div id="duckling-accessories" class="duckling-options-items" hidden>
                         <div id="accessory-1" class="duckling-options-item">1</div>
@@ -552,16 +615,44 @@
                 </div>
             </div>
             <div class="second-column-duckling-style" style="grid-area: 2-collumn">
-                <div>
-                    <img src="/images/webapp/ducklingStyle.png" alt="Edição de pato" style="width: 350px;">
+                <div style="position: relative; width: 350px; height: 350px;">
+                    <div id="option-color-1" class="style-options">
+                        <img src="/images/webapp/ducklingStyle.png" alt="Edição de pato" style="width: 350px; height: 350px; position: absolute; top: 0; left: 0;">
+                    </div>
+                    <div id="option-color-2" class="style-options" style="background-color: #EB972E;" hidden></div>
+                    <div id="option-color-3" class="style-options" style="background-color: #D37600;" hidden></div>
+                    <div id="option-color-4" class="style-options" style="background-color: #A66100;" hidden></div>
+                    <div id="option-clothing-1" class="style-option-head" style="background-color: #a60000;" hidden></div>
+                    <div id="option-clothing-2" class="style-option-head" style="background-color: #f87272;" hidden></div>
+                    <div id="option-clothing-3" class="style-option-head" style="background-color: #f89d9d;" hidden></div>
+                    <div id="option-clothing-4" class="style-option-head" style="background-color: #ffcfcf;" hidden></div>
+                    <div id="option-head-1" class="style-option-head" style="background-color: #77e00e; margin-top: 100px;" hidden></div>
+                    <div id="option-head-2" class="style-option-head" style="background-color: #7ee921; margin-top: 100px;" hidden></div>
+                    <div id="option-head-3" class="style-option-head" style="background-color: #94ff7e; margin-top: 100px;" hidden></div>
+                    <div id="option-head-4" class="style-option-head" style="background-color: #d4ffbb; margin-top: 100px;" hidden></div>
+                    <div id="option-accessory-1" class="style-option-head" style="background-color: #002b75; margin-top: 200px;" hidden></div>
+                    <div id="option-accessory-2" class="style-option-head" style="background-color: #274bdc; margin-top: 200px;" hidden></div>
+                    <div id="option-accessory-3" class="style-option-head" style="background-color: #386dff; margin-top: 200px;" hidden></div>
+                    <div id="option-accessory-4" class="style-option-head" style="background-color: #97aef9; margin-top: 200px;" hidden></div>
                 </div>
+
                 <div id="duckling-type" class="duckling-type-items">
-                    <div id="option-color" class="duckling-type-item">1</div>
-                    <div id="option-clothing" class="duckling-type-item">2</div>
-                    <div id="option-head" class="duckling-type-item">3</div>
-                    <div id="option-accessories" class="duckling-type-item">4</div>
+                    <div id="option-color" class="duckling-type-item fa-solid fa-palette"></div>
+                    <div id="option-clothing" class="duckling-type-item fa-solid fa-tshirt"></div>
+                    <div id="option-head" class="duckling-type-item fa-solid fa-hat-cowboy"></div>
+                    <div id="option-accessories" class="duckling-type-item fa-solid fa-suitcase-rolling"></div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="style-back-save-buttons">
+        <div class="style-button">
+            <p style="font-size: 18px; margin: 0; padding: 10px;">Voltar</p>
+        </div>
+
+        <div class="style-button">
+            <p style="font-size: 18px; margin: 0; padding: 10px;">Gravar</p>
         </div>
     </div>
 
@@ -621,6 +712,27 @@
                 });
             });
         });
+
+        document.querySelectorAll('.duckling-options-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const idParts = item.id.split('-');
+                const type = idParts[0];  // "color", "clothing", "head", "accessories"
+                const index = idParts[1]; // "1", "2", etc.
+
+                // Esconde todos os elementos da categoria selecionada
+                document.querySelectorAll(`[id^="option-${type}-"]`).forEach(opt => {
+                    opt.hidden = true;
+                });
+
+                // Mostra o selecionado
+                const selectedOption = document.getElementById(`option-${type}-${index}`);
+                if (selectedOption) {
+                    selectedOption.hidden = false;
+                }
+            });
+        });
+
+
     </script>
 </body>
 </html>
