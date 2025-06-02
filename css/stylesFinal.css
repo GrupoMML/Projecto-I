@@ -1910,10 +1910,7 @@ hr {
   }
 
   .login-section h1 {
-    text-align: center !important;
-    font-size: 36px !important;
-    position: static !important;
-    margin: 20px 0 0;
+    display: none;
   }
 
   .login-section::after {
@@ -1967,9 +1964,8 @@ hr {
   }
 
   .login-section h1 {
-    font-size: 28px !important;
+    display: none;
   }
-
   .wrapper {
     width: 160px;
     height: 160px;
