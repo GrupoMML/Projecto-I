@@ -3605,5 +3605,205 @@ hr {
   }
 }
 
+/*------------- FORM STUDENTS - SECTION -------------*/
+/*-------------------------------------------------------------------*/
+.formStudents-container {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  margin-left: 326px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#formStudents-title {
+  color: rgba(0, 51, 102, 1);
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+.formStudents-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.formStudents-item label {
+  align-self: flex-start;
+  margin-left: calc(50% - 210px); 
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.formStudents-item input[type="email"],
+.formStudents-item input[type="number"],
+.formStudents-item input[type="text"] {
+  width: 420px;
+  height: 37px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: rgba(217, 217, 217, 0.6);
+}
+
+.formStudents-item input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background-color: rgba(217, 217, 217, 0.6);
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  border: none;
+}
+
+.formStudents-item input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  left: 5.3px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid #EB972E;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease 0.1s;
+}
+
+.formStudents-item input[type="checkbox"]:checked::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+.disciplines-label {
+  align-self: flex-start;
+  margin-left: calc(50% - 210px);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.disciplines-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 90px;
+  width: 420px;
+  margin-left: 350px;
+}
+
+.disciplines-grid label {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  background-color: rgba(255, 207, 65, 0.2);
+  border: 1px solid rgba(255, 207, 65, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+}
+
+.textarea-label {
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 1px;
+}
+
+.textarea-wrapper hr {
+  border: none;
+  border-top: 1px solid #aaa;
+  margin-bottom: 5px;
+}
+
+.textarea-wrapper textarea {
+  background-color: transparent;
+  border: none;
+  resize: none;
+  height: 250px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #000;
+}
+
+.textarea-wrapper textarea::placeholder {
+  color: rgba(0, 51, 102, 0.6);
+}
+
+.btn-mark {
+  width: 200px;
+  height: 50px;
+  margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .formStudents-container {
+    margin-left: 0;
+    padding: 0 20px;
+  }
+
+  .textarea-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .disciplines-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 30px;
+    width: 100%;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .formStudents-item input[type="email"],
+  .formStudents-item input[type="number"],
+  .formStudents-item input[type="text"] {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .formStudents-item label,
+  .disciplines-label {
+    margin-left: 0;
+    align-self: center;
+    text-align: left;
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 480px) {
+  .disciplines-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .textarea-wrapper textarea {
+    height: 200px;
+  }
+
+  .btn-mark {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+
 
 
