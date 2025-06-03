@@ -427,6 +427,49 @@
             cursor: pointer;
             background-color: #ffb83d;
         }
+
+        #style-view-container {
+            position: relative;
+            width: 270px;
+            height: auto;
+        }
+
+        #style-view-container img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Duckling Style Choices */   /* Aqui vai as definições dos estilos dos Ducklings e seram substituidos com os desenhos das estilizações e cores */
+        /* ---------------------- */
+        #duckling-color-choice {
+            position: absolute;
+            width: 20px;
+            height: 100px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        #duckling-clothing-choice {
+            position: absolute;
+            width: 20px;
+            height: 80px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        #duckling-head-choice {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        #duckling-accessory-choice {
+            position: absolute;
+            width: 20px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 2;
+        }
     </style>
     </head>
     <body>
@@ -519,8 +562,12 @@
         </div>
 
         <div class="user-duckling-container">
-            <div>
-                <img src="../../images/webapp/userDucklingView.png" alt="" id="duckling-style" style="width: 270px;">
+            <div id="style-view-container" class="style-view-container">
+                <img src="../../images/webapp/style-view-background.png" alt="" id="duckling-style" style="width: 270px;">
+                <div id="duckling-color-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
+                <div id="duckling-clothing-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
+                <div id="duckling-head-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
+                <div id="duckling-accessory-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
             </div>
 
             <div class="user-reviews">
@@ -585,7 +632,7 @@
                     <p id="type-color">Cor</p>
                     <p id="type-clothing" hidden>Vestuário</p>
                     <p id="type-head" hidden>Cabeça</p>
-                    <p id="type-accessories" hidden>Acessórios</p>
+                    <p id="type-accessory" hidden>Acessórios</p>
                 </div>
                 <div class="duckling-options" id="duckling-style-options">
                     <div id="duckling-colors" class="duckling-options-items">
@@ -606,7 +653,7 @@
                         <div id="head-3" class="duckling-options-item">3</div>
                         <div id="head-4" class="duckling-options-item">4</div>
                     </div>
-                    <div id="duckling-accessories" class="duckling-options-items" hidden>
+                    <div id="duckling-accessory" class="duckling-options-items" hidden>
                         <div id="accessory-1" class="duckling-options-item">1</div>
                         <div id="accessory-2" class="duckling-options-item">2</div>
                         <div id="accessory-3" class="duckling-options-item">3</div>
@@ -617,7 +664,7 @@
             <div class="second-column-duckling-style" style="grid-area: 2-collumn">
                 <div style="position: relative; width: 350px; height: 350px;">
                     <div id="option-color-1" class="style-options">
-                        <img src="/images/webapp/ducklingStyle.png" alt="Edição de pato" style="width: 350px; height: 350px; position: absolute; top: 0; left: 0;">
+                        <img src="/images/webapp/style-background.png" alt="Edição de pato" style="width: 350px; height: 350px; position: absolute; top: 0; left: 0;">
                     </div>
                     <div id="option-color-2" class="style-options" style="background-color: #EB972E;" hidden></div>
                     <div id="option-color-3" class="style-options" style="background-color: #D37600;" hidden></div>
@@ -640,7 +687,7 @@
                     <div id="option-color" class="duckling-type-item fa-solid fa-palette"></div>
                     <div id="option-clothing" class="duckling-type-item fa-solid fa-tshirt"></div>
                     <div id="option-head" class="duckling-type-item fa-solid fa-hat-cowboy"></div>
-                    <div id="option-accessories" class="duckling-type-item fa-solid fa-suitcase-rolling"></div>
+                    <div id="option-accessory" class="duckling-type-item fa-solid fa-suitcase-rolling"></div>
                 </div>
             </div>
         </div>
@@ -676,18 +723,18 @@
             const options = {
                 "option-clothing": {
                     show: ["duckling-clothes", "type-clothing"],
-                    hide: ["duckling-colors", "type-color", "duckling-head", "type-head", "duckling-accessories", "type-accessories"]
+                    hide: ["duckling-colors", "type-color", "duckling-head", "type-head", "duckling-accessory", "type-accessory"]
                 },
                 "option-color": {
                     show: ["duckling-colors", "type-color"],
-                    hide: ["duckling-clothes", "type-clothing", "duckling-head", "type-head", "duckling-accessories", "type-accessories"]
+                    hide: ["duckling-clothes", "type-clothing", "duckling-head", "type-head", "duckling-accessory", "type-accessory"]
                 },
                 "option-head": {
                     show: ["duckling-head", "type-head"],
-                    hide: ["duckling-colors", "type-color", "duckling-clothes", "type-clothing", "duckling-accessories", "type-accessories"]
+                    hide: ["duckling-colors", "type-color", "duckling-clothes", "type-clothing", "duckling-accessory", "type-accessory"]
                 },
-                "option-accessories": {
-                    show: ["duckling-accessories", "type-accessories"],
+                "option-accessory": {
+                    show: ["duckling-accessory", "type-accessory"],
                     hide: ["duckling-colors", "type-color", "duckling-clothes", "type-clothing", "duckling-head", "type-head"]
                 }
             };
@@ -716,7 +763,7 @@
         document.querySelectorAll('.duckling-options-item').forEach(item => {
             item.addEventListener('click', () => {
                 const idParts = item.id.split('-');
-                const type = idParts[0];  // "color", "clothing", "head", "accessories"
+                const type = idParts[0];  // "color", "clothing", "head", "accessory"
                 const index = idParts[1]; // "1", "2", etc.
 
                 // Esconde todos os elementos da categoria selecionada
@@ -732,7 +779,49 @@
             });
         });
 
+        document.addEventListener("DOMContentLoaded", () => {
+            const categories = ["color", "clothing", "head", "accessory"];
 
+            function applyChoice(type, index) {
+                // Mostrar no preview (lado direito)
+                document.querySelectorAll(`[id^="option-${type}-"]`).forEach(el => el.hidden = true);
+                const previewEl = document.getElementById(`option-${type}-${index}`);
+                if (previewEl) previewEl.hidden = false;
+
+                // Mostrar no style-view-container (lado esquerdo do pato)
+                const viewEl = document.getElementById(`duckling-${type}-choice`);
+                if (!viewEl || !previewEl) return;
+
+                viewEl.hidden = false;
+
+                // Aplica cor de fundo ou conteúdo visual
+                const bgColor = previewEl.style.backgroundColor;
+                if (bgColor) {
+                    viewEl.style.background = bgColor;
+                    viewEl.innerHTML = "";
+                } else {
+                    viewEl.style.background = "none";
+                    viewEl.innerHTML = previewEl.innerHTML;
+                }
+            }
+
+            // Aplica escolhas guardadas no reload
+            categories.forEach(type => {
+                const savedIndex = localStorage.getItem(`duckling-${type}`);
+                if (savedIndex) {
+                    applyChoice(type, savedIndex);
+                }
+            });
+
+            // Guarda novas escolhas
+            document.querySelectorAll(".duckling-options-item").forEach(item => {
+                item.addEventListener("click", () => {
+                    const [type, index] = item.id.split("-");
+                    localStorage.setItem(`duckling-${type}`, index);
+                    applyChoice(type, index);
+                });
+            });
+        });
     </script>
 </body>
 </html>
