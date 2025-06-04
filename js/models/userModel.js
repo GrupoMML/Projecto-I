@@ -12,8 +12,9 @@ class Student{
     locality = ''
     disciplines = ''
     aboutMe = ''
+    points = ''
     priority = 1
-    constructor(name, email, password, grade, EEcontact, incapacity, gender, dateOfBirth, locality, disciplines, aboutMe, priority){
+    constructor(name, email, password, grade, EEcontact, incapacity, gender, dateOfBirth, locality, disciplines, aboutMe, points, priority){
         this.name = name
         this.email = email
         this.password = password
@@ -25,13 +26,27 @@ class Student{
         this.locality = locality
         this.disciplines = disciplines
         this.aboutMe = aboutMe
+        this.points = points
         this.priority = priority
+        this.teachers = []
+        this.explanations = []
+        this.favourites = []
+    }
+    addTeachers(teacher){
+        this.teachers.push(teacher)
+    }
+    addExplanations(explanation){
+        this.explanations.push(explanation)
+    }
+    addFavourites(favourite){
+        this.favourites.push(favourite)
     }
 }
 
 //------------------ TEACHER CLASS ----------------------
 //----------------------------------------------------------
 class Teacher{
+    id = ''
     name = ''
     email = ''
     password = ''
@@ -42,8 +57,13 @@ class Teacher{
     diplomes = ''
     disciplines = ''
     aboutMe = ''
+    explanationLocal = ''
+    classType = ''
+    price = ''
+    points = ''
     priority = 2
-    constructor(name, email, password, incapacity, gender, dateOfBirth, locality, diplomes, disciplines, aboutMe, priority){
+    constructor(id, name, email, password, incapacity, gender, dateOfBirth, locality, diplomes, disciplines, aboutMe, explanationLocal, classType, price, points, priority){
+        this.id = id
         this.name = name
         this.email = email
         this.password = password
@@ -54,6 +74,10 @@ class Teacher{
         this.diplomes = diplomes
         this.disciplines = disciplines
         this.aboutMe = aboutMe
+        this.explanationLocal = explanationLocal
+        this.classType = classType
+        this.price = price
+        this.points = points
         this.priority = priority
     }
 }
