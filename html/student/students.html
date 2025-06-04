@@ -472,37 +472,10 @@
             display: block;
         }
 
-        /* Duckling Style Choices */   /* Aqui vai as definições dos estilos dos Ducklings e seram substituidos com os desenhos das estilizações e cores */
-        /* ---------------------- */
-        #duckling-color-choice {
-            position: absolute;
-            width: 20px;
-            height: 100px;
-            pointer-events: none;
-            z-index: 2;
+        .head {
+            z-index: 3;
         }
 
-        #duckling-clothing-choice {
-            position: absolute;
-            width: 20px;
-            height: 80px;
-            pointer-events: none;
-            z-index: 2;
-        }
-        #duckling-head-choice {
-            position: absolute;
-            width: 20px;
-            height: 60px;
-            pointer-events: none;
-            z-index: 2;
-        }
-        #duckling-accessory-choice {
-            position: absolute;
-            width: 20px;
-            height: 40px;
-            pointer-events: none;
-            z-index: 2;
-        }
     </style>
     </head>
     <body>
@@ -725,19 +698,21 @@
                     <div id="option-clothing-3" class="style-option" style="background-color: #f89d9d;" hidden></div>
                     <div id="option-clothing-4" class="style-option" style="background-color: #ffcfcf;" hidden></div>
 
-                    <div id="option-head-1" class="style-option" hidden></div>
-                    <div id="option-head-2" class="style-option" hidden>
+                    <div id="option-head-1" class="style-option head" hidden></div>
+                    <div id="option-head-2" class="style-option head" hidden>
                         <img src="/images/webapp/duckling-style-head1.png" alt="cowboy-hat">
                     </div>
-                    <div id="option-head-3" class="style-option" hidden>
+                    <div id="option-head-3" class="style-option head" hidden>
                         <img src="/images/webapp/duckling-style-head2.png" alt="cap-hat">
                     </div>
-                    <div id="option-head-4" class="style-option" hidden>
+                    <div id="option-head-4" class="style-option head" hidden>
                         <img src="/images/webapp/duckling-style-head3.png" alt="airpods">
                     </div>
 
                     <div id="option-accessory-1" class="style-option" hidden></div>
-                    <div id="option-accessory-2" class="style-option" style="background-color: #274bdc; margin-top: 200px;" hidden></div>
+                    <div id="option-accessory-2" class="style-option" hidden>
+                        <img src="/images/webapp/duckling-style-accessory1.png" alt="accessory-1">
+                    </div>
                     <div id="option-accessory-3" class="style-option" style="background-color: #386dff; margin-top: 200px;" hidden></div>
                     <div id="option-accessory-4" class="style-option" style="background-color: #97aef9; margin-top: 200px;" hidden></div>
                 </div>
