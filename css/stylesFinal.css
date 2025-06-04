@@ -3640,9 +3640,8 @@ hr {
   text-align: left;
 }
 
-.formStudents-item input[type="email"],
-.formStudents-item input[type="number"],
-.formStudents-item input[type="text"] {
+.formStudents-item input[type="text"],
+.formStudents-item input[type="datetime-local"] {
   width: 420px;
   height: 37px;
   border: 1px solid #ccc;
@@ -3771,9 +3770,8 @@ hr {
     margin-right: auto;
   }
 
-  .formStudents-item input[type="email"],
-  .formStudents-item input[type="number"],
-  .formStudents-item input[type="text"] {
+  .formStudents-item input[type="text"],
+  .formStudents-item input[type="datetime-local"]  {
     width: 100%;
     max-width: 420px;
   }
