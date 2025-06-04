@@ -198,6 +198,27 @@
             font-size: 24px;
         }
 
+        .change-style-btn {
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            z-index: 3;
+            bottom: 8px;
+            right: 8px;
+            border-radius: 100%;
+            border: 1px solid #003366;
+            background-color: #FFCB2E;
+            text-align: center;
+            font-size: 22px;
+            padding: 13px;
+        }
+
+        .change-style-btn:hover {
+            cursor: pointer;
+            border: 1px solid #003366;
+            background-color: #F3AC2E;
+        }
+
         .student-class-info-container {
             display: flex;
             width: 700px;
@@ -344,6 +365,7 @@
             display: flex;
             width: 80px;
             height: 80px;
+            font-size: 30px;
             margin: 0;
             border-radius: 10px;
             justify-content: center;
@@ -384,18 +406,22 @@
 
         .style-options {
             position: absolute;
-            background-color: #A66100;
             width: 350px;
-            height: 349px;
             top: 0;
             left: 0;
             z-index: 1;
             border-radius: 20px;
         }
 
-        .style-option-head {
+        .style-options img {
             position: absolute;
-            background-color: #A66100;
+            top: 0;
+            left: 0;
+            width: 350px;
+        }
+
+        .style-option {
+            position: absolute;
             width: 100px;
             height: 100px;
             align-items: center;
@@ -404,6 +430,13 @@
             left: 0;
             z-index: 1;
             border-radius: 20px;
+        }
+
+        .style-option img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 350px;
         }
 
         .style-back-save-buttons {
@@ -435,7 +468,7 @@
         }
 
         #style-view-container img {
-            width: 100%;
+            width: 90%;
             display: block;
         }
 
@@ -563,7 +596,10 @@
 
         <div class="user-duckling-container">
             <div id="style-view-container" class="style-view-container">
+                <div class="change-style-btn fa-solid fa-pen"></div>
+
                 <img src="../../images/webapp/style-view-background.png" alt="" id="duckling-style" style="width: 270px;">
+                
                 <div id="duckling-color-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
                 <div id="duckling-clothing-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
                 <div id="duckling-head-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
@@ -642,19 +678,19 @@
                         <div id="color-4" class="duckling-options-item" style="background-color: #A66100;"></div>
                     </div>
                     <div id="duckling-clothes" class="duckling-options-items" hidden>
-                        <div id="clothing-1" class="duckling-options-item">1</div>
+                        <div id="clothing-1" class="duckling-options-item fa-solid fa-ban"></div>
                         <div id="clothing-2" class="duckling-options-item">2</div>
                         <div id="clothing-3" class="duckling-options-item">3</div>
                         <div id="clothing-4" class="duckling-options-item">4</div>
                     </div>
                     <div id="duckling-head" class="duckling-options-items" hidden>
-                        <div id="head-1" class="duckling-options-item">1</div>
+                        <div id="head-1" class="duckling-options-item fa-solid fa-ban"></div>
                         <div id="head-2" class="duckling-options-item">2</div>
                         <div id="head-3" class="duckling-options-item">3</div>
                         <div id="head-4" class="duckling-options-item">4</div>
                     </div>
                     <div id="duckling-accessory" class="duckling-options-items" hidden>
-                        <div id="accessory-1" class="duckling-options-item">1</div>
+                        <div id="accessory-1" class="duckling-options-item fa-solid fa-ban"></div>
                         <div id="accessory-2" class="duckling-options-item">2</div>
                         <div id="accessory-3" class="duckling-options-item">3</div>
                         <div id="accessory-4" class="duckling-options-item">4</div>
@@ -663,24 +699,47 @@
             </div>
             <div class="second-column-duckling-style" style="grid-area: 2-collumn">
                 <div style="position: relative; width: 350px; height: 350px;">
-                    <div id="option-color-1" class="style-options">
-                        <img src="/images/webapp/style-background.png" alt="Edição de pato" style="width: 350px; height: 350px; position: absolute; top: 0; left: 0;">
+                    <!-- background -->
+                    <div id="style-background" class="style-options">
+                        <img src="/images/webapp/style-background.png" alt="Edição de pato">
                     </div>
-                    <div id="option-color-2" class="style-options" style="background-color: #EB972E;" hidden></div>
-                    <div id="option-color-3" class="style-options" style="background-color: #D37600;" hidden></div>
-                    <div id="option-color-4" class="style-options" style="background-color: #A66100;" hidden></div>
-                    <div id="option-clothing-1" class="style-option-head" style="background-color: #a60000;" hidden></div>
-                    <div id="option-clothing-2" class="style-option-head" style="background-color: #f87272;" hidden></div>
-                    <div id="option-clothing-3" class="style-option-head" style="background-color: #f89d9d;" hidden></div>
-                    <div id="option-clothing-4" class="style-option-head" style="background-color: #ffcfcf;" hidden></div>
-                    <div id="option-head-1" class="style-option-head" style="background-color: #77e00e; margin-top: 100px;" hidden></div>
-                    <div id="option-head-2" class="style-option-head" style="background-color: #7ee921; margin-top: 100px;" hidden></div>
-                    <div id="option-head-3" class="style-option-head" style="background-color: #94ff7e; margin-top: 100px;" hidden></div>
-                    <div id="option-head-4" class="style-option-head" style="background-color: #d4ffbb; margin-top: 100px;" hidden></div>
-                    <div id="option-accessory-1" class="style-option-head" style="background-color: #002b75; margin-top: 200px;" hidden></div>
-                    <div id="option-accessory-2" class="style-option-head" style="background-color: #274bdc; margin-top: 200px;" hidden></div>
-                    <div id="option-accessory-3" class="style-option-head" style="background-color: #386dff; margin-top: 200px;" hidden></div>
-                    <div id="option-accessory-4" class="style-option-head" style="background-color: #97aef9; margin-top: 200px;" hidden></div>
+
+                    <!-- colors -->
+                    <div id="option-color-1" class="style-options">
+                        <img src="/images/webapp/duckling-color-1.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
+                    </div>
+                    <div id="option-color-2" class="style-options" hidden>
+                        <img src="/images/webapp/duckling-color-2.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
+                    </div>
+                    <div id="option-color-3" class="style-options" hidden>
+                        <img src="/images/webapp/duckling-color-3.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
+                    </div>
+                    <div id="option-color-4" class="style-options" hidden>
+                        <img src="/images/webapp/duckling-color-4.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
+                    </div>
+
+                    <div id="option-clothing-1" class="style-option" hidden></div>
+                    <div id="option-clothing-2" class="style-option" hidden>
+                        <img src="/images/webapp/duckling-style-clothing1.png" alt="clothing-1">
+                    </div>
+                    <div id="option-clothing-3" class="style-option" style="background-color: #f89d9d;" hidden></div>
+                    <div id="option-clothing-4" class="style-option" style="background-color: #ffcfcf;" hidden></div>
+
+                    <div id="option-head-1" class="style-option" hidden></div>
+                    <div id="option-head-2" class="style-option" hidden>
+                        <img src="/images/webapp/duckling-style-head1.png" alt="cowboy-hat">
+                    </div>
+                    <div id="option-head-3" class="style-option" hidden>
+                        <img src="/images/webapp/duckling-style-head2.png" alt="cap-hat">
+                    </div>
+                    <div id="option-head-4" class="style-option" hidden>
+                        <img src="/images/webapp/duckling-style-head3.png" alt="airpods">
+                    </div>
+
+                    <div id="option-accessory-1" class="style-option" hidden></div>
+                    <div id="option-accessory-2" class="style-option" style="background-color: #274bdc; margin-top: 200px;" hidden></div>
+                    <div id="option-accessory-3" class="style-option" style="background-color: #386dff; margin-top: 200px;" hidden></div>
+                    <div id="option-accessory-4" class="style-option" style="background-color: #97aef9; margin-top: 200px;" hidden></div>
                 </div>
 
                 <div id="duckling-type" class="duckling-type-items">
