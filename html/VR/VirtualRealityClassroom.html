@@ -19,6 +19,7 @@
             <a-asset-item id="tableChairs" src='./tableChairsTextures/tableChairs.gltf'></a-asset-item>
             <img src="../../images/VR/poster a3.png" alt="poster" id="poster">
             <img src="../../images/VR/mosaic.jpg" alt="carpet" id="carpet">
+            <img src="../../images/VR/pattern-FinalMarker.png" alt="marker" id="marker">
         </a-assets>
 
         <!------------- CLASSROOM  ------------->
@@ -37,6 +38,10 @@
         <!----------------------------------------------->
         <a-plane src="#poster" height="80" width="77.5" position="116.7 32 239" rotation="0 180 0"></a-plane>
 
+        <!------------- MARKER  ------------->
+        <!----------------------------------------------->
+        <a-plane src="#marker" height="80" width="77.5" position="19.526 -10.352 28.525" rotation="-90 180 0" scale="0.1 0.1 0.1"></a-plane>
+
         <!------------- BOARD  ------------->
         <!----------------------------------------------->
         <a-sphere position="0 20 236.912" radius="0.1" scale="20 20 20" color="white"></a-sphere>
@@ -48,9 +53,26 @@
 
         <a-text value="y = 0.5x + 2" 
             color="white" 
-            position="50 50 236.912"
+            position="20 50 236.912"
             width="4"
-            scale="50 50 50"
+            scale="30 30 30"
+            rotation="0 180 0">
+        </a-text>
+
+        <a-text value="'Amor e o fogo 
+        que arde sem se ver' - Camoes" 
+            color="white" 
+            position="-50 10 236.912"
+            width="4"
+            scale="20 20 20"
+            rotation="0 180 0">
+        </a-text>
+
+        <a-text value="E = mc^2" 
+            color="white" 
+            position="-90 50 236.912"
+            width="4"
+            scale="20 20 20"
             rotation="0 180 0">
         </a-text>
 
@@ -104,7 +126,7 @@
 
         <a-text value="SALA DE LAZER" 
             color="white" 
-            position="-65.114 93.571 -76.418"
+            position="-65.114 93.571 -79.917"
             width="4"
             scale="50 50 50"
             rotation="0 360 0">
@@ -152,9 +174,40 @@
         <!------------- TABLE AND CHAIRS - CHILL ZONE  ------------->
         <!----------------------------------------------->
         <a-entity gltf-model='#tableChairs' scale="50 50 50" position="50 -50 -136.000" rotation="0 0 0"></a-entity>
+        <a-entity gltf-model='#duckling' scale="10 10 10" position="52.655 -12.378 -113.602" rotation="0 -104.212 0"></a-entity>
+        <a-entity gltf-model='#duckmaster' scale="12 12 12" position="99.546 -9.870 -148.533" rotation="0 -59.512 0"></a-entity>
+        <a-box color="white" width="8" height="0.5" depth="8" position="66.546 -5.763 -108.624" rotation="0 90 0" scale="1 1 1"></a-box>
+        <a-box color="white" width="8" height="0.5" depth="8" position="66.546 -5.763 -117.136" rotation="0 90 0" scale="1 1 1"></a-box>
+        <a-box color="black" width="20" height="0.5" depth="8" position="66.629 -6.292 -113.065" rotation="0 90 0" scale="0.917 1 1"></a-box>
 
+        <!------------- LAMP  ------------->
+        <!----------------------------------------------->
+        <a-entity scale="500 500 500">
+            <a-cylinder 
+                position="-0.039 -0.093 -0.426" 
+                height="0.01" 
+                radius="0.0125" 
+                color="#444">
+            </a-cylinder>
 
-        <a-entity id="rig" position="-146.583 37.619 105.632">
+            <!-- Haste -->
+            <a-cylinder 
+                position="-0.039 -0.032 -0.426" 
+                height="0.12" 
+                radius="0.0015" 
+                color="#666">
+            </a-cylinder>
+
+            <a-cylinder 
+                position="-0.039 0.038 -0.426" 
+                height="0.02" 
+                radius="0.016" 
+                color="#ffffff" 
+                material="opacity: 0.9; transparent: true; roughness: 0.6">
+            </a-cylinder>
+        </a-entity>
+
+        <a-entity id="rig" position="-200 37.619 140" rotation="0 -90 0">
             <a-camera id="camera"></a-camera>
         </a-entity>
     </a-scene>
