@@ -2159,7 +2159,7 @@ hr {
   margin-left: 20px;
 }
 
-.disciplines-grid {
+.disciplines-grid2 {
   display: grid;
   grid-template-columns: repeat(3, minmax(150px, 1fr));
   gap: 12px 30px; 
@@ -2261,7 +2261,6 @@ hr {
 
 .duckmaster-image {
   margin-top: 100px;
-  flex-shrink: 0;
 }
 
 .duckmaster-image img {
@@ -2306,7 +2305,6 @@ hr {
   color: rgba(235, 151, 46, 1);
 }
 
-/* Estilos para tablets (até 1024px) */
 @media (max-width: 1024px) {
   .registration-paragraph {
     margin-left: 20px;

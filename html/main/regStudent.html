@@ -44,7 +44,7 @@
     <!------------- REGISTRATION SECTION ------------->
     <!---------------------------------------------------->
     <section class="registration-section">
-        <h1 class="registration-header">Quer ser um Pato Mestre?</h1>
+        <h1 class="registration-header">Não tem registo?</h1>
         <p class="registration-paragraph">
         Que bom encontrar um mestre pronto para ensinar,<br>
         no entanto precisamos de algumas informações.
@@ -53,114 +53,113 @@
 
     <div class="registration-container">
         <div class="registration-info">
-        <div class="left-group">
-            <div class="registration-item">
-                <label for="reg-name">Nome*</label>
-                <div class="input-icon">
-                    <i class="fas fa-user"></i>
-                    <input type="text" id="reg-name" required>
+            <div class="left-group">
+                <div class="registration-item">
+                    <label for="reg-name">Nome*</label>
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="reg-name" required>
+                    </div>
                 </div>
-            </div>
-            <div class="registration-item">
-                <label for="reg-email">Email*</label>
-                <div class="input-icon">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" id="reg-email" required>
+                <div class="registration-item">
+                    <label for="reg-email">Email*</label>
+                    <div class="input-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="reg-email" required>
+                    </div>
                 </div>
-            </div>
-            <div class="registration-item">
-                <label for="reg-password">Senha*</label>
-                <div class="input-icon">
-                    <i class="fas fa-key"></i>
-                    <input type="password" id="reg-password" required>
+                <div class="registration-item">
+                    <label for="reg-password">Senha*</label>
+                    <div class="input-icon">
+                        <i class="fas fa-key"></i>
+                        <input type="password" id="reg-password" required>
+                    </div>
                 </div>
-            </div>
-            <div class="registration-item">
-                <label for="reg-grade">Ano de escolaridade*</label>
-                <div class="input-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                    <input type="text" id="reg-grade" required>
+                <div class="registration-item">
+                    <label for="reg-grade">Ano de escolaridade*</label>
+                    <div class="input-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                        <input type="text" id="reg-grade" required>
+                    </div>
                 </div>
-            </div>
-            <div class="registration-item">
-                <label for="reg-EEcontact">Contacto do E.E.*</label>
-                <div class="input-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                    <input type="number" id="reg-EEcontact">
+                <div class="registration-item">
+                    <label for="reg-EEcontact">Contacto do E.E.*</label>
+                    <div class="input-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                        <input type="number" id="reg-EEcontact">
+                    </div>
                 </div>
+
+                <div class="registration-item">
+                    <label for="reg-incapacity">Alguma Incapacidade?*</label>
+                    <div class="input-icon">
+                        <i class="fas fa-wheelchair"></i>
+                        <select id="reg-incapacity" required>
+                            <option value="" disabled selected></option>
+                            <option value="yes">Sim, sou incapacitado</option>
+                            <option value="no">Não sou incapacitado</option>
+                        </select>
+                    </div>
+                </div>
+                
+        
             </div>
 
-            <div class="registration-item">
-                <label for="reg-incapacity">Alguma Incapacidade?*</label>
-                <div class="input-icon">
-                    <i class="fas fa-wheelchair"></i>
-                    <select id="reg-incapacity" required>
-                        <option value="" disabled selected></option>
-                        <option value="yes">Sim, sou incapacitado</option>
-                        <option value="no">Não sou incapacitado</option>
-                    </select>
+            <div class="right-group">
+                <div class="registration-item">
+                    <label>Género*</label>
+                    <div class="gender-options">
+                        <label><input type="checkbox"> Masculino</label>
+                        <label><input type="checkbox"> Feminino</label>
+                    </div>
+                </div>
+
+                <div class="registration-item">
+                    <label for="reg-dateOfBirth">Data de Nascimento*</label>
+                    <div class="input-icon">
+                        <i class="fas fa-calendar-days"></i>
+                        <input type="date" id="reg-dateOfBirth" placeholder="dd/mm/aa" required>
+                    </div>
+                </div>
+
+                <div class="registration-item">
+                    <label for="reg-localization">Localidade*</label>
+                    <div class="input-icon">
+                        <i class="fas fa-location-dot"></i>
+                        <input type="text" id="reg-localization" required>
+                    </div>
+                </div>
+
+                <div class="registration-item">
+                    <label>Disciplinas*</label>
+                    <div class="disciplines-grid2">
+                        <label><input type="checkbox"> Francês</label>
+                        <label><input type="checkbox"> Português</label>
+                        <label><input type="checkbox"> Inglês</label>
+                        <label><input type="checkbox"> História</label>
+                        <label><input type="checkbox"> Geografia</label>
+                        <label><input type="checkbox"> Geologia</label>
+                        <label><input type="checkbox"> Matemática</label>
+                        <label><input type="checkbox"> Física e Química</label>
+                        <label><input type="checkbox"> Biologia</label>
+                    </div>
                 </div>
             </div>
-            
-    
         </div>
 
-        <div class="right-group">
-            <div class="registration-item">
-                <label>Género*</label>
-                <div class="gender-options">
-                    <label><input type="checkbox"> Masculino</label>
-                    <label><input type="checkbox"> Feminino</label>
-                </div>
-            </div>
-
-            <div class="registration-item">
-                <label for="reg-dateOfBirth">Data de Nascimento*</label>
-                <div class="input-icon">
-                    <i class="fas fa-calendar-days"></i>
-                    <input type="date" id="reg-dateOfBirth" placeholder="dd/mm/aa" required>
-                </div>
-            </div>
-
-            <div class="registration-item">
-                <label for="reg-localization">Localidade*</label>
-                <div class="input-icon">
-                    <i class="fas fa-location-dot"></i>
-                    <input type="text" id="reg-localization" required>
-                </div>
-            </div>
-
-            <div class="registration-item">
-                <label>Disciplinas*</label>
-                <div class="disciplines-grid">
-                    <label><input type="checkbox"> Francês</label>
-                    <label><input type="checkbox"> Português</label>
-                    <label><input type="checkbox"> Inglês</label>
-                    <label><input type="checkbox"> História</label>
-                    <label><input type="checkbox"> Geografia</label>
-                    <label><input type="checkbox"> Geologia</label>
-                    <label><input type="checkbox"> Matemática</label>
-                    <label><input type="checkbox"> Física e Química</label>
-                    <label><input type="checkbox"> Biologia</label>
-                </div>
-            </div>
+        <div class="duckmaster-image">
+            <img src="../../images/webapp/hoverDuckling.png" alt="Duckling Image">
         </div>
-    </div>
 
-    <div class="duckmaster-image">
-        <img src="../../images/webapp/hoverDuckling.png" alt="Duckling Image">
-    </div>
+        <div class="registration-item full-width">
+            <label for="aboutMe">Sobre mim:</label>
+            <textarea id="aboutMe" name="aboutMe"></textarea>
+        </div>
 
-    <div class="registration-item full-width">
-        <label for="aboutMe">Sobre mim:</label>
-        <textarea id="aboutMe" name="aboutMe"></textarea>
-    </div>
-
-    <div class="buttons">
-        <button class="btn-custom2 btn-register">Registar</button>
-        <button class="btn-custom2 btn-back">Voltar</button>
-    </div>
-
+        <div class="buttons">
+            <button class="btn-custom2 btn-register">Registar</button>
+            <button class="btn-custom2 btn-back">Voltar</button>
+        </div>
     </div>
         
     <!------------- FOOTER ------------->
