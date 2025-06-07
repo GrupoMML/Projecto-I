@@ -5123,4 +5123,233 @@ hr {
   }
 }
 
+/*------------- NOTIFICATIONS - SECTION -------------*/
+/*-------------------------------------------------------------------*/
+.page-wrapper-notifications {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;   
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.notifications-title {
+  color: #036;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.notifications-container {
+  width: 1003px;
+  height: 401px;
+  background: rgba(255, 207, 65, 0.20);
+  border-radius: 15px;
+  display: flex;
+  padding: 20px;
+  gap: 40px;
+  color: #036;
+  box-sizing: border-box;
+}
+
+.notifications-container-content-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.notifications-container-content-left label {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #036;
+}
+
+#notifications-sendMessage {
+  width: 639px;
+  height: 338px;
+  border-radius: 10px;
+  background: #FFF;
+  border: 1px solid #ccc;
+  padding: 10px;
+  resize: none;
+  font-size: 16px;
+  color: #036;
+}
+
+.notifications-container-content-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.attach-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.attach-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.attach-group label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #036;
+  margin-bottom: 8px;
+}
+
+.attachBox {
+  width: 120px;
+  height: 139px;
+  border-radius: 10px;
+  background: rgba(255, 203, 46, 0.60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.attachBox i {
+  font-size: 44px;
+  width: 44px;
+  height: 44px;
+  color: rgba(163, 91, 31, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.sendNotification {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sendNotification > label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #036;
+  margin-bottom: 8px;
+  margin-top: 50px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.btnSendToStudents{
+  font-weight: 700;
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: rgba(255, 207, 65, 0.2);
+  color: rgba(235, 151, 46, 1);
+}
+
+.btnSendToTeachers{
+  font-weight: 700;
+  width: 128px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: rgba(255, 207, 65, 0.2);
+  color: rgba(235, 151, 46, 1);
+}
+
+.btnSendMessage {
+  font-weight: 700;
+  width: calc(100% - 10px);
+  max-width: 260px;
+  border-radius: 8px;
+  background-color: rgba(255, 207, 65, 0.2);
+  color: rgba(235, 151, 46, 1);
+}
+
+.btnSendToStudents:hover{
+  background-color: rgba(235, 151, 46, 1);
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btnSendToTeachers:hover{
+  background-color: rgba(235, 151, 46, 1);
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btnSendMessage:hover{
+  background-color: rgba(235, 151, 46, 1);
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (max-width: 1020px) {
+  .notifications-container{
+    width: 90%;
+  }        
+  #notifications-sendMessage{
+    width: 100%;
+  }      
+}
+
+@media (max-width: 768px) {
+  .notifications-title{
+    font-size: 32px; margin-bottom: 40px;
+  }         
+
+  .notifications-container {
+    flex-direction: column;      
+    height: auto;                 
+    gap: 30px;
+  }
+
+  .notifications-container-content-left,
+  .notifications-container-content-right {
+    width: 100%;
+  }
+
+  #notifications-sendMessage{
+    height: 260px;
+  }      
+
+  .attach-wrapper{
+    flex-wrap: wrap;
+  }                 
+
+  .btn-row{
+    flex-wrap: wrap;
+  }                        
+  .btnSendMessage{
+    width: 100%; max-width: none;
+  }                 
+}
+
+@media (max-width: 480px) {
+  .notifications-title{
+    font-size: 28px;
+  }           
+
+  #notifications-sendMessage{
+    height: 200px;
+  }     
+  .attach-wrapper{
+    flex-direction: column; gap: 15px;
+  }                 
+
+  .btn-row{
+    flex-direction: column; gap: 10px;
+  }                      
+}
+
+
+
 
