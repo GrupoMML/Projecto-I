@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const clickHereButton = document.getElementById("contacts-view-ref-btn")
     const buttonAboutUs = document.getElementById("btn-aboutUs-view")
+    const buttonFAQ = document.getElementById("btn-faq-view")
 
     buttonAboutUs.addEventListener("click", event =>{
     event.preventDefault()
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         contactsSection.classList.remove("active")
         FAQSection.classList.add("inactive")
         FAQSection.classList.remove("active")
+        buttonAboutUs.classList.remove("active")
     })
 
     footerContactLink.addEventListener("click", event => {
@@ -38,6 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
         contactsSection.classList.add("active")
         contactsSection.classList.remove("inactive")
         FAQSection.classList.add("inactive")
+        buttonAboutUs.classList.add("active")
+    })
+
+    buttonFAQ.addEventListener("click", event =>{
+        event.preventDefault()
+        aboutUsSection.classList.add("inactive")
+        aboutUsSection.classList.remove("active")
+        FAQSection.classList.add("active")
+        FAQSection.classList.remove("inactive")
+        contactsSection.classList.add("inactive")
         buttonAboutUs.classList.add("active")
     })
 
