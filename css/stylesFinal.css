@@ -5548,6 +5548,26 @@ hr {
   display: none;
 }
 
+#login-view.active{
+  display: block;
+}
+
+#register-student-view{
+  display: none;
+}
+
+#register-student-view.active{
+  display: block;
+}
+
+#register-teacher-view{
+  display: none;
+}
+
+#register-teacher-view.active{
+  display: block;
+}
+
 .inactive {
   display: none !important;
 }
