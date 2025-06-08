@@ -5568,6 +5568,26 @@ hr {
   display: block;
 }
 
+#store-view{
+  display:block
+}
+
+#cart-view{
+  display: none;
+}
+
+#cart-view.active{
+  display: block;
+}
+
+#product-view{
+  display: none;
+}
+
+#product-view.active{
+  display: flex;
+}
+
 .inactive {
   display: none !important;
 }
