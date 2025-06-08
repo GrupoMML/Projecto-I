@@ -5518,6 +5518,43 @@ hr {
   }
 }
 
+/*------------- VIEWS -------------*/
+/*-------------------------------------------------------------------*/
+#aboutUs-view.active {
+  display: block;
+}
+
+#contacts-view.active {
+  display: flex;
+}
+
+#faq-view.active {
+  display: block;
+}
+
+#contacts-view{
+  display: none;
+}
+
+#faq-view{
+  display: none;
+}
+
+#btn-aboutUs-view.active{
+  display: block;
+}
+
+#btn-aboutUs-view{
+  display: none;
+}
+
+.inactive {
+  display: none !important;
+}
+
+
+
+
 
 
 
