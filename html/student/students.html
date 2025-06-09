@@ -374,14 +374,7 @@
         }
 
         .duckling-options-item img {
-            width: 150%;
-            padding-left: 10px;
-            padding-bottom: 30px;
-        }
-
-        .head-option img {
-            width: 150%;
-            padding-top: 90px;
+            width: 100%;
         }
 
         .duckling-options-item:hover {
@@ -642,7 +635,7 @@
     <!------------- STUDENTS DUCKLING STYLE ------------->
     <!----------------------------------------------->
 
-    <div class="students-duckling-style">
+    <div class="students-duckling-style" id="students-duckling-style">
         <div class="style-head" style="grid-area: style-head;">
             <h3>Qual o seu estilo hoje?</h3>
         </div>
@@ -679,10 +672,10 @@
                             <img src="/images/webapp/duckling-style-head1.png" alt="head-1">
                         </div>
                         <div id="head-3" class="duckling-options-item head-option">
-                            <img src="/images/webapp/duckling-style-head2.png" alt="head-2" style="width: 200%;">
+                            <img src="/images/webapp/duckling-style-head2.png" alt="head-2">
                         </div>
                         <div id="head-4" class="duckling-options-item head-option">
-                            <img src="/images/webapp/duckling-style-head3.png" alt="head-3" style="width: 250%;">
+                            <img src="/images/webapp/duckling-style-head3.png" alt="head-3">
                         </div>
                     </div>
                     <div id="duckling-accessory" class="duckling-options-items" hidden>
@@ -767,12 +760,12 @@
         </div>
     </div>
 
-    <div class="style-back-save-buttons">
-        <div class="style-button">
+    <div class="style-back-save-buttons" id="style-back-save-buttons">
+        <div class="style-button" id="back-button">
             <p style="font-size: 18px; margin: 0; padding: 10px;">Voltar</p>
         </div>
 
-        <div class="style-button">
+        <div class="style-button" id="save-button">
             <p style="font-size: 18px; margin: 0; padding: 10px;">Gravar</p>
         </div>
     </div>
@@ -885,6 +878,7 @@
                 if (savedIndex) {
                     applyChoice(type, savedIndex);
                 }
+
             });
 
             // Guarda novas escolhas
@@ -895,6 +889,41 @@
                     applyChoice(type, index);
                 });
             });
+
+            // Botão de voltar
+            document.getElementById("back-button")?.addEventListener("click", () => {
+                const styleSection = document.getElementById("students-duckling-style");
+                const buttonsSection = document.getElementById("style-back-save-buttons");
+
+                if (styleSection) styleSection.hidden = true;
+                if (buttonsSection) buttonsSection.hidden = true;
+            });
+
+            // Função para mostrar mensagem de sucesso
+            function showSaveMessage() {
+                let msg = document.getElementById("save-success-msg");
+
+                if (!msg) {
+                    msg = document.createElement("div");
+                    msg.id = "save-success-msg";
+                    msg.textContent = "Alterações salvas com sucesso!";
+                    msg.style.position = "fixed";
+                    msg.style.bottom = "20px";
+                    msg.style.right = "20px";
+                    msg.style.backgroundColor = "#4caf50";
+                    msg.style.color = "white";
+                    msg.style.padding = "10px 20px";
+                    msg.style.borderRadius = "8px";
+                    msg.style.boxShadow = "0 2px 6px rgba(0,0,0,0.2)";
+                    msg.style.zIndex = "9999";
+                    document.body.appendChild(msg);
+                }
+
+                msg.style.display = "block";
+                setTimeout(() => {
+                    msg.style.display = "none";
+                }, 3000);
+            }
         });
     </script>
 </body>
