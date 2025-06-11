@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function(){
     //------------------------------------------------------
     const aboutUsBtn = document.getElementById("btn-aboutUs-view");
     if (aboutUsBtn) {
+        aboutUsBtn.style.display = "block"
         aboutUsBtn.addEventListener("click", (event) => {
             event.preventDefault()
             window.location.href = "info.html?page=AboutUs"
