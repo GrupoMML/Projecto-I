@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function(){
         storeCartSection.classList.add("inactive")
     })
 
-    //------------- PARAMETERS -------------
+    //------------- PARAMETERS INFO -------------
     //------------------------------------------------------
     const params = new URLSearchParams(window.location.search)
     if (params.get("page") === "store") {
@@ -54,7 +54,21 @@ document.addEventListener("DOMContentLoaded", function(){
         storeProductSection.classList.add("inactive")
     }
 
-    //------------- REDIRECTION PAGES -------------
+    //------------- PARAMETERS ACCOUNT -------------
+    //------------------------------------------------------
+    /* if (params.get("page") === "store") {
+
+    }
+    if (params.get("page") === "storeCart") {
+        storeCartSection.classList.add("active")
+        storeCartSection.classList.remove("inactive")
+        storeSection.classList.remove("active")
+        storeSection.classList.add("inactive")
+        storeProductSection.classList.remove("active")
+        storeProductSection.classList.add("inactive")
+    } */
+
+    //------------- REDIRECTION INFO -------------
     //------------------------------------------------------
     const aboutUsBtn = document.getElementById("btn-aboutUs-view");
     if (aboutUsBtn) {
@@ -89,8 +103,19 @@ document.addEventListener("DOMContentLoaded", function(){
         })
     }
 
+    //------------- REDIRECTION ACCOUNT -------------
+    //------------------------------------------------------
+    /* const aboutUsBtn = document.getElementById("btn-aboutUs-view");
+    if (aboutUsBtn) {
+        aboutUsBtn.style.display = "block"
+        aboutUsBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "info.html?page=AboutUs"
+        })
+    } */
 
-    
+
+
 })
 
 

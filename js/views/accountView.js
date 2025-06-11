@@ -43,6 +43,54 @@ document.addEventListener("DOMContentLoaded", function(){
         registerTeacherSection.classList.remove("inactive")
         registerStudentSection.classList.remove("active")
     }) 
+
+    //------------- PARAMETERS INFO -------------
+    //------------------------------------------------------
+    /* const params = new URLSearchParams(window.location.search)
+    if (params.get("page") === "AboutUs") {
+        
+    } */
+    
+
+     //------------- REDIRECTION INFO -------------
+    //------------------------------------------------------
+    const aboutUsBtn = document.getElementById("btn-aboutUs-view");
+    if (aboutUsBtn) {
+        aboutUsBtn.style.display = "block"
+        aboutUsBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "info.html?page=AboutUs"
+        })
+    }
+
+    const faqBtn = document.getElementById("btn-faq-view");
+    if (faqBtn) {
+        faqBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "info.html?page=FAQ"
+        })
+    }
+
+    const footerContactsBtn = document.getElementById("footer-link-contacts");
+    if (footerContactsBtn) {
+        footerContactsBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "info.html?page=Contacts"
+        })
+    }
+
+    const footerFAQBtn = document.getElementById("footer-link-faq");
+    if (footerFAQBtn) {
+        footerFAQBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "info.html?page=FAQ"
+        })
+    }
+
+
+
+
+
 })
 
 

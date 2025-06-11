@@ -63,12 +63,11 @@ document.addEventListener("DOMContentLoaded", function () {
         buttonAboutUs.classList.add("active")
     })
 
-    //------------- PARAMETERS -------------
+    //------------- PARAMETERS MERCHANDISING -------------
     //------------------------------------------------------
     const params = new URLSearchParams(window.location.search)
     if (params.get("page") === "AboutUs") {
         
-
     }
     if (params.get("page") === "FAQ") {
         aboutUsSection.classList.add("inactive")
@@ -95,7 +94,21 @@ document.addEventListener("DOMContentLoaded", function () {
         buttonAboutUs.classList.add("active")
     }
 
-    //------------- REDIRECTION PAGES -------------
+    //------------- PARAMETERS ACCOUNT -------------
+    //------------------------------------------------------
+    /* if (params.get("page") === "store") {
+
+    }
+    if (params.get("page") === "storeCart") {
+        storeCartSection.classList.add("active")
+        storeCartSection.classList.remove("inactive")
+        storeSection.classList.remove("active")
+        storeSection.classList.add("inactive")
+        storeProductSection.classList.remove("active")
+        storeProductSection.classList.add("inactive")
+    } */
+
+    //------------- REDIRECTION MERCHANDISING -------------
     //------------------------------------------------------
     const storeBtn = document.getElementById("btn-store-view");
     if (storeBtn) {
@@ -120,6 +133,17 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "merchandising.html?page=store"
         })
     }
+
+    //------------- REDIRECTION ACCOUNT -------------
+    //------------------------------------------------------
+/*     const aboutUsBtn = document.getElementById("btn-aboutUs-view");
+    if (aboutUsBtn) {
+        aboutUsBtn.style.display = "block"
+        aboutUsBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "info.html?page=AboutUs"
+        })
+    } */
 })
 
     
