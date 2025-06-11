@@ -105,6 +105,21 @@ document.addEventListener("DOMContentLoaded", function(){
 
     //------------- REDIRECTION ACCOUNT -------------
     //------------------------------------------------------
+    const storeBtn = document.getElementById("btn-store-view");
+    if (storeBtn) {
+        storeBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            storeSection.classList.add("active")
+            storeSection.classList.remove("inactive")
+            storeCartSection.classList.remove("active")
+            storeCartSection.classList.add("inactive")
+            storeProductSection.classList.remove("active")
+            storeProductSection.classList.add("inactive")
+        })
+    }
+
+    //------------- REDIRECTION ACCOUNT -------------
+    //------------------------------------------------------
     /* const aboutUsBtn = document.getElementById("btn-aboutUs-view");
     if (aboutUsBtn) {
         aboutUsBtn.style.display = "block"

@@ -5549,6 +5549,22 @@ hr {
   display: none;
 }
 
+#deleteAccount-view{
+  display: none;
+}
+
+#deleteAccount-view.active{
+  display: block;
+}
+
+#delA_overlay-view{
+  display: none;
+}
+
+#delA_overlay-view.active{
+  display: block;
+}
+
 #login-view.active{
   display: block;
 }
@@ -5587,6 +5603,26 @@ hr {
 
 #product-view.active{
   display: flex;
+}
+
+#settingsStuden-view.active{
+  display: block;
+}
+
+#settingsTeacher-view{
+  display: none;
+}
+
+#settingsAdmin-view{
+  display: none;
+}
+
+#notifications-view{
+  display: none;
+}
+
+#storeManagement-view{
+  display: none;
 }
 
 .inactive {

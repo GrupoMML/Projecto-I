@@ -158,6 +158,65 @@
         </p>
     </section>
 
+    <!------------- DELETE ACCOUNT SECTION ------------->
+    <!----------------------------------------------->
+    <div class="deleteAccount-container" id="deleteAccount-view">
+        <h1 id="deleteAccount-title1">Eliminar conta no</h1>
+        <h1 id="deleteAccount-title2"><span id="title-color1">teach</span><span id="title-color2">me</span></h1>
+        <h3 id="deleteAccount-subtitle">Antes de eliminares a conta, o TeachMe procura alertar <br>
+        aos utilizadores que esta operação é irreversível, ou seja, <br>
+        não vai recuperar a sua conta.</h3>
+        <div class="deleteAccount-list">
+            <p>
+                Ao eliminares a tua conta: <br>
+                <ul>
+                    <li>Todos os teus dados pessoais serão apagados de forma <br>permanente;</li>
+                    <li>Perderás o acesso ao teu perfil, histórico e quaisquer <br> conteúdos associados;</li>
+                    <li>Esta ação não pode ser revertida.</li>
+                </ul>
+                Se tens informações que gostarias de guardar, recomendamos <br>
+                que faças uma cópia antes de continuares. <br>
+                A eliminação da conta é feita de acordo com as normas de <br>
+                proteção de dados em vigor. Se tiveres dúvidas ou precisares de <br>
+                ajuda, a nossa equipa de suporte está disponível para te <br>
+                acompanhar neste processo.
+            </p>
+        </div>
+        <div class="deleteAccount-warningContainer">
+            <h1 class="deleteAccount-warning"><i class="fa-solid fa-circle-exclamation"></i> ATENÇÃO</h1>
+            <p class="deleteAccount-paragraphs"><span>Esta operação é definitiva. Depois de concluída, não será possível 
+            recuperar a tua conta nem os dados associados.</span></p>
+            <div class="deleteAccount-questionContainer">
+                <h5 class="deleteAccount-question">Eliminar a conta?</h5>
+                <div class="deleteAccount-buttonGroup">
+                    <button class="btn-custom2 btn-no">NÃO</button>
+                    <button class="btn-custom2 btn-yes">SIM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------------- DELETE ACCOUNT OVERLAY ------------->
+    <!----------------------------------------------------------------->
+    <div class="delA_overlay-container" id="delA_overlay-view">
+        <img src="../images/webapp/logo.png" alt="Logotype" id="delaA_overlay_img">
+        <div class="deleteAccount-questionContainer">
+            <h2 class="deleteAccount-question">Está certo de que deseja eliminar a conta?</h2>
+            <div class="delA_overlay-checkboxContainer">
+                <label>
+                    <input type="checkbox">
+                    <span class="checkbox-text">
+                        Eu tenho consciência de eliminar esta conta <br> é irreversível e definitiva.
+                    </span>
+                </label>
+            </div>
+            <div class="deleteAccount-buttonGroup">
+                <button class="btn-custom2 btn-no" id="">NÃO</button>
+                <button class="btn-custom2 btn-yes" id="delA_overlayButton-view">SIM</button>
+            </div>
+        </div>
+    </div>
+
     <!------------- FOOTER ------------->
     <!----------------------------------------------->
     <footer class="footer-container">
@@ -173,7 +232,7 @@
         </div>
     </footer>
 
-    <!------------- NAVBAR DROPDOWN ------------->
+    <!------------- SCRIPTS ------------->
     <!----------------------------------------------->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/views/infoView.js"></script>
