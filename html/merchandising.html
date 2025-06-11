@@ -24,15 +24,15 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <div class="controls-container ms-auto text-end">
-                        <button class="btn-custom btn-store">Loja</button>
-                        <button class="btn-custom btn-aboutUs">Sobre nós</button>
-                        <button class="btn-custom btn-faq">?</button>
-                        <button class="btn-custom btn-cart" id="store-cart-button-view">
+                        <button class="btn-custom btn-store" id="btn-store-view">Loja</button>
+                        <button class="btn-custom btn-aboutUs" id="btn-aboutUs-view">Sobre nós</button>
+                        <button class="btn-custom btn-faq" id="btn-faq-view">?</button>
+                        <button class="btn-custom btn-cart" id="btn-cart-view">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </button>
                     <div class="search-container">
                         <input type="text" class="search-input" placeholder="Pesquisar...">
-                        <button class="btn-search">
+                        <button class="btn-search" id="btn-search-view">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
@@ -260,12 +260,12 @@
     <!----------------------------------------------->
     <footer class="footer-container">
         <div class="footer-content">
-            <a href="#">Home</a> |
-            <a href="#">Contactos</a> |
-            <a href="#">Loja</a> |
+            <a href="#" id="footer-link-home">Home</a> |
+            <a href="#" id="footer-link-contacts">Contactos</a> |
+            <a href="#" id="footer-link-store">Loja</a> |
             <a href="#">Termos e condições</a> |
             <a href="#">Política de Privacidade</a> |
-            <a href="#">FAQ</a> 
+            <a href="#" id="footer-link-faq">FAQ</a> 
             <p class="footer-description">Site educativo ao cumprimento do Projeto I</p>
             <img src="../images/webapp/logo.png" alt="TeachMe Logo" class="footer-logo">
         </div>

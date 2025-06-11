@@ -62,7 +62,67 @@ document.addEventListener("DOMContentLoaded", function () {
         contactsSection.classList.add("inactive")
         buttonAboutUs.classList.add("active")
     })
+
+    //------------- PARAMETERS -------------
+    //------------------------------------------------------
+    const params = new URLSearchParams(window.location.search)
+    if (params.get("page") === "AboutUs") {
+        
+
+    }
+    if (params.get("page") === "FAQ") {
+        aboutUsSection.classList.add("inactive")
+        aboutUsSection.classList.remove("active")
+        FAQSection.classList.add("active")
+        FAQSection.classList.remove("inactive")
+        contactsSection.classList.add("inactive")
+        buttonAboutUs.classList.add("active")
+    }
+    if (params.get("page") === "Contacts") {
+        aboutUsSection.classList.add("inactive")
+        aboutUsSection.classList.remove("active")
+        contactsSection.classList.add("active")
+        contactsSection.classList.remove("inactive")
+        FAQSection.classList.add("inactive")
+        buttonAboutUs.classList.add("active")
+    }
+    if (params.get("page") === "FAQ") {
+        aboutUsSection.classList.add("inactive")
+        aboutUsSection.classList.remove("active")
+        FAQSection.classList.add("active")
+        FAQSection.classList.remove("inactive")
+        contactsSection.classList.add("inactive")
+        buttonAboutUs.classList.add("active")
+    }
+
+    //------------- REDIRECTION PAGES -------------
+    //------------------------------------------------------
+    const storeBtn = document.getElementById("btn-store-view");
+    if (storeBtn) {
+        storeBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "merchandising.html?page=store"
+        })
+    }
+
+    const cartBtn = document.getElementById("btn-cart-view")
+    if (cartBtn) {
+        cartBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "merchandising.html?page=storeCart"
+        })
+    }
+
+    const footerStoreBtn = document.getElementById("footer-link-store")
+    if (footerStoreBtn) {
+        footerStoreBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "merchandising.html?page=store"
+        })
+    }
 })
+
+    
 
 
 

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const storeCartSection = document.getElementById("cart-view")
     const storeProductSection = document.getElementById("product-view")
 
-    const storeCartButton = document.getElementById("store-cart-button-view")
+    const storeCartButton = document.getElementById("btn-cart-view")
     const seeMoreButton = document.getElementById("seeMoreButton-view") 
     const productsImageButton = document.getElementById("store-products-image-button")
 
@@ -38,6 +38,61 @@ document.addEventListener("DOMContentLoaded", function(){
         storeCartSection.classList.remove("active")
         storeCartSection.classList.add("inactive")
     })
+
+    //------------- PARAMETERS -------------
+    //------------------------------------------------------
+    const params = new URLSearchParams(window.location.search)
+    if (params.get("page") === "store") {
+
+    }
+    if (params.get("page") === "storeCart") {
+        storeCartSection.classList.add("active")
+        storeCartSection.classList.remove("inactive")
+        storeSection.classList.remove("active")
+        storeSection.classList.add("inactive")
+        storeProductSection.classList.remove("active")
+        storeProductSection.classList.add("inactive")
+    }
+
+    //------------- REDIRECTION PAGES -------------
+    //------------------------------------------------------
+    const aboutUsBtn = document.getElementById("btn-aboutUs-view");
+    if (aboutUsBtn) {
+        aboutUsBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "info.html?page=AboutUs"
+        })
+    }
+
+    const faqBtn = document.getElementById("btn-faq-view");
+    if (faqBtn) {
+        faqBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "info.html?page=FAQ"
+        })
+    }
+
+    const footerContactsBtn = document.getElementById("footer-link-contacts");
+    if (footerContactsBtn) {
+        footerContactsBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "info.html?page=Contacts"
+        })
+    }
+
+    const footerFAQBtn = document.getElementById("footer-link-faq");
+    if (footerFAQBtn) {
+        footerFAQBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            window.location.href = "info.html?page=FAQ"
+        })
+    }
+
+
+    
 })
+
+
+
 
 
