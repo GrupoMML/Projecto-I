@@ -1,6 +1,3 @@
-// Certifica-te que os modelos estão carregados antes deste ficheiro:
-// studentModel.js e teachersModel.js
-
 // Criar estudantes
 const student1 = new Student(
     1,
