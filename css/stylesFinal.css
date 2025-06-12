@@ -61,6 +61,12 @@
     height: 50px;
 }
 
+
+.login-btn {
+  width: 200px;
+  height: 50px;
+}
+
 .btn-faq {
     width: 50px;
     height: 50px;
@@ -5518,121 +5524,5 @@ hr {
     padding: 15px 0;
   }
 }
-
-/*------------- VIEWS -------------*/
-/*-------------------------------------------------------------------*/
-#aboutUs-view.active {
-  display: block;
-}
-
-#contacts-view.active {
-  display: flex;
-}
-
-#faq-view.active {
-  display: block;
-}
-
-#contacts-view{
-  display: none;
-}
-
-#faq-view{
-  display: none;
-}
-
-#btn-aboutUs-view.active{
-  display: block;
-}
-
-#btn-aboutUs-view{
-  display: none;
-}
-
-#deleteAccount-view{
-  display: none;
-}
-
-#deleteAccount-view.active{
-  display: block;
-}
-
-#delA_overlay-view{
-  display: none;
-}
-
-#delA_overlay-view.active{
-  display: block;
-}
-
-#login-view.active{
-  display: block;
-}
-
-#register-student-view{
-  display: none;
-}
-
-#register-student-view.active{
-  display: block;
-}
-
-#register-teacher-view{
-  display: none;
-}
-
-#register-teacher-view.active{
-  display: block;
-}
-
-#store-view{
-  display:block
-}
-
-#cart-view{
-  display: none;
-}
-
-#cart-view.active{
-  display: block;
-}
-
-#product-view{
-  display: none;
-}
-
-#product-view.active{
-  display: flex;
-}
-
-#settingsStuden-view.active{
-  display: block;
-}
-
-#settingsTeacher-view{
-  display: none;
-}
-
-#settingsAdmin-view{
-  display: none;
-}
-
-#notifications-view{
-  display: none;
-}
-
-#storeManagement-view{
-  display: none;
-}
-
-.inactive {
-  display: none !important;
-}
-
-
-
-
-
-
 
 
