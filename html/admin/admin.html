@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+    <script src="../../js/userGreeting.js"></script>
+
+    <script>
+
+        /* greeting */
+        const currentUser = JSON.parse(localStorage.getItem('activeUser'));
+        console.log(currentUser.name); // mostra o nome
+        console.log(currentUser.priority); // mostra o tipo: 1, 2 ou 3
+
+    </script>
+</body>
+</html>

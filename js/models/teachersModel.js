@@ -45,3 +45,23 @@ function addTeacher(name, subject) {
   teachers.push(teacher)
   return teacher
 }
+
+teachers.push(new Teacher (
+    1, 
+    "Explicador", 
+    "exp@email.com", 
+    "abcd", 
+    "",
+    "M",
+    "1978-05-10",
+    "Porto", 
+    "",
+    [],
+    "",
+    "", 
+    "",
+    "12€",
+    0,
+    2
+  )
+);

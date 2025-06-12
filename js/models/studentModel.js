@@ -53,3 +53,21 @@ function addStudent(name, email) {
   students.push(student)
   return student
 }
+
+// Usuário estudante de exemplo
+students.push(new Student(
+  1,                // id
+  "Estudante",            // nome
+  "est@email.com",  // email
+  "1234",           // password
+  "10º",            // grade (não importante agora)
+  "123456789",      // EEcontact (não importante agora)
+  "",               // incapacity (não importante)
+  "F",              // gender (não importante)
+  "2005-05-10",     // dateOfBirth
+  "Lisboa",         // locality
+  [],               // disciplines
+  "",               // aboutMe
+  0,                // points
+  1                 // priority (1 = estudante)
+));
