@@ -73,6 +73,10 @@ select.form-select option {
   background-color: #fff0a6;
 }
 
+#tabelas-admin {
+  text-align: center;
+}
+
 /* Ícones da ordenação */
 th i.fas.fa-sort {
   margin-left: 6px;

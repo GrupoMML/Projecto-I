@@ -5,6 +5,7 @@ const pageSize = 5;
 
 let filterNameProf = '', filterEmailProf = '', filterDisciplineProf = '';
 let filterNameAlun = '', filterEmailAlun = '', filterGradeAlun = '';
+let filterNameProd = '', filterCategoryProd = '';
 
 let tableStates = {
   prof: { sortCol: '', sortAsc: true, curPage: 1 },
@@ -12,16 +13,72 @@ let tableStates = {
   prod: { sortCol: '', sortAsc: true, curPage: 1 }
 };
 
+function renderTableProducts(data, tbodyId, filterName, additionalColumnName) {
+    const state = tableStates.prod;
+
+    let filtrados = data.filter((item) =>
+        item.productName.toLowerCase().includes(filterName.toLowerCase()) &&
+        (
+            Array.isArray(item[additionalColumnName]) 
+                ? item[additionalColumnName].join(", ").toLowerCase().includes(filterCategoryProd.toLowerCase()) 
+                : (item[additionalColumnName] ? item[additionalColumnName].toLowerCase().includes(filterCategoryProd.toLowerCase()) : filterCategoryProd === '')
+        )
+    );
+
+    // Ordenar
+    if (state.sortCol) {
+        filtrados.sort((a, b) => {
+            let valA = a[state.sortCol];
+            let valB = b[state.sortCol];
+            
+            // Check if we're sorting a numeric column (like productPrice)
+            if (state.sortCol === 'productPrice') {
+                valA = parseFloat(valA) || 0;
+                valB = parseFloat(valB) || 0;
+            }
+            
+            if (valA < valB) return state.sortAsc ? -1 : 1;
+            if (valA > valB) return state.sortAsc ? 1 : -1;
+            return 0;
+        });
+    }
+
+    const totalPages = Math.ceil(filtrados.length / pageSize);
+    if (state.curPage > totalPages) state.curPage = totalPages || 1;
+
+    const start = (state.curPage - 1) * pageSize;
+    const paged = filtrados.slice(start, start + pageSize);
+
+    let output = '';
+    for (let item of paged) {
+        output += `
+        <tr>
+            <td>${item.productName}</td>
+            <td>${item.productPrice}</td>
+            <td>${Array.isArray(item[additionalColumnName]) ? item[additionalColumnName].join(", ") : item[additionalColumnName]}</td>
+            <td>
+                <button class="btn btn-sm btn-primary me-1"><i class="fa-solid fa-eye"></i></button>
+                <button class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-edit"></i></button>
+                <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+            </td>
+        </tr>`;
+    }
+
+    document.querySelector(tbodyId).innerHTML = output;
+
+    renderPagination(filtrados.length, 'prod');
+}
+
 function renderTable(data, tbodyId, filterName, filterEmail, filterAdditional, additionalColumnName, tableType) {
     const state = tableStates[tableType];
 
     let filtrados = data.filter((item) =>
         item.name.toLowerCase().includes(filterName.toLowerCase()) &&
-        item.email.toLowerCase().includes(filterEmail.toLowerCase()) &&
+        (item.email ? item.email.toLowerCase().includes(filterEmail.toLowerCase()) : filterEmail === '') &&
         (
-        Array.isArray(item[additionalColumnName])
-            ? item[additionalColumnName].join(", ").toLowerCase().includes(filterAdditional.toLowerCase())
-            : (item[additionalColumnName] ? item[additionalColumnName].toLowerCase().includes(filterAdditional.toLowerCase()) : true)
+            Array.isArray(item[additionalColumnName]) 
+                ? item[additionalColumnName].join(", ").toLowerCase().includes(filterAdditional.toLowerCase()) 
+                : (item[additionalColumnName] ? item[additionalColumnName].toLowerCase().includes(filterAdditional.toLowerCase()) : filterAdditional === '') 
         )
     );
 
@@ -48,9 +105,9 @@ function renderTable(data, tbodyId, filterName, filterEmail, filterAdditional, a
             <td>${item.email}</td>
             <td>${Array.isArray(item[additionalColumnName]) ? item[additionalColumnName].join(", ") : item[additionalColumnName]}</td>
             <td>
-            <button class="btn btn-sm btn-primary me-1"><i class="fa-solid fa-eye"></i></button>
-            <button class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-edit"></i></button>
-            <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+              <button class="btn btn-sm btn-primary me-1"><i class="fa-solid fa-eye"></i></button>
+              <button class="btn btn-sm btn-warning me-1"><i class="fa-solid fa-edit"></i></button>
+              <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
             </td>
         </tr>`;
     }
@@ -84,25 +141,39 @@ function renderTableFromType(tableType) {
   } else if (tableType === 'alun') {
     renderTable(students, '#tabela-alunos', filterNameAlun, filterEmailAlun, filterGradeAlun, 'grade', 'alun');
   } else {
-    renderTable(products, '#tabela-produtos', filterNameProd, filterPriceProd, filterCategoryProd, 'productType', 'prod');
+    renderTableProducts(products, '#tabela-produtos', filterNameProd, 'productType', 'prod');
   }
 }
 
 function populateSelect(selectId, data, additionalColumnName) {
-  const set = new Set(
-    data.map((item) =>
-      Array.isArray(item[additionalColumnName])
-        ? item[additionalColumnName].join(", ")
-        : item[additionalColumnName]
-    )
-  );
-  const arr = Array.from(set).sort((a, b) => a.localeCompare(b));
-  const select = document.querySelector(selectId);
-  select.innerHTML = "<option value=''>Todos</option>";
-
-  arr.forEach((item) => {
-    if (item) select.innerHTML += `<option value="${item.toLowerCase()}">${item}</option>`;
-  });
+    const set = new Set(
+        data.map((item) =>
+            Array.isArray(item[additionalColumnName])
+                ? item[additionalColumnName].join(", ")
+                : item[additionalColumnName]
+        )
+    );
+    
+    const arr = Array.from(set).sort((a, b) => {
+        // Check if we're dealing with numeric values
+        const numA = parseFloat(a);
+        const numB = parseFloat(b);
+        
+        // If both values are valid numbers, sort numerically
+        if (!isNaN(numA) && !isNaN(numB)) {
+            return numA - numB;
+        }
+        
+        // Otherwise, sort alphabetically
+        return a.localeCompare(b);
+    });
+    
+    const select = document.querySelector(selectId);
+    select.innerHTML = "<option value=''>Todos</option>";
+    
+    arr.forEach((item) => {
+        if (item) select.innerHTML += `<option value="${item.toLowerCase()}">${item}</option>`;
+    });
 }
 
 function loadData() {
@@ -112,6 +183,8 @@ function loadData() {
         professors = json.teachers;
         students = json.students;
         products = json.products;
+
+        console.log("products", products);
 
         populateSelect("#filterDisciplineProf", professors, "disciplines");
         populateSelect("#filterGradeAlun", students, "grade");
@@ -166,11 +239,6 @@ document.querySelector("#filterNameProd").addEventListener("input", (e) => {
   tableStates.prod.curPage = 1;
   renderTableFromType('prod');
 });
-document.querySelector("#filterPriceProd").addEventListener("input", (e) => {
-  filterPriceProd = e.target.value;
-  tableStates.prod.curPage = 1;
-  renderTableFromType('prod');
-});
 document.querySelector("#filterCategoryProd").addEventListener("change", (e) => {
   filterCategoryProd = e.target.value;
   tableStates.prod.curPage = 1;
@@ -182,7 +250,9 @@ document.querySelector("#filterCategoryProd").addEventListener("change", (e) => 
   { id: 'sortNameProf', col: 'name', type: 'prof' },
   { id: 'sortEmailProf', col: 'email', type: 'prof' },
   { id: 'sortNameAlun', col: 'name', type: 'alun' },
-  { id: 'sortEmailAlun', col: 'email', type: 'alun' }
+  { id: 'sortEmailAlun', col: 'email', type: 'alun' },
+  { id: 'sortNameProd', col: 'productName', type: 'prod' },
+  { id: 'sortPriceProd', col: 'productPrice', type: 'prod' }
 ].forEach(({ id, col, type }) => {
   document.getElementById(id).addEventListener("click", () => {
     const state = tableStates[type];
@@ -202,7 +272,9 @@ function updateSortIcons() {
     sortNameProf: ['prof', 'name'],
     sortEmailProf: ['prof', 'email'],
     sortNameAlun: ['alun', 'name'],
-    sortEmailAlun: ['alun', 'email']
+    sortEmailAlun: ['alun', 'email'],
+    sortNameProd: ['prod', 'productName'],
+    sortPriceProd: ['prod', 'productPrice'],
   };
 
   for (let id in map) {
