@@ -137,7 +137,7 @@
 
     /*------------- SEARCH BAR - ICON - POSITION -------------*/
     /*---------------------------------------------------------------*/
-.btn-search {
+/* .btn-search {
   position: absolute;
   right: 15px;
   top: 55px;
@@ -145,31 +145,31 @@
   background: none;
   border: none;
   padding: 20px;
-}
+} */
 
     /*------------- SEARCH BAR - IMAGE -------------*/
     /*-----------------------------------------------*/
-.btn-search img {
+/* .btn-search img {
   width: 30px;
   height: 30px;
-}
+} */
 
     /*------------- SEARCH BAR - CONTAINER -------------*/
     /*-----------------------------------------------*/
-.search-container {
+/* .search-container {
   position: relative;
   width: 360px;
   height: 60px;
   margin-left: 10px;
-}
+} */
 
 /*------------- BUTTONS + SEARCHBAR - CONTAINER -------------*/
 /*---------------------------------------------------------------------*/
-.controls-container {
+/* .controls-container {
     display: flex;
     align-items: center;
     gap: 10px;
-}
+} */
 
 /*------------- INITIAL TEXT-------------*/
 /*------------------------------------------*/

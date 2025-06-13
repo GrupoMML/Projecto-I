@@ -518,14 +518,228 @@
         "password": "X2!mN4#z",
         "priority": 3
         }
-    ]
+    ],
+    "products": [
+  {
+    "productType": "Casual Wear",
+    "productName": "T-Shirt",
+    "productID": "P001",
+    "productQuantity": "100",
+    "productQuality": "High",
+    "productSize": "M",
+    "productColor": "Red",
+    "productPrice": "19.99",
+    "productCoupon": "SUMMER10"
+  },
+  {
+    "productType": "Casual Wear",
+    "productName": "Jeans",
+    "productID": "P002",
+    "productQuantity": "50",
+    "productQuality": "Medium",
+    "productSize": "L",
+    "productColor": "Blue",
+    "productPrice": "49.99",
+    "productCoupon": "DENIM5"
+  },
+  {
+    "productType": "Footwear",
+    "productName": "Sneakers",
+    "productID": "P003",
+    "productQuantity": "75",
+    "productQuality": "Premium",
+    "productSize": "42",
+    "productColor": "White",
+    "productPrice": "89.99",
+    "productCoupon": "SNEAK20"
+  },
+  {
+    "productType": "Accessories",
+    "productName": "Backpack",
+    "productID": "P004",
+    "productQuantity": "40",
+    "productQuality": "High",
+    "productSize": "Standard",
+    "productColor": "Black",
+    "productPrice": "59.99",
+    "productCoupon": "BAG15"
+  },
+  {
+    "productType": "Accessories",
+    "productName": "Watch",
+    "productID": "P005",
+    "productQuantity": "30",
+    "productQuality": "Luxury",
+    "productSize": "One Size",
+    "productColor": "Silver",
+    "productPrice": "129.99",
+    "productCoupon": "TIME25"
+  },
+  {
+    "productType": "Accessories",
+    "productName": "Sunglasses",
+    "productID": "P006",
+    "productQuantity": "120",
+    "productQuality": "Medium",
+    "productSize": "Universal",
+    "productColor": "Brown",
+    "productPrice": "24.99",
+    "productCoupon": "SHADE10"
+  },
+  {
+    "productType": "Accessories",
+    "productName": "Hat",
+    "productID": "P007",
+    "productQuantity": "200",
+    "productQuality": "High",
+    "productSize": "L",
+    "productColor": "Green",
+    "productPrice": "14.99",
+    "productCoupon": "HAT5"
+  },
+  {
+    "productType": "Outerwear",
+    "productName": "Jacket",
+    "productID": "P008",
+    "productQuantity": "20",
+    "productQuality": "Premium",
+    "productSize": "XL",
+    "productColor": "Grey",
+    "productPrice": "99.99",
+    "productCoupon": "WINTER20"
+  },
+  {
+    "productType": "Footwear",
+    "productName": "Socks",
+    "productID": "P009",
+    "productQuantity": "300",
+    "productQuality": "Standard",
+    "productSize": "One Size",
+    "productColor": "White",
+    "productPrice": "4.99",
+    "productCoupon": "FEET2"
+  },
+  {
+    "productType": "Accessories",
+    "productName": "Belt",
+    "productID": "P010",
+    "productQuantity": "60",
+    "productQuality": "High",
+    "productSize": "M",
+    "productColor": "Brown",
+    "productPrice": "19.99",
+    "productCoupon": "BELT7"
+  },
+  {
+    "productType": "Accessories",
+    "productName": "Scarf",
+    "productID": "P011",
+    "productQuantity": "80",
+    "productQuality": "High",
+    "productSize": "One Size",
+    "productColor": "Burgundy",
+    "productPrice": "12.99",
+    "productCoupon": "SCARF10"
+  },
+  {
+    "productType": "Accessories",
+    "productName": "Gloves",
+    "productID": "P012",
+    "productQuantity": "150",
+    "productQuality": "Medium",
+    "productSize": "M",
+    "productColor": "Black",
+    "productPrice": "9.99",
+    "productCoupon": "WARM5"
+  },
+  {
+    "productType": "Accessories",
+    "productName": "Beanie",
+    "productID": "P013",
+    "productQuantity": "110",
+    "productQuality": "Standard",
+    "productSize": "One Size",
+    "productColor": "Navy",
+    "productPrice": "7.99",
+    "productCoupon": "BEAN15"
+  },
+  {
+    "productType": "Outerwear",
+    "productName": "Leather Jacket",
+    "productID": "P014",
+    "productQuantity": "25",
+    "productQuality": "Premium",
+    "productSize": "L",
+    "productColor": "Brown",
+    "productPrice": "149.99",
+    "productCoupon": "LEATHER25"
+  },
+  {
+    "productType": "Footwear",
+    "productName": "Running Shoes",
+    "productID": "P015",
+    "productQuantity": "90",
+    "productQuality": "High",
+    "productSize": "43",
+    "productColor": "Gray",
+    "productPrice": "74.99",
+    "productCoupon": "RUN10"
+  },
+  {
+    "productType": "Casual Wear",
+    "productName": "Tank Top",
+    "productID": "P016",
+    "productQuantity": "130",
+    "productQuality": "Standard",
+    "productSize": "S",
+    "productColor": "White",
+    "productPrice": "11.99",
+    "productCoupon": "TANK5"
+  },
+  {
+    "productType": "Casual Wear",
+    "productName": "Chinos",
+    "productID": "P017",
+    "productQuantity": "60",
+    "productQuality": "High",
+    "productSize": "M",
+    "productColor": "Khaki",
+    "productPrice": "39.99",
+    "productCoupon": "CHINO15"
+  },
+  {
+    "productType": "Casual Wear",
+    "productName": "Graphic Tee",
+    "productID": "P018",
+    "productQuantity": "140",
+    "productQuality": "Medium",
+    "productSize": "L",
+    "productColor": "Black",
+    "productPrice": "21.99",
+    "productCoupon": "GRAPHIC20"
+  },
+  {
+    "productType": "Outerwear",
+    "productName": "Blazer",
+    "productID": "P019",
+    "productQuantity": "35",
+    "productQuality": "Premium",
+    "productSize": "M",
+    "productColor": "Navy",
+    "productPrice": "89.99",
+    "productCoupon": "BLAZER10"
+  },
+  {
+    "productType": "Footwear",
+    "productName": "Flip Flops",
+    "productID": "P020",
+    "productQuantity": "250",
+    "productQuality": "Standard",
+    "productSize": "41",
+    "productColor": "Blue",
+    "productPrice": "6.99",
+    "productCoupon": "FLIP5"
+  }
+]
+
 }
-
-
-
-
-  
-
-
-
-

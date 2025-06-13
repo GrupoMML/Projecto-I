@@ -39,29 +39,12 @@ class Teacher{
     }
 }
 
-function addTeacher(name, subject) {
-  const id = teachers.length + 1
-  const teacher = new Teacher(id, name, subject)
-  teachers.push(teacher)
-  return teacher
+function addTeacher(id, name, email, password, incapacity, diplomes, gender, dateOfBirth, locality, aboutMe){
+    const points = 0
+    const priority = 2
+    const teacher = new Teacher (id, name, email, password, incapacity, diplomes, gender, dateOfBirth, locality, aboutMe, points, priority)    
+    teachers.push(teacher)
+    return teacher
 }
 
-teachers.push(new Teacher (
-    1, 
-    "Explicador", 
-    "exp@email.com", 
-    "abcd", 
-    "",
-    "M",
-    "1978-05-10",
-    "Porto", 
-    "",
-    [],
-    "",
-    "", 
-    "",
-    "12€",
-    0,
-    2
-  )
-);
+export { teachers, addTeacher }

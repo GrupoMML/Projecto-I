@@ -1,0 +1,81 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+#container-tables {
+  background-color: #fff3c4;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+#container-tables h2 {
+  text-align: center;
+  color: #2c2c2c;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+input.form-control,
+select.form-select {
+  background-color: #ffe58a;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #333;
+}
+
+input.form-control::placeholder,
+select.form-select option {
+  color: #666;
+}
+
+.table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table th {
+  background-color: transparent;
+  color: #333;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+/* Botão de Ações personalizado */
+.dropdown .btn {
+  background-color: #ffe58a;
+  border: none;
+  color: #333;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: 500;
+}
+
+.dropdown-menu {
+  min-width: 120px;
+}
+
+.dropdown-item {
+  color: #333;
+}
+
+.dropdown-item:hover {
+  background-color: #fff0a6;
+}
+
+/* Ícones da ordenação */
+th i.fas.fa-sort {
+  margin-left: 6px;
+  color: #888;
+  cursor: pointer;
+}
