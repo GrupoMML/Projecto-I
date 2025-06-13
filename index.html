@@ -11,430 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/ee23fe444a.js" crossorigin="anonymous"></script>
     <style>
-        .left-card, .right-card {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-            align-items: flex-start;
-        }
-
-        .left-card {
-            flex-direction: row; /* Texto à esquerda, cards à direita */
-        }
-
-        .right-card {
-            flex-direction: row-reverse; /* Texto à direita, cards à esquerda */
-        }
-
-
-        /* Texto da right-card */
-        .after-wave-right-text-container {
-            max-width: 400px;
-            text-align: right; /* Alinha o texto à direita */
-            margin-left: 200px;
-        }
-
-        /* Container dos cards */
-        .leftcards-container,
-        .rightcards-container {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .blue-footer-ducks {
-            width: 100%;
-        }
-
-        .white-logo {
-            height: 10px;
-        }
-
-        /*------------- BEST TEACHERS QUICK INFORMATION  -------------*/
-        /*------------------------------------------------------------------*/
-
-            /*------------- AFTER WAVE SECTION -------------*/
-            /*------------------------------------------------------------------*/
-        .after-wave-section {
-            background-color: rgba(0, 80, 144, 1);     
-        }
-
-        #after-wave-mainHeader {
-            color: white;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: 42px;
-            font-style: normal;
-            font-weight: 800;
-            line-height: normal;
-            margin: 0 auto; 
-            max-width: 90%;  
-            padding: 20px 0; 
-        }
-
-        #after-wave-rightHeader{
-            display: flex;
-            width: 100%;
-            height: 114px;
-            justify-content: center;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            font-size: 64px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: normal;
-            margin-top: 0;
-        }
-
-        #after-wave-paragraph{
-            display: flex;
-            width: 384px;
-            height: 114px;
-            flex-direction: column;
-            justify-content: center;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            margin-top: 52px;
-            line-height: 30px;
-            margin-left: 105px;
-        }
-
-        #after-wave-rightParagraph {
-            display: flex;
-            width: 384px;
-            height: 114px;
-            flex-direction: column;
-            justify-content: center;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            margin-top: 52px;
-            line-height: 30px;
-            margin-right: 0px;
-        }
-
-        .after-wave-seeAll-container {
-            display: flex;
-            align-items: center;
-            margin-top: 105px;
-            margin-left: 105px;
-            cursor: pointer;
-        }
-
-        .after-wave-seeAll-rightContainer {
-            display: flex;
-            align-items: center;
-            margin-top: 105px;
-            flex-direction: row-reverse;
-            cursor: pointer;
-        }
-
-        #after-wave-seeAll {
-            display: flex;
-            color: #FFCF41;
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: normal;
-            margin: 0; 
-            padding: 0;
-            gap: 20px;
-        }
-
-        .arrow-icon {
-            width: 50.381px;
-            height: 50.381px;
-            margin-left: 34px; 
-            flex-shrink: 0;
-        }
-
-            /*------------- FIRST CARDS -------------*/
-            /*----------------------------------------*/
-
-        .left-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 600px;
-        display: grid;
-        grid-template-areas:
-            "description cards"
-        }
-
-        .right-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 600px;
-        display: grid;
-        grid-template-areas:
-            "cards description"
-        }
-
-        .after-wave-left-text-container {
-            grid-area: description;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .after-wave-rigth-text-container {
-            grid-area: description;
-            display: flex;
-            width: 100%;
-            margin: 0 0 0 350px;
-        }
-
-        .leftcards-container {
-        grid-area: cards;
-        display: flex;
-        gap: 20px;
-        justify-content: flex-end;
-        align-items: center;
-        background-color: #005090;
-        }
-
-        .rightcards-container {
-        grid-area: cards;
-        display: flex;
-        gap: 20px;
-        justify-content: flex-start;
-        align-items: center;
-        background-color: #005090;
-        }
-
-
-        .teacher-card {
-        background-color: white;
-        border-radius: 20px;
-        width: 333.15px;
-        height: 430px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        transition: transform 0.3s;
-        }
-
-        .teacher-photo {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: cover;
-        }
-
-        .card-info {
-        padding: 20px;
-        }
-
-        .rating {
-        margin-top: -10px;
-        display: flex;
-        align-items: center;
-        gap: 1.24px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 13.0396px;
-        font-weight: 700;
-        color: #003366;
-        }
-
-        .star-icon {
-        width: 25.4333px;
-        height: 25.4333px;
-        }
-
-        .teacher-desc {
-        margin-top: 9.3px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 10px;
-        font-weight: 700;
-        color: rgba(0, 51, 102, 1)
-        }
-
-        .teacher-price {
-        margin-top: -3.33px;
-        display: flex;
-        justify-content: space-between;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-size: 13.0396px;
-        color: rgba(0, 51, 102, 1);
-        }
-
-        .teacher-desc.smaller {
-        margin-top: 9.3px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 8.5px;
-        font-weight: 700;
-        color: rgba(0, 51, 102, 1)
-        }
-
-        .teacher-price.smaller {
-        margin-top: -12.33px;
-        display: flex;
-        justify-content: space-between;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-size: 13.0396px;
-        color: rgba(0, 51, 102, 1);
-        }
-
-        .teacher-image-container {
-        position: relative;
-        width: 100%;
-        height: auto;
-        }
-
-        .teacher-photo {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: cover;
-        }
-
-        .image-overlay {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 20px;
-        background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,80,144,0.9) 100%);
-        color: white;
-        font-family: 'Poppins', sans-serif;
-        }
-
-        .image-overlay .teacher-name {
-        margin: 0;
-        font-size: 18px;
-        font-weight: 700;
-        color: white;
-        }
-
-        .image-overlay .teacher-locations {
-        margin: 4px 0 0 0;
-        font-size: 14px;
-        color: white;
-        }
-
-        .disciplines {
-            text-decoration: none;
-            height: 60px;
-            width: 400px;
-            color: white;
-            background-color: #003366;
-            font-weight: 600;
-            font-size: 28px;
-            align-items: center;
-            text-align: center;
-            justify-content: center;
-            padding: 0;
-            margin: 50px auto 70px auto;
-            border-radius: 30px;
-        }
-
-        /* ---------------- FOOTER ---------------- */
-        /* ---------------------------------------- */
-        .blue-footer {
-        margin: 0;
-        border: 0;
-        padding: 0;
-        }
-
-        .blue-footer-container {
-        border: none;
-        }
-
-        .blue-footer-container {
-        position: relative;
-        padding: 140px 0px 10px 0px;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-        text-align: center;
-        overflow: hidden;
-        background-color: #004F90;
-        overflow: hidden;
-        z-index: 1;
-        }
-
-        .blue-footer-ducks {
-        position: absolute;
-        top: -20px;
-        left: 0;
-        width: 100%;
-        height: auto;
-        z-index: 0;
-        pointer-events: none;
-        }
-
-        .blue-footer-itens {
-        background-color: #00467E;
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        padding: 10px;
-        }
-
-        .blue-footer-links {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-        font-weight: 600;
-        font-size: 22px;
-        }
-
-        .blue-footer-links a {
-        text-decoration: none;
-        color: #ffffff;
-        font-weight: bold;
-        margin: 0 10px;
-        position: relative;
-        transition: color 0.3s ease;
-        }
-
-        .blue-footer-links a::after {
-        content: "";
-        position: absolute;
-        width: 0%;
-        height: 2px;
-        bottom: -3px;
-        left: 0;
-        background-color: #ffffff;
-        transition: width 0.3s ease;
-        }
-
-        .blue-footer-links a:hover::after {
-            width: 100%;
-        }
-
-        .blue-footer-credits {
-            font-size: 16px;
-            font-weight: 300;
-        }
-
-        .white-logo {
-            width: 180px;
-            height: auto;
-        }
-
-        .choose-class, .choose-location {
-            border: 0;
-            background-color: #f3f3f3;
-        }
+       
     </style>
 </head>
 <body>
@@ -485,7 +62,7 @@
         <div class="choose-class-section">
             <span style="font-size: 30px;" class="fa-solid fa-pencil"></span>
             <select class="p-2 choose-class" id="choose-class">
-                <option value="">Quero aprender</option>
+                <option value="" disabled selected>Quero aprender</option>
                 <option value="mat">Matemática</option>
                 <option value="por">Português</option>
                 <option value="fisQui">Física e Química</option>
@@ -503,9 +80,35 @@
         <div class="choose-location-section">
             <i style="font-size: 30px;" class="fa-solid fa-location-dot"></i>
             <select class="p-2 choose-location" id="choose-location">
-                <option value="">Local da aula</option>
-                <option value="presencial">Prensencial</option>
-                <option value="on-line">On-Line</option>
+                <option value="" disabled selected>Local da aula</option>
+                <option value="presencial">Presencial</option>
+                <option value="online">Online</option>
+            </select>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="choose-region-section">
+            <i style="font-size: 30px;" class="fa-solid fa-location-crosshairs"></i>
+            <select class="p-2 choose-region" id="choose-region">
+                <option value="" disabled selected>Região</option>
+                <option value="porto">Porto</option>
+                <option value="lisboa">Lisboa</option>
+                <option value="leiria">Leiria</option>
+                <option value="vila do conde">Vila do Conde</option>
+                <option value="aveiro">Aveiro</option>
+                <option value="matosinhos">Matosinhos</option>
+                <option value="algarve">Algarve</option>
+                <option value="braga">Braga</option>
+                <option value="coimbra">Coimbra</option>
+                <option value="viseu">Viseu</option>
+                <option value="setubal">Setúbal</option>
+                <option value="faro">Faro</option>
+                <option value="guimaraes">Guimarães</option>
+                <option value="sintra">Sintra</option>
+                <option value="evora">Évora</option>
+                <option value="madeira">Madeira</option>
+                <option value="acores">Açores</option>
             </select>
         </div>
 
@@ -834,43 +437,9 @@
         </div>
     </footer>
 
-    <script>
-        const button = document.querySelector('.button-search');
+    <!------------- SCRIPTS ------------->
+    <!----------------------------------------------->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 
-        button.addEventListener('click', () => {
-            const classSelect = document.getElementById('choose-class').value;
-            const locationSelect = document.getElementById('choose-location').value;
-
-            if (classSelect && locationSelect) {
-            // Monta a URL com query parameters para filtro
-            const url = `html/main/teacherPDiscipline.html?class=${encodeURIComponent(classSelect)}&location=${encodeURIComponent(locationSelect)}`;
-            // Redireciona para a URL com os filtros
-            window.location.href = url;
-            } else {
-            alert('Por favor, selecione a disciplina e o local da aula.');
-            }
-        });
-
-        // Mapeamento entre ID do botão e código da disciplina
-        const seeMoreMap = {
-            "seeMore-math": "mat",
-            "seeMore-port": "por",
-            "seeMore-eng": "ing",
-            "seeMore-fr": "fr"
-        };
-
-        // Para cada ID, adiciona um event listener de clique
-        Object.keys(seeMoreMap).forEach(id => {
-            const element = document.getElementById(id);
-            if (element) {
-            element.addEventListener("click", () => {
-                const subjectCode = seeMoreMap[id];
-                const url = `html/main/teacherPDiscipline.html?class=${encodeURIComponent(subjectCode)}`;
-                window.location.href = url;
-            });
-            }
-        });
-
-    </script>
 </body>
 </html>
