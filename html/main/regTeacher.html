@@ -17,25 +17,15 @@
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-fluid">
             <div class="brand">
-                <img src="../../images/webapp/logo.png" alt="Duck Icon" id="logo">
+                <a href="../../index.html"><img src="../../images/webapp/logo.png" alt="Duck Icon" id="logo"></a>
             </div>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <i class="fa-solid fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <div class="controls-container ms-auto text-end">
-                        <button class="btn-custom btn-store">Loja</button>
-                        <button class="btn-custom btn-aboutUs">Sobre nós</button>
-                        <button class="btn-custom btn-faq">?</button>
-                        <button class="btn-custom btn-cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </button>
-                    <div class="search-container">
-                        <input type="text" class="search-input" placeholder="Pesquisar...">
-                        <button class="btn-search">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </div>
+                    <a href="./aboutUS.html"><button class="btn-custom btn-aboutUs">Sobre nós</button></a>
+                    <a href="./FAQ.html" style="text-decoration: none;"><button class="btn-custom btn-faq">?</button></a>
                 </div>
             </div>
         </div>
@@ -69,7 +59,7 @@
                     </div>
                 </div>
                 <div class="registration-item">
-                    <label for="reg-password">Senha*</label>
+                    <label for="reg-password">Palavra-passe*</label>
                     <div class="input-icon">
                         <i class="fas fa-key"></i>
                         <input type="password" id="reg-password" required>
@@ -101,8 +91,8 @@
                 <div class="registration-item">
                     <label>Género*</label>
                     <div class="gender-options">
-                        <label><input type="checkbox"> Masculino</label>
-                        <label><input type="checkbox"> Feminino</label>
+                        <label><input type="radio" name="genre"> Masculino</label>
+                        <label><input type="radio" name="genre"> Feminino</label>
                     </div>
                 </div>
 
@@ -122,7 +112,7 @@
                     </div>
                 </div>
 
-                <div class="registration-item">
+                <div class="registration-item2">
                     <label>Disciplinas*</label>
                     <div class="disciplines-grid2">
                         <label><input type="checkbox"> Francês</label>
@@ -150,7 +140,7 @@
 
         <div class="buttons">
             <button class="btn-custom2 btn-register">Registar</button>
-            <button class="btn-custom2 btn-back">Voltar</button>
+            <a href="./login.html"><button class="btn-custom2 btn-back">Voltar</button></a>
         </div>
     </div>
         
@@ -158,14 +148,13 @@
     <!----------------------------------------------->
     <footer class="footer-container">
         <div class="footer-content">
-            <a href="#">Home</a> |
-            <a href="#">Contactos</a> |
-            <a href="#">Loja</a> |
+            <a href="../../index.html">Home</a> |
+            <a href="./contacts.html">Contactos</a> |
             <a href="#">Termos e condições</a> |
             <a href="#">Política de Privacidade</a> |
-            <a href="#">FAQ</a> 
+            <a href="./FAQ.html">FAQ</a> 
             <p class="footer-description">Site educativo ao cumprimento do Projeto I</p>
-            <img src="../../images/webapp/logo.png" alt="TeachMe Logo" class="footer-logo">
+            <a href="../../index.html"><img src="../../images/webapp/logo.png" alt="TeachMe Logo" class="footer-logo"></a>
         </div>
     </footer>
 

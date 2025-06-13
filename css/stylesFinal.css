@@ -1922,7 +1922,7 @@ hr {
 }
 
 .login-item input[type="email"],
-.login-item input[type="text"] {
+.login-item input[type="password"] {
   width: 445px;
   height: 47px;
   border: 1px solid #ccc;
@@ -2015,7 +2015,7 @@ hr {
   }
 
   .login-item input[type="email"],
-  .login-item input[type="text"] {
+  .login-item input[type="password"] {
     width: 90vw;
     max-width: 400px;
   }
@@ -2052,7 +2052,7 @@ hr {
   }
 
   .login-item input[type="email"],
-  .login-item input[type="text"] {
+  .login-item input[type="password"] {
     height: 44px;
     font-size: 14px;
   }
@@ -2274,7 +2274,7 @@ hr {
   height: 250px;
 }
 
-.registration-item input[type="checkbox"] {
+.registration-item input[type="radio"] {
   appearance: none;
   width: 16px;
   height: 16px;
@@ -2288,7 +2288,7 @@ hr {
   border: none;
 }
 
-.registration-item input[type="checkbox"]::after {
+.registration-item input[type="radio"]::after {
   content: "";
   position: absolute;
   left: 5.3px;
@@ -2302,7 +2302,40 @@ hr {
   transition: opacity 0.3s ease, transform 0.3s ease 0.1s;
 }
 
-.registration-item input[type="checkbox"]:checked::after {
+.registration-item input[type="radio"]:checked::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+.registration-item2 input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background-color: rgba(217, 217, 217, 0.6);
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  border: none;
+}
+
+.registration-item2 input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  left: 5.3px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid #EB972E;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease 0.1s;
+}
+
+.registration-item2 input[type="checkbox"]:checked::after {
   opacity: 1;
   transform: rotate(45deg) scale(1);
 }
