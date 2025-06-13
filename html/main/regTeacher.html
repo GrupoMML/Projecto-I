@@ -41,35 +41,35 @@
         </p>
     </section>
 
-    <div class="registration-container">
+    <div class="registration-container" id="form-regTeacher">
         <div class="registration-info">
             <div class="left-group">
                 <div class="registration-item">
-                    <label for="reg-name">Nome*</label>
+                    <label for="reg-name-teacher">Nome*</label>
                     <div class="input-icon">
                         <i class="fas fa-user"></i>
-                        <input type="text" id="reg-name" required>
+                        <input type="text" id="reg-name-teacher" required>
                     </div>
                 </div>
                 <div class="registration-item">
-                    <label for="reg-email">Email*</label>
+                    <label for="reg-email-teacher">Email*</label>
                     <div class="input-icon">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" id="reg-email" required>
+                        <input type="email" id="reg-email-teacher" required>
                     </div>
                 </div>
                 <div class="registration-item">
-                    <label for="reg-password">Palavra-passe*</label>
+                    <label for="reg-password-teacher">Palavra-passe*</label>
                     <div class="input-icon">
                         <i class="fas fa-key"></i>
-                        <input type="password" id="reg-password" required>
+                        <input type="password" id="reg-password-teacher" required>
                     </div>
                 </div>
                 <div class="registration-item">
-                    <label for="reg-incapacity">Alguma Incapacidade?*</label>
+                    <label for="reg-incapacity-teacher">Alguma Incapacidade?*</label>
                     <div class="input-icon">
                         <i class="fas fa-wheelchair"></i>
-                        <select id="reg-incapacity" required>
+                        <select id="reg-incapacity-teacher" required>
                             <option value="" disabled selected></option>
                             <option value="yes">Sim, sou incapacitado</option>
                             <option value="no">Não sou incapacitado</option>
@@ -77,12 +77,12 @@
                     </div>
                 </div>
                 <div class="registration-item">
-                    <label for="reg-diploma">Diploma*</label>
+                    <label for="reg-diplomes-teacher">Diploma*</label>
                     <div class="drop-zone" id="drop-zone">
                         <i class="fas fa-image"></i>
                         <p>Arraste para aqui ou</p>
                         <button type="button" class="btn-registerDrop">Clique aqui!</button>
-                        <input type="file" id="fileInput" name="reg-diploma" style="display: none;" required>
+                        <input type="file" id="fileInput" name="reg-diplomes-teacher" style="display: none;" required>
                     </div>
                 </div>
             </div>
@@ -91,39 +91,39 @@
                 <div class="registration-item">
                     <label>Género*</label>
                     <div class="gender-options">
-                        <label><input type="radio" name="gender"> Masculino</label>
-                        <label><input type="radio" name="gender"> Feminino</label>
+                        <label><input type="radio" name="gender" value="male"> Masculino</label>
+                        <label><input type="radio" name="gender" value="female"> Feminino</label>
                     </div>
                 </div>
 
                 <div class="registration-item">
-                    <label for="reg-dateOfBirth">Data de Nascimento*</label>
+                    <label for="reg-dateOfBirth-teacher">Data de Nascimento*</label>
                     <div class="input-icon">
                         <i class="fas fa-calendar-days"></i>
-                        <input type="date" id="reg-dateOfBirth" placeholder="dd/mm/aa" required>
+                        <input type="date" id="reg-dateOfBirth-teacher" placeholder="dd/mm/aa" required>
                     </div>
                 </div>
 
                 <div class="registration-item">
-                    <label for="reg-localization">Localidade*</label>
+                    <label for="reg-localization-teacher">Localidade*</label>
                     <div class="input-icon">
                         <i class="fas fa-location-dot"></i>
-                        <input type="text" id="reg-localization" required>
+                        <input type="text" id="reg-localization-teacher" required>
                     </div>
                 </div>
 
                 <div class="registration-item2">
                     <label>Disciplinas*</label>
                     <div class="disciplines-grid2">
-                        <label><input type="checkbox"> Francês</label>
-                        <label><input type="checkbox"> Português</label>
-                        <label><input type="checkbox"> Inglês</label>
-                        <label><input type="checkbox"> História</label>
-                        <label><input type="checkbox"> Geografia</label>
-                        <label><input type="checkbox"> Geologia</label>
-                        <label><input type="checkbox"> Matemática</label>
-                        <label><input type="checkbox"> Física e Química</label>
-                        <label><input type="checkbox"> Biologia</label>
+                        <label><input type="checkbox" value="french"> Francês</label>
+                        <label><input type="checkbox" value="portuguese"> Português</label>
+                        <label><input type="checkbox" value="english"> Inglês</label>
+                        <label><input type="checkbox" value="history"> História</label>
+                        <label><input type="checkbox" value="geography"> Geografia</label>
+                        <label><input type="checkbox" value="geology"> Geologia</label>
+                        <label><input type="checkbox" value="math"> Matemática</label>
+                        <label><input type="checkbox" value="physics and chemistry"> Física e Química</label>
+                        <label><input type="checkbox" value="biology"> Biologia</label>
                     </div>
                 </div>
             </div>
@@ -134,12 +134,12 @@
         </div>
 
         <div class="registration-item full-width">
-            <label for="aboutMe">Sobre mim:</label>
-            <textarea id="aboutMe" name="aboutMe"></textarea>
+            <label for="reg-aboutMe-teacher">Sobre mim:</label>
+            <textarea id="reg-aboutMe-teacher" name="aboutMe"></textarea>
         </div>
 
         <div class="buttons">
-            <button class="btn-custom2 btn-register">Registar</button>
+            <button class="btn-custom2 btn-register" id="btn-registerTeacher">Registar</button>
             <a href="./login.html"><button class="btn-custom2 btn-back">Voltar</button></a>
         </div>
     </div>
@@ -161,6 +161,7 @@
     <!------------- SCRIPTS ------------->
     <!----------------------------------------------->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../../js/views/registerTeacherView.js"></script>
 
 </body>
 </html>

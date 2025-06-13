@@ -41,50 +41,50 @@
         </p>
     </section>
 
-    <div class="registration-container">
+    <div class="registration-container" id="form-regStudent">
         <div class="registration-info">
             <div class="left-group">
                 <div class="registration-item">
-                    <label for="reg-name">Nome*</label>
+                    <label for="reg-name-student">Nome*</label>
                     <div class="input-icon">
                         <i class="fas fa-user"></i>
-                        <input type="text" id="reg-name" required>
+                        <input type="text" id="reg-name-student" required>
                     </div>
                 </div>
                 <div class="registration-item">
-                    <label for="reg-email">Email*</label>
+                    <label for="reg-email-student">Email*</label>
                     <div class="input-icon">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" id="reg-email" required>
+                        <input type="email" id="reg-email-student" required>
                     </div>
                 </div>
                 <div class="registration-item">
-                    <label for="reg-password">Palavra-passe*</label>
+                    <label for="reg-password-student">Palavra-passe*</label>
                     <div class="input-icon">
                         <i class="fas fa-key"></i>
-                        <input type="password" id="reg-password" required>
+                        <input type="password" id="reg-password-student" required>
                     </div>
                 </div>
                 <div class="registration-item">
-                    <label for="reg-grade">Ano de escolaridade*</label>
+                    <label for="reg-grade-student">Ano de escolaridade*</label>
                     <div class="input-icon">
                         <i class="fas fa-graduation-cap"></i>
-                        <input type="text" id="reg-grade" required>
+                        <input type="text" id="reg-grade-student" required>
                     </div>
                 </div>
                 <div class="registration-item">
-                    <label for="reg-EEcontact">Contacto do E.E.*</label>
+                    <label for="reg-EEcontact-student">Contacto do E.E.*</label>
                     <div class="input-icon">
                         <i class="fas fa-mobile-alt"></i>
-                        <input type="number" id="reg-EEcontact">
+                        <input type="number" id="reg-EEcontact-student" min="0">
                     </div>
                 </div>
 
                 <div class="registration-item">
-                    <label for="reg-incapacity">Alguma Incapacidade?*</label>
+                    <label for="reg-incapacity-student">Alguma Incapacidade?*</label>
                     <div class="input-icon">
                         <i class="fas fa-wheelchair"></i>
-                        <select id="reg-incapacity" required>
+                        <select id="reg-incapacity-student" required>
                             <option value="" disabled selected></option>
                             <option value="yes">Sim, sou incapacitado</option>
                             <option value="no">Não sou incapacitado</option>
@@ -97,39 +97,39 @@
                 <div class="registration-item">
                     <label>Género*</label>
                     <div class="gender-options">
-                        <label><input type="radio" name="gender"> Masculino</label>
-                        <label><input type="radio" name="gender"> Feminino</label>
+                        <label><input type="radio" name="gender" value="male"> Masculino</label>
+                        <label><input type="radio" name="gender" value="female"> Feminino</label>
                     </div>
                 </div>
 
                 <div class="registration-item">
-                    <label for="reg-dateOfBirth">Data de Nascimento*</label>
+                    <label for="reg-dateOfBirth-student">Data de Nascimento*</label>
                     <div class="input-icon">
                         <i class="fas fa-calendar-days"></i>
-                        <input type="date" id="reg-dateOfBirth" placeholder="dd/mm/aa" required>
+                        <input type="date" id="reg-dateOfBirth-student" placeholder="dd/mm/aa" required>
                     </div>
                 </div>
 
                 <div class="registration-item">
-                    <label for="reg-localization">Localidade*</label>
+                    <label for="reg-localization-student">Localidade*</label>
                     <div class="input-icon">
                         <i class="fas fa-location-dot"></i>
-                        <input type="text" id="reg-localization" required>
+                        <input type="text" id="reg-localization-student" required>
                     </div>
                 </div>
 
                 <div class="registration-item2">
                     <label>Disciplinas*</label>
                     <div class="disciplines-grid2">
-                        <label><input type="checkbox"> Francês</label>
-                        <label><input type="checkbox"> Português</label>
-                        <label><input type="checkbox"> Inglês</label>
-                        <label><input type="checkbox"> História</label>
-                        <label><input type="checkbox"> Geografia</label>
-                        <label><input type="checkbox"> Geologia</label>
-                        <label><input type="checkbox"> Matemática</label>
-                        <label><input type="checkbox"> Física e Química</label>
-                        <label><input type="checkbox"> Biologia</label>
+                        <label><input type="checkbox" value="french"> Francês</label>
+                        <label><input type="checkbox" value="portuguese"> Português</label>
+                        <label><input type="checkbox" value="english"> Inglês</label>
+                        <label><input type="checkbox" value="history"> História</label>
+                        <label><input type="checkbox" value="geography"> Geografia</label>
+                        <label><input type="checkbox" value="geology"> Geologia</label>
+                        <label><input type="checkbox" value="math"> Matemática</label>
+                        <label><input type="checkbox" value="physics and chemistry"> Física e Química</label>
+                        <label><input type="checkbox" value="biology"> Biologia</label>
                     </div>
                 </div>
             </div>
@@ -140,12 +140,12 @@
         </div>
 
         <div class="registration-item full-width">
-            <label for="aboutMe">Sobre mim:</label>
-            <textarea id="aboutMe" name="aboutMe"></textarea>
+            <label for="reg-aboutMe-student">Sobre mim:</label>
+            <textarea id="reg-aboutMe-student" name="aboutMe"></textarea>
         </div>
 
         <div class="buttons">
-            <button class="btn-custom2 btn-register">Registar</button>
+            <button class="btn-custom2 btn-register" id="btn-registerStudent">Registar</button>
             <a href="./login.html"><button class="btn-custom2 btn-back">Voltar</button></a>
         </div>
     </div>
@@ -167,6 +167,8 @@
     <!------------- SCRIPTS ------------->
     <!----------------------------------------------->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../../js/views/registerStudentView.js"></script>
+
 
 </body>
 </html>
