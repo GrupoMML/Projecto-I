@@ -1,9 +1,13 @@
+//------------------ IMPORTS ----------------------
+//----------------------------------------------------------
 import { teachers, addTeacher } from "../models/teachersModel.js" 
 
 const storedTeachers = JSON.parse(localStorage.getItem("teachers")) || []
 teachers.length = 0
 teachers.push(...storedTeachers)
 
+//------------------ TEACHER REGISTER ----------------------
+//----------------------------------------------------------
 document.querySelector("#btn-registerTeacher").addEventListener('click', event => {
     event.preventDefault()
     const name = document.getElementById('reg-name-teacher').value
@@ -41,7 +45,7 @@ document.querySelector("#btn-registerTeacher").addEventListener('click', event =
         age--
     }
 
-    if (age <= 18 || age >= 66) {
+    if (age < 18 || age > 66) {
         alert("A idade do professor deve ser entre 18 e 66 anos.")
         return
     }

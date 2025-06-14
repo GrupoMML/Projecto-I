@@ -9,7 +9,7 @@ document.getElementById("profilePhoto2").addEventListener('click', () => {
   if (loggedUser.role === "teacher") {
     window.location.href = "../../html/teacher/teacher.html"
   } else if (loggedUser.role === "student") {
-    window.location.href = "../../html/student/student.html"
+    window.location.href = "../../html/student/students.html"
   } else if (loggedUser.role === "admin") {
     window.location.href = "../../html/admin/admin.html"
   } else {

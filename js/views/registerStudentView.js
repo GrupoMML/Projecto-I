@@ -46,7 +46,7 @@ document.querySelector("#btn-registerStudent").addEventListener('click', event =
         age--
     }
 
-    if (age <= 9 || age >= 18) {
+    if (age < 9 || age > 18) {
         alert("A idade do aluno deve ser entre 9 e 18 anos.")
         return
     }
