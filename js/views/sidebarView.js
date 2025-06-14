@@ -39,4 +39,8 @@ if (!loggedUser) {
             window.location.href = settingsUrl
         })
     }
+
+    document.getElementById('menuItemLeaderboards').addEventListener('click', () => {
+        window.location.href = "../../html/main/leaderboard.html"
+    })
 }

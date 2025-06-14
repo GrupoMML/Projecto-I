@@ -11,30 +11,201 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+    <style>
+         * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        }
+
+        body {
+        font-family: 'Poppins', sans-serif;
+        }
+
+        .side-menu {
+        position: fixed;
+        z-index: 9;
+        top: 0;
+        width: 290px;
+        max-width: 100%;
+        height: 100vh;
+        background: #B3CBDE;
+        display: flex;
+        flex-direction: column;
+        transition: width 0.3s ease;
+        
+        }
+
+        .menu-brand {
+        margin: 13px 0 10px 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        }
+
+        .logo-img {
+        max-width: 87%;
+        height: auto;
+        }
+
+        .menu-items {
+        display: flex;
+        align-items: center;
+        color: #003366;
+        margin: 12px 0 12px 40px;
+        font-size: 17px;
+        font-weight: 500;
+        gap: 10px;
+        }
+
+        .menu-items p {
+        margin: 0;
+        word-break: break-word;
+        }
+
+        .menu-items:hover {
+        color: #0055aa;
+        cursor: pointer;
+        }
+
+        .user-level-container {
+        display: grid;
+        grid-template-areas:
+            "level progres"
+            "bar bar"
+            "ranking ranking";
+        color: white;
+        background-color: #003366;
+        border-radius: 15px;
+        padding: 10px;
+        margin: 30px auto 0 auto;
+        width: 90%;
+        max-width: 230px;
+        gap: 8px;
+        margin-top: 150px;
+        }
+
+        .fa-certificate {
+        grid-area: level;
+        font-size: 50px;
+        color: #ffffff;
+        margin-top: 5px;
+        margin-left: 15px;
+        position: absolute;
+        }
+
+        .fa-certificate::after {
+        content: attr(data-qtd);
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: #003366;
+        font-size: 24px;
+        }
+
+        #user-level-progress {
+        grid-area: progres;
+        font-size: 16px;
+        margin-top: 15px;
+        margin-left: 50px;
+        color: #fff;
+        }
+
+        #user-ranking {
+        grid-area: ranking;
+        color: #EB972E;
+        font-size: 14px;
+        margin-left: 50px;
+        text-align: center;
+        }
+
+        .settings {
+        margin-left: 40px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: bold;
+        font-size: 16px;
+        color: #EB972E;
+        cursor: pointer;
+        margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+        .side-menu {
+            width: 80px;
+        }
+
+        .menu-items {
+            margin-left: 0;
+            justify-content: center;
+        }
+
+        .menu-items p {
+            display: none;
+        }
+
+        .user-level-container {
+            display: none;
+        }
+
+
+        .settings {
+            margin-left: 0;
+            justify-content: center;
+            gap: 0;
+        }
+        .settings p {
+            display: none;
+        }
+        }
+
+        @media (max-width: 480px) {
+        .side-menu {
+            width: 60px;
+        }
+
+        .fa-certificate {
+            font-size: 40px;
+        }
+
+        .fa-certificate::after {
+            font-size: 18px;
+        }
+
+        .user-level-container {
+            max-width: 160px;
+        }
+        }
+    </style>
     <!------------- NAVBAR  ------------->
     <!----------------------------------------------->
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-fluid">
             <div class="brand">
-                <img src="../../images/webapp/logo.png" alt="Duck Icon" id="logo">
+                <a href="../../index.html"><img src="../../images/webapp/logo.png" alt="Duck Icon" id="logo"></a>
             </div>
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <i class="fa-solid fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <div class="controls-container ms-auto text-end">
-                        <button class="btn-custom btn-store">Loja</button>
-                        <button class="btn-custom btn-faq">?</button>
+                    <a href="../main/store.html"><button class="btn-custom btn-store">Loja</button></a>
+                    <a href="../main/aboutUS.html"><button class="btn-custom btn-aboutUs">Sobre nós</button></a>
+                    <a href="../main/FAQ.html" style="text-decoration: none;"><button class="btn-custom btn-faq">?</button></a>
+                    <a href="../main/storeCart.html" style="text-decoration: none;">
                         <button class="btn-custom btn-cart">
                             <i class="fa-solid fa-cart-shopping"></i>
-                        </button>
+                        </button></a>
                     <div class="search-container">
                         <input type="text" class="search-input" placeholder="Pesquisar...">
                         <button class="btn-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
-                    <button class="btn-user">
+                    <button class="btn-user" id="profilePhoto2"> 
                         <i class="fa-solid fa-user"></i>
                     </button>
                 </div>
@@ -48,49 +219,72 @@
         <div class="menu-brand">
             <img src="../../images/webapp/logo.png" alt="TeachMe Logo" class="logo-img">
         </div>
-        <div class="menu-items" style="text-align: left">
+
+        <div class="menu-items studentView teacherView">
             <i class="fa-solid fa-house"></i>
-            <p>Página principal</p>
+            <p style>Página principal</p>
         </div>
-        <div class="menu-items">
+
+        <div class="menu-items studentView teacherView">
             <i class="fa-solid fa-calendar-days"></i>
             <p>Calendário de aulas</p>
         </div>
-        <div class="menu-items">
+
+        <div class="menu-items studentView teacherView adminView">
             <i class="fa-solid fa-comments"></i>
             <p>Mensagens</p>
         </div>
-        <div class="menu-items">
+
+        <div class="menu-items studentView teacherView" data-url="../VR/access.html">
             <i class="fa-solid fa-vr-cardboard"></i>
             <p>Sala de aula</p>
         </div>
-        <div class="menu-items">
+
+        <div class="menu-items studentView teacherView" data-url="../main/disciplines.html">
             <i class="fa-solid fa-book"></i>
             <p>Disciplinas</p>
         </div>
-        <div class="menu-items">
+
+        <div class="menu-items studentView" data-url="../student/favourites.html">
             <i class="fa-solid fa-heart"></i>
             <p>Favoritos</p>
         </div>
-        <div class="menu-items">
+
+        <div class="menu-items teacherView" data-url="../teacher/reviewForm.html">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <p>Formulários</p>
+        </div>
+
+        <div class="menu-items studentView" data-url="../student/quizz.html">
             <i class="fas fa-question-circle"></i>
             <p>Quizzes</p>
         </div>
 
-        <div class="user-level-container">
-            <div class="user-level-figure">
-                <i data-qtd="4" class="fa-solid fa-certificate user-level" id="user-level"></i> <!-- Renderiza o nível do usuário -->
-            </div>
-            <div id="user-level-progress">800 / 2000</div>                                      <!-- Renderiza o progresso do nível do usuário -->
-            <div class="user-level-progress-bar">
-                <div class="user-level-progress-bar-fill"></div>
-            </div>
-            <div class="fa-solid fa-trophy" id="user-ranking"> 26 / 1000</div>                  <!-- Renderiza o ranking do usuário -->
+        <div class="menu-items teacherView" data-url="../teacher/createQuizz.html">
+            <i class="fas fa-question-circle"></i>
+            <p>Quizzes Alunos</p>
         </div>
 
-        <div class="menu-items settings">
+        <div class="menu-items adminView" data-url="../main/leaderboard.html">
+            <i class="fa-solid fa-chart-bar"></i>
+            <p>Leaderboards</p>
+        </div>
+
+        <div class="menu-items adminView" data-url="../admin/storeManagement.html">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <p>Gerir Loja</p>
+        </div>
+
+        <div class="user-level-container" id="menuItemLeaderboards">
+            <i class="fa-solid fa-certificate" data-qtd="0"></i>
+            <div id="user-level-progress">0 pontos</div>
+            <div class="user-level-progress-bar"></div>
+            <div id="user-ranking">Rank 1001 / 1000</div>
+        </div>
+
+        <div class="menu-items studentView teacherView adminView" id="settingsMenuItem">
             <i class="fa-solid fa-gear"></i>
-            <p>Configurações</p>
+            <p>Definições</p>
         </div>
     </div>
     
@@ -100,47 +294,41 @@
         <div class="settingsTeacher-header">Perfil</div>
         <div class="profile-section">
             <div class="profile-header">
-                <img src="https://i.imgur.com/BD0ynTn.png" alt="Foto de perfil" />
+                <img id="profilePhoto" alt="Foto de perfil" />
                 <i class="fa-solid fa-pencil edit-icon" title="Alterar foto"></i>
-                <div class="greeting">Bom dia,<br><strong>*!</strong></div>
-                <button class="btn-custom4 btn-edit">Alterar</button>
+                <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;" />
+                <div class="greeting">Olá,<br><strong id="user-greeting"></strong></div>
+                <button class="btn-custom4 btn-edit" id="changeSettings-btn">Alterar</button>
             </div>
+
             <div class="profile-fields">
                 <div class="profile-field">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="username@gmail.com" disabled/>
+                    <input type="email" id="email"  disabled />
                 </div>
-                <div class="profile-field">
-                    <label for="phone">Contacto</label>
-                    <div class="phone-wrapper">
-                        <select name="indicative" disabled>
-                            <option selected>+351 | Portugal</option>
-                            <option>+33 | França </option>
-                            <option>+39 | Itália</option>
-                            <option>+49 | Alemanha</option>
-                            <option>+44 | Reino Unido</option>
-                        </select>
-                        <input type="text" placeholder="9XXXXXXXX" disabled/>
-                    </div>
-                </div>
+                
                 <div class="profile-field">
                     <label for="password">Palavra-passe</label>
-                    <input type="password" id="password" placeholder="*************" disabled />
+                    <input type="password" id="password" disabled />
                 </div>
                 <div class="profile-field">
                     <label for="incapacity">Incapacidade</label>
                     <select id="incapacity" disabled>
-                        <option disabled selected>X</option>
+                        <option disabled>X</option>
                         <option>Sim</option>
                         <option>Não</option>
                     </select>
                 </div>
                 <div class="profile-field">
-                    <label for="cod-postal">Código Postal</label>
-                    <input type="text" id="cod-postal" placeholder="XXXX-XXX" disabled/>
+                    <label for="locality">Localidade</label>
+                    <input type="text" id="locality" disabled/>
+                </div>
+                <div class="profile-field">
+                    <label for="price">Preço</label>
+                    <input type="text" id="price" disabled/>
                 </div>
 
-                <button class="btn-custom3 btn-logout2">Terminar Sessão</button>
+                <button class="btn-custom3 btn-logout2" id="btn-logoutSettings">Terminar Sessão</button>
             </div>
         </div>
     </div>
@@ -159,33 +347,37 @@
                 <label><input type="checkbox" /> Física e Química</label>
                 <label><input type="checkbox" /> Biologia</label>
             </div>
-        <button class="btn-custom4 btn-save">Guardar</button>
+        <button class="btn-custom4 btn-save" id="btn-saveDesciplineSettings">Guardar</button>
         </div>
     </div>
 
     <div class="settingsTeacher-container delete-account">
-        <button class="delete-button">APAGAR CONTA</button>
-        Clique <a href="#">aqui</a> para saber mais sobre eliminação de contas.
+        <a href="../main/delAccount.html"><button class="delete-button">APAGAR CONTA</button></a>
+        Clique <a href="../main/delAccount.html">aqui</a> para saber mais sobre eliminação de contas.
     </div>
 
     <!------------- FOOTER ------------->
     <!----------------------------------------------->
-    <footer class="footer-container-smaller">
-        <div class="footer-content-smaller">
-            <a href="#">Home</a> |
-            <a href="#">Contactos</a> |
-            <a href="#">Loja</a> |
+    <footer class="footer-container">
+        <div class="footer-content">
+            <a href="../../index.html">Home</a> |
+            <a href="../main/contacts.html">Contactos</a> |
+            <a href="../main/store.html">Loja</a> |
             <a href="#">Termos e condições</a> |
             <a href="#">Política de Privacidade</a> |
-            <a href="#">FAQ</a> 
-            <p class="footer-description-smaller">Site educativo ao cumprimento do Projeto I</p>
-            <img src="../../images/webapp/logo.png" alt="TeachMe Logo" class="footer-logo-smaller">
+            <a href="../main/FAQ.html">FAQ</a> 
+            <p class="footer-description">Site educativo ao cumprimento do Projeto I</p>
+            <a href="../../index.html"><img src="../../images/webapp/logo.png" alt="TeachMe Logo" class="footer-logo"></a>
         </div>
     </footer>
 
-    <!------------- NAVBAR DROPDOWN ------------->
+    <!------------- SCRIPTS ------------->
     <!----------------------------------------------->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../../js/views/sidebarView.js"></script>
+    <script type="module" src="../../js/views/settingsTeacherView.js"></script>
+    <script type="module" src="../../js/views/profilePicturesView.js"></script>
+    <script type="module" src="../../js/views/profileView.js"></script>
 
 </body>
 </html>
