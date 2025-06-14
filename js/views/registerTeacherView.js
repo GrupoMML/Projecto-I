@@ -54,7 +54,8 @@ document.querySelector("#btn-registerTeacher").addEventListener('click', event =
     const maxId = teachers.reduce((max, t) => t.id > max ? t.id : max, 0)
     const id = maxId + 1
 
-    const teacher = addTeacher(id, name, email, password, incapacity, /* diplomes */ gender, dateOfBirth, locality, aboutMe)
+    const teacher = addTeacher(id,name,email,password,incapacity,gender,dateOfBirth,locality,"", disciplines, aboutMe)
+
 
     teachers.push(teacher)
     localStorage.setItem("teachers", JSON.stringify(teachers))
@@ -74,5 +75,6 @@ document.querySelector("#btn-registerTeacher").addEventListener('click', event =
     document.getElementById('reg-aboutMe-teacher').value = ''
 
     document.querySelectorAll('.disciplines-grid2 input[type="checkbox"]').forEach(cb => cb.checked = false)
+    
 
 })

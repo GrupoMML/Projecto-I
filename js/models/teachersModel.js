@@ -39,10 +39,13 @@ class Teacher{
     }
 }
 
-function addTeacher(id, name, email, password, incapacity, diplomes, gender, dateOfBirth, locality, aboutMe){
-    const points = 0
-    const priority = 2
-    const teacher = new Teacher (id, name, email, password, incapacity, diplomes, gender, dateOfBirth, locality, aboutMe, points, priority)    
+function addTeacher(id, name, email, password, incapacity, gender, dateOfBirth, locality, diplomes, disciplines, aboutMe, explanationLocal = 0, classType = 2, price = "", points = 0, priority = 2){
+    const teacher = new Teacher(
+        id, name, email, password, incapacity, 
+        gender, dateOfBirth, locality, 
+        diplomes, disciplines, aboutMe, 
+        explanationLocal, classType, price, points, priority
+    )
     teachers.push(teacher)
     return teacher
 }
