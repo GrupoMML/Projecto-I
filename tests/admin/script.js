@@ -533,7 +533,7 @@ function showEditAlunModal(item) {
   `;
   new bootstrap.Modal(document.getElementById("itemEditModal")).show();
 }
-// Deletar item
+// Apagar item
 document.querySelector("#tbody-produtos").addEventListener("click", (e) => {
   if (e.target.closest(".btn-danger")) {
     const item = JSON.parse(e.target.closest(".btn-danger").dataset.item);
@@ -664,7 +664,6 @@ document.addEventListener("click", (e) => {
   }
   }
 });
-
 // Adicionar novo item
 document.addEventListener("click", (e) => {
   // Produto
