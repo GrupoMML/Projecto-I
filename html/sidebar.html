@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Side Menu Responsivo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.side-menu {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  width: 290px;
+  max-width: 100%;
+  height: 100vh;
+  background: #B3CBDE;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  
+}
+
+.menu-brand {
+  margin: 13px 0 10px 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-img {
+  max-width: 87%;
+  height: auto;
+}
+
+.menu-items {
+  display: flex;
+  align-items: center;
+  color: #003366;
+  margin: 12px 0 12px 40px;
+  font-size: 17px;
+  font-weight: 500;
+  gap: 10px;
+}
+
+.menu-items p {
+  margin: 0;
+  word-break: break-word;
+}
+
+.menu-items:hover {
+  color: #0055aa;
+  cursor: pointer;
+}
+
+.user-level-container {
+  display: grid;
+  grid-template-areas:
+    "level progres"
+    "bar bar"
+    "ranking ranking";
+  color: white;
+  background-color: #003366;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 30px auto 0 auto;
+  width: 90%;
+  max-width: 230px;
+  gap: 8px;
+  margin-top: 150px;
+}
+
+.fa-certificate {
+  grid-area: level;
+  font-size: 50px;
+  color: #ffffff;
+  margin-top: 5px;
+  margin-left: 15px;
+  position: absolute;
+}
+
+.fa-certificate::after {
+  content: attr(data-qtd);
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #003366;
+  font-size: 24px;
+}
+
+#user-level-progress {
+  grid-area: progres;
+  font-size: 16px;
+  margin-top: 15px;
+  margin-left: 50px;
+  color: #fff;
+}
+
+#user-ranking {
+  grid-area: ranking;
+  color: #EB972E;
+  font-size: 14px;
+  margin-left: 50px;
+  text-align: center;
+}
+
+.settings {
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #EB972E;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .side-menu {
+    width: 80px;
+  }
+
+  .menu-items {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .menu-items p {
+    display: none;
+  }
+
+  .user-level-container {
+    display: none;
+  }
+
+
+  .settings {
+    margin-left: 0;
+    justify-content: center;
+    gap: 0;
+  }
+  .settings p {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .side-menu {
+    width: 60px;
+  }
+
+  .fa-certificate {
+    font-size: 40px;
+  }
+
+  .fa-certificate::after {
+    font-size: 18px;
+  }
+
+  .user-level-container {
+    max-width: 160px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="side-menu">
+    <div class="menu-brand">
+      <img src="../images/webapp/logo.png" alt="TeachMe Logo" class="logo-img">
+    </div>
+
+    <div class="menu-items">
+      <i class="fa-solid fa-house"></i>
+      <p>Página principal</p>
+    </div>
+    <div class="menu-items">
+      <i class="fa-solid fa-calendar-days"></i>
+      <p>Calendário de aulas</p>
+    </div>
+    <div class="menu-items">
+      <i class="fa-solid fa-comments"></i>
+      <p>Mensagens</p>
+    </div>
+    <div class="menu-items">
+      <i class="fa-solid fa-vr-cardboard"></i>
+      <p>Sala de aula</p>
+    </div>
+    <div class="menu-items">
+      <i class="fa-solid fa-book"></i>
+      <p>Disciplinas</p>
+    </div>
+    <div class="menu-items">
+      <i class="fa-solid fa-heart"></i>
+      <p>Favoritos</p>
+    </div>
+    <div class="menu-items">
+      <i class="fa-solid fa-clipboard-list"></i>
+      <p>Formulários</p>
+    </div>
+    <div class="menu-items">
+      <i class="fas fa-question-circle"></i>
+      <p>Quizzes</p>
+    </div>
+    <div class="menu-items">
+      <i class="fas fa-question-circle"></i>
+      <p>Quizzes Alunos</p>
+    </div>
+    <div class="menu-items">
+      <i class="fa-solid fa-chart-bar"></i>
+      <p>Leaderboards</p>
+    </div>
+    <div class="menu-items">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <p>Gerir Loja</p>
+    </div>
+
+    <div class="user-level-container">
+      <i class="fa-solid fa-certificate" data-qtd="0"></i>
+      <div id="user-level-progress">0 / 2000 xp</div>
+      <div class="user-level-progress-bar"></div>
+      <div id="user-ranking">Rank 1001 / 1000</div>
+    </div>
+
+    <div class="settings">
+      <i class="fa-solid fa-gear"></i>
+      <p>Definições</p>
+    </div>
+  </div>
+
+</body>
+</html>

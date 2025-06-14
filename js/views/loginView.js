@@ -17,9 +17,17 @@ document.querySelector("#btn-login").addEventListener('click', event => {
 
     if (student) {
         alert(`Bem-vindo(a), ${student.name}!`)
+        localStorage.setItem("loggedUser", JSON.stringify({
+            role: "student",
+            ...student
+        }))
         window.location.href = "../../html/student/students.html"
     } else if (teacher) {
         alert(`Bem-vindo(a), ${teacher.name}!`)
+        localStorage.setItem("loggedUser", JSON.stringify({
+            role: "teacher",
+            ...teacher
+        }))
         window.location.href = "../../html/teacher/teacher.html"
     } else {
         alert("Email ou palavra-passe inválidos.")
