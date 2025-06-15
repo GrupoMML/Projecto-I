@@ -261,7 +261,7 @@ document.querySelector('#tbody-professores').addEventListener('click', (e) => {
   const btn = e.target.closest('.view-item');
   if (btn) {
     const item = JSON.parse(btn.dataset.item);
-    showItemModalteacher(item);
+    showItemModalTeacher(item);
   }
 });
 document.querySelector('#tbody-alunos').addEventListener('click', (e) => {
