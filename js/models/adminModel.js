@@ -15,9 +15,13 @@ class Admin{
     }
 }
 
-function addAdmin(name, subject) {
-  const id = admin.length + 1
-  const admin = new Admin(id, name, subject)
-  admins.push(admin)
-  return admin
+const admins = []
+
+function addAdmin(id, name, email, password){
+    const priority = 3
+    const admin = new Admin (id, name, email, password, priority)
+    admins.push(admin)
+    return admin
 }
+
+export { addAdmin }

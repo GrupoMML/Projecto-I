@@ -739,7 +739,3 @@ document.getElementById("addProductBtn").addEventListener("click", () => showAdd
 document.getElementById("addProfBtn").addEventListener("click", () => showAddModal("prof"));
 document.getElementById("addAlunBtn").addEventListener("click", () => showAddModal("alun"));
 
-// Toggle Sidebar
-document.getElementById('toggleBtn').addEventListener('click', function(){
-  document.querySelector('.side-nav').classList.toggle('collapsed');
-});
