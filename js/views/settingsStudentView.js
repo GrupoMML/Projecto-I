@@ -32,8 +32,8 @@ loggedUser.disciplines.forEach(discipline => {
         if (discipline.toLowerCase() === labelText) {
             cb.checked = true
         }
-    });
-});
+    })
+})
 
 document.getElementById("btn-logoutSettings").addEventListener("click", event => {
     event.preventDefault()
@@ -41,7 +41,7 @@ document.getElementById("btn-logoutSettings").addEventListener("click", event =>
     localStorage.removeItem("loggedUser")
 
     window.location.href = "../../html/main/login.html"
-});
+})
 
 const profilePhoto = document.getElementById('profilePhoto')
 const profilePhoto2 = document.getElementById('profilePhoto2')
@@ -50,7 +50,7 @@ const profilePhotoInput = document.getElementById('profilePhotoInput')
 
 editIcon.addEventListener('click', () => {
     profilePhotoInput.click()
-});
+})
 
 profilePhotoInput.addEventListener('change', () => {
     const file = profilePhotoInput.files[0]
@@ -75,10 +75,10 @@ profilePhotoInput.addEventListener('change', () => {
                 students[index].photo = base64String
                 localStorage.setItem('students', JSON.stringify(students))
             }
-        };
+        }
         reader.readAsDataURL(file)
     }
-});
+})
 
 window.addEventListener('load', () => {
     const loggedUser = JSON.parse(localStorage.getItem('loggedUser'))
@@ -88,7 +88,7 @@ window.addEventListener('load', () => {
         const icon = profilePhoto2.querySelector('i')
         if (icon) icon.style.color = 'transparent'
     }
-});
+})
 
 const btnChangeSettings = document.getElementById('changeSettings-btn')
 const inputs = document.querySelectorAll('.profile-fields input, .profile-fields select')
@@ -129,7 +129,7 @@ btnChangeSettings.addEventListener('click', () => {
 
         alert('Alterações guardadas com sucesso!')
     }
-});
+})
 
 const changeDisciplinesCheckboxs = document.getElementById('btn-saveDesciplineSettings')
 const changeDisciplinesCheckboxsInputs = document.querySelectorAll('.settingsStudents-container .disciplines-grid2 input[type="checkbox"]')
