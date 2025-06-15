@@ -24,19 +24,15 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <div class="controls-container ms-auto text-end">
-                        <button class="btn-custom btn-store">Loja</button>
                         <button class="btn-custom btn-aboutUs">Sobre nós</button>
                         <button class="btn-custom btn-faq">?</button>
-                        <button class="btn-custom btn-cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </button>
                     <div class="search-container">
                         <input type="text" class="search-input" placeholder="Pesquisar...">
                         <button class="btn-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
-                    <button class="btn-user">
+                    <button class="btn-user" id="profilePhoto2">
                         <i class="fa-solid fa-user"></i>
                     </button>
                 </div>
@@ -76,7 +72,7 @@
                 <h5 class="deleteAccount-question">Eliminar a conta?</h5>
                 <div class="deleteAccount-buttonGroup">
                     <button class="btn-custom2 btn-no">NÃO</button>
-                    <button class="btn-custom2 btn-yes">SIM</button>
+                    <button class="btn-custom2 btn-yes" id="btn-DeleteAccount">SIM</button>
                 </div>
             </div>
         </div>
@@ -86,20 +82,24 @@
     <!----------------------------------------------->
     <footer class="footer-container">
         <div class="footer-content">
-            <a href="#">Home</a> |
-            <a href="#">Contactos</a> |
-            <a href="#">Loja</a> |
+            <a href="../../index.html">Home</a> |
+            <a href="../main/contacts.html">Contactos</a> |
+            <a href="../main/store.html">Loja</a> |
             <a href="#">Termos e condições</a> |
             <a href="#">Política de Privacidade</a> |
-            <a href="#">FAQ</a> 
+            <a href="../main/FAQ.html">FAQ</a> 
             <p class="footer-description">Site educativo ao cumprimento do Projeto I</p>
-            <img src="../../images/webapp/logo.png" alt="TeachMe Logo" class="footer-logo">
+            <a href="../../index.html"><img src="../../images/webapp/logo.png" alt="TeachMe Logo" class="footer-logo"></a>
         </div>
     </footer>
 
     <!------------- NAVBAR DROPDOWN ------------->
     <!----------------------------------------------->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../../js/views/profilePicturesView.js"></script>
+    <script type="module" src="../../js/views/profileView.js"></script>
+    <script type="module" src="../../js/views/deleteAccountView.js"></script>
+    
 
 </body>
 </html>
