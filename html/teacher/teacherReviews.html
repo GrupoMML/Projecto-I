@@ -12,8 +12,6 @@
 </head>
 <body>
     <style>
-        
-
          * {
         box-sizing: border-box;
         margin: 0;
@@ -181,554 +179,6 @@
             max-width: 160px;
         }
         }
-
-        .student-home-container {
-            display: flex;
-            margin: 0 auto 30px auto;
-            overflow: hidden;
-            height: 330px;
-            width: 700px;
-            gap: 30px;
-        }
-
-        .greeting-container {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            width: 390px;
-            height: 330px;
-            border-radius: 15px;
-            overflow: hidden;
-            gap: 20px;
-        }
-
-        .user-notification-area {
-            width: 100%;
-            height: 100%;
-            background-color: #FFF5D9;
-            border-radius: 15px;
-            padding: 10px;
-            overflow: hidden;
-            justify-content: center;
-            text-align: center;
-        }
-
-        #notification-cards {
-            overflow-y: scroll;
-            height: 100%;
-            scrollbar-color: #003366 #FFF5D9;
-            scrollbar-width: thin;
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-
-        .user-duckling-container {
-            display: flex;
-            flex-direction: column;
-            margin-right: 0;
-            width: 270px;
-        }
-
-        .user-reviews {
-            display: flex;
-            margin: 22px 0 0 0;
-            padding-top: 20px;
-            justify-content: center;
-            background-color: #f9f9f9;
-            border-radius: 15px;
-            cursor: pointer;
-            gap: 15px;
-            font-size: 20px;
-        }
-
-        .fa-ranking-star {
-            font-size: 24px;
-        }
-
-        .change-style-btn {
-            position: absolute;
-            height: 50px;
-            width: 50px;
-            z-index: 3;
-            bottom: 8px;
-            right: 8px;
-            border-radius: 100%;
-            border: 1px solid #003366;
-            background-color: #FFCB2E;
-            text-align: center;
-            font-size: 22px;
-            padding: 13px;
-        }
-
-        .change-style-btn:hover {
-            cursor: pointer;
-            border: 1px solid #003366;
-            background-color: #F3AC2E;
-        }
-
-        .student-class-info-container {
-            display: flex;
-            width: 700px;
-            height: 300px;
-            margin: 0 auto 30px auto;
-            justify-content: center;
-            background-color: #FFF5D9;
-            border-radius: 15px;
-            font-size: 24px;
-            padding: 10px;
-            text-align: center;
-            flex-direction: column;
-        }
-
-        .student-class-info-container-content {
-            display: grid;
-            justify-content: first baseline;
-            width: 100%;
-            height: 100%;
-            gap: 10px;
-            grid-template-areas: 
-                "master-name class-name room-number class-date";
-        }
-
-        .student-askclass-info-container {
-            display: flex;
-            width: 700px;
-            height: 300px;
-            margin: 0 auto 30px auto;
-            justify-content: center;
-            background-color: #FFF5D9;
-            border-radius: 15px;
-            font-size: 24px;
-            padding: 10px;
-            text-align: center;
-            flex-direction: column;
-        }
-
-        .student-askclass-info-container-content {
-            display: grid;
-            justify-content: first baseline;
-            width: 100%;
-            height: 100%;
-            gap: 10px;
-            grid-template-areas: 
-                "master-name class-name class-date";
-        }
-
-        .students-duckling-style {
-            display: flex;
-            width: 700px;
-            height: 580px;
-            background-color: #FFCB2E;
-            border-radius: 15px;
-            margin: 0 auto 20px auto;
-            padding: 0 20px 20px 20px;
-            flex-direction: column;
-            grid-template-areas:
-                "style-head"
-                "style-body";
-        }
-
-        .style-head h3 {
-            width: 100%;
-            display: flex;
-            color: #003366;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            justify-content: center;
-            padding: 25px;
-            margin: 0;
-        }
-
-        .style-body {
-            display: grid;
-            width: 660px;
-            height: 100%;
-            gap: 20px;
-            grid-template-areas: 
-                "1-collumn 2-collumn";
-        }
-
-        .first-column-duckling-style{
-            display: flex;
-            flex-direction: column;
-            justify-content: top;
-            align-items: center;
-            width: 290px;
-            height: 100%;
-        }
-
-        .second-column-duckling-style {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 350px;
-            height: 100%;
-            gap: 20px;
-        }
-
-        .duckling-type-name {
-            display: flex;
-            width: 100%;
-            height: 47px;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: #003366;
-            background-color: #EB972E;
-            margin-bottom: 10px;
-            border-radius: 15px;
-        }
-
-        .duckling-type-name p {
-            margin: 0;
-            padding: 10px;
-        }
-
-        .duckling-options {
-            display: flex;
-            height: 420px;
-            width: 100%;
-            border-radius: 15px;
-            flex-direction: column;
-            background-color: white;
-            padding: 15px;
-        }
-
-        .duckling-options-items {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 10px;
-            align-content: flex-start;
-        }
-
-        .duckling-options-item {
-            display: flex;
-            width: 80px;
-            height: 80px;
-            font-size: 30px;
-            margin: 0;
-            border-radius: 10px;
-            justify-content: center;
-            align-items: center;
-            background-color: #EB972E;
-        }
-
-        .duckling-options-item img {
-            width: 100%;
-        }
-
-        .duckling-options-item:hover {
-            cursor: pointer;
-        }
-
-        .duckling-type-items {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            margin-top: 220px;
-        }
-
-        .duckling-type-item {
-            display: flex;
-            font-size: 30px;
-            width: 83px;
-            height: 85px;
-            margin: 0;
-            border-radius: 10px;
-            justify-content: center;
-            align-items: center;
-            background-color: #F3AC2E;
-        }
-
-        .duckling-type-item:hover {
-            cursor: pointer;
-            background-color: #EB972E;
-        }
-
-        .style-options {
-            position: absolute;
-            width: 350px;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            border-radius: 20px;
-        }
-
-        .style-options img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 350px;
-        }
-
-        .style-option {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            align-items: center;
-            justify-content: center;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            border-radius: 20px;
-        }
-
-        .style-option img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 350px;
-        }
-
-        .style-back-save-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .style-button {
-            background-color: #FFCB2E;
-            border-radius: 10px;
-            height: 50px;
-            width: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .style-button:hover {
-            cursor: pointer;
-            background-color: #ffb83d;
-        }
-
-        #style-view-container {
-            position: relative;
-            width: 270px;
-            height: auto;
-        }
-
-        #style-view-container img {
-            width: 90%;
-            display: block;
-        }
-
-        .head {
-            z-index: 3;
-        }
-
-        /*------------- NAVBAR -------------*/
-        /*-----------------------------------------------*/
-        #logo {
-            width: 250px;
-        }
-
-        .btn-store {
-            width: 90px;
-            height: 50px;
-        }
-
-        .btn-aboutUs {
-            width: 150px;
-            height: 50px;
-        }
-
-
-        .login-btn {
-        width: 200px;
-        height: 50px;
-        }
-
-        .btn-faq {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 32px;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .btn-cart {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 25px;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .btn-user {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 32px;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
-            border: none;
-        }
-
-        .btn-user:hover {
-            transform: scale(1.2);
-        }
-
-        .btn-user i {
-            font-size: 25px;
-            color: black;
-        }
-
-        .search-container {
-            position: relative;
-            width: 300px;
-            height: 50px;
-        }
-
-        .search-input {
-            width: 100%;
-            height: 100%;
-            border-radius: 50px;
-            border: none;
-            background-color: #f3f3f3;
-            font-size: 16px;
-            padding-left: 20px;
-            padding-right: 45px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .search-input::placeholder {
-            color: #888;
-        }
-
-        .search-input:focus {
-            outline: none;
-        }
-
-        .btn-search {
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            height: 100%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-search i {
-            font-size: 25px;
-            color: black;
-        }
-
-        .btn-search:hover i {
-            color: rgba(0, 80, 144, 1);
-        }
-
-        .controls-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .custom-toggler {
-        border: none;
-        background: transparent;
-        font-size: 28px;
-        color: #000;
-        transition: transform 0.3s ease;
-        }
-
-        .custom-toggler:focus {
-        outline: none;
-        box-shadow: none;
-        }
-
-        .custom-toggler:hover {
-        transform: scale(1.2);
-        color: rgba(0, 80, 144, 1);
-        }
-
-        @media (max-width: 991px) {
-            .controls-container {
-                flex-direction: column;
-                align-items: flex-end;
-                gap: 10px;
-                margin-top: 15px;
-            }
-
-            .search-container {
-                width: 100%;
-                max-width: 220px;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .navbar-collapse {
-                background-color: white;
-                padding: 20px;
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-                border-radius: 12px;
-                margin-top: 10px;
-            }
-
-            .controls-container {
-                flex-direction: column;
-                align-items: stretch;
-                text-align: center;
-                gap: 15px;
-            }
-
-            .controls-container .btn-custom {
-                width: 100%;
-                border-radius: 12px;
-                padding: 12px;
-                font-size: 18px;
-            }
-
-            .btn-faq,
-            .btn-cart,
-            .btn-user {
-                width: 100%;
-                height: auto;
-                border-radius: 12px;
-                font-size: 20px;
-                padding: 10px 0;
-            }
-            
-            .search-container {
-                width: 100%;
-                max-width: 100%;
-            }
-
-            .search-input {
-                border-radius: 12px;
-                font-size: 16px;
-            }
-
-            .btn-search i {
-                font-size: 22px;
-            }
-        }
-
-
     </style>
     <!------------- NAVBAR  ------------->
     <!----------------------------------------------->
@@ -772,57 +222,57 @@
 
         <div class="menu-items studentView teacherView">
             <i class="fa-solid fa-house"></i>
-            <a href="../../index.html" style="text-decoration: none; color: #003366;"><p style>Página principal</p></a>
+            <a href="../../index.html" style="text-decoration: none; color: #003366;"><span>Página principal</span></a>
         </div>
 
         <div class="menu-items studentView teacherView">
             <i class="fa-solid fa-calendar-days"></i>
-            <p>Calendário de aulas</p>
+            <span>Calendário de aulas</span>
         </div>
 
         <div class="menu-items studentView teacherView adminView">
             <i class="fa-solid fa-comments"></i>
-            <p>Mensagens</p>
+            <span>Mensagens</span>
         </div>
 
         <div class="menu-items studentView teacherView" data-url="../VR/access.html">
             <i class="fa-solid fa-vr-cardboard"></i>
-            <p>Sala de aula</p>
+            <span>Sala de aula</span>
         </div>
 
         <div class="menu-items studentView teacherView" data-url="../main/disciplines.html">
             <i class="fa-solid fa-book"></i>
-            <p>Disciplinas</p>
+            <span>Disciplinas</span>
         </div>
 
         <div class="menu-items studentView" data-url="../student/favourites.html">
             <i class="fa-solid fa-heart"></i>
-            <p>Favoritos</p>
+            <span>Favoritos</span>
         </div>
 
         <div class="menu-items teacherView" data-url="../teacher/reviewForm.html">
             <i class="fa-solid fa-clipboard-list"></i>
-            <p>Formulários</p>
+            <span>Formulários</span>
         </div>
 
         <div class="menu-items studentView" data-url="../student/quizz.html">
             <i class="fas fa-question-circle"></i>
-            <p>Quizzes</p>
+            <span>Quizzes</span>
         </div>
 
         <div class="menu-items teacherView" data-url="../teacher/createQuizz.html">
             <i class="fas fa-question-circle"></i>
-            <p>Quizzes Alunos</p>
+            <span>Quizzes Alunos</span>
         </div>
 
         <div class="menu-items adminView" data-url="../main/leaderboard.html">
             <i class="fa-solid fa-chart-bar"></i>
-            <p>Leaderboards</p>
+            <span>Leaderboards</span>
         </div>
 
         <div class="menu-items adminView" data-url="../admin/storeManagement.html">
             <i class="fa-solid fa-cart-shopping"></i>
-            <p>Gerir Loja</p>
+            <span>Gerir Loja</span>
         </div>
 
         <div class="user-level-container" id="menuItemLeaderboards">
@@ -833,8 +283,8 @@
         </div>
 
         <div class="menu-items studentView teacherView adminView" id="settingsMenuItem">
-            <i class="fa-solid fa-gear"></i>
-            <p>Definições</p>
+            <i class="fa-solid fa-gear" style="color: #EB972E;"></i>
+            <span style="color: #EB972E;">Definições</span>
         </div>
     </div>
 
