@@ -22,3 +22,5 @@ function createLesson(studentId, teacherId, dateTime, durationMinutes) {
   lessons.push(lesson)
   return lesson
 }
+
+export { lessons, createLesson }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeachMe - Store Managament</title>
+    <title>TeachMe - Teachers Info</title>
     <link rel="stylesheet" href="../../css/stylesFinal.css">
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -23,6 +23,11 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                 <div class="controls-container ms-auto text-end">
+                        <button class="btn-custom btn-store">Loja</button>
+                        <button class="btn-custom btn-faq">?</button>
+                        <button class="btn-custom btn-cart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
                     <div class="search-container">
                         <input type="text" class="search-input" placeholder="Pesquisar...">
                         <button class="btn-search">
@@ -88,39 +93,63 @@
             <p>Configurações</p>
         </div>
     </div>
-    
-    <!------------- STORE MANAGEMENT - SECTION ------------->
+
+    <!------------- TEACHERS INFO - SECTION  ------------->
     <!----------------------------------------------->
-    <h1 class="store-title">Loja</h1>
-
-    <div class="store-management-container">
-        <div class="store-management-container-filters">
-            <select id="filterType">
-                <option value="" disabled selected hidden>Produto...</option>
-                <option value="clothes">Sweater Murder Duck</option>
-                <option value="accessories">Sweater Head Tilted Duck</option>
-                <option value="books">Sweater Wow Duck</option>
-            </select>
-            <input type="text" id="searchByName" placeholder="Pesquisar por nome...">
-            <button class="btn-storeSearch">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </div>
-
-        <hr style="margin: 10px">
-
-        <div class="store-management-container-content">
-            <div class="grid-header">Produto</div>
-            <div class="grid-header">Nome</div>
-            <div class="grid-header">Ações</div>
-
-            <div id="productType" class="grid-cell"></div>
-            <div id="productName" class="grid-cell"></div>
-            <div id="productActions" class="grid-cell"></div>
+    <div class="teachersInfo-card">
+        <div class="teachersInfo-card-header">*</div>
+        <div class="teachers-profileInfo">
+            <div class="teachers-leftInfo">
+                <div>
+                    <label>Email</label>
+                    <div class="teachersInfo-box">username@gmail.com</div>
+                </div>
+                <div>
+                    <label>Localidade</label>
+                    <div class="teachersInfo-box">XXXX-XXX</div>
+                </div>
+                <div>
+                    <label>Disponibilidade</label>
+                    <div class="teachersInfo-box">XX–XX horas até XX–XX</div>
+                </div>
+                <div>
+                    <label>Contacto</label>
+                    <div class="teachersInfo-box">+351 9XXXXXXXX</div>
+                </div>
+            </div>
+            <div class="teachers-rightInfo">
+                <img src="https://i.imgur.com/oYiTqum.jpg" alt="Professor">
+                <div class="teachersRating-box">
+                <div>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <p>Ver avaliações</p>
+                </div>
+                <button class="btn-custom btn-favourites">Favoritar</button>
+            </div>
         </div>
     </div>
-    <button class="btn-custom btn-addProduct">Adicionar Produto</button>
-    
+
+    <div class="teachersDiscipline-section">
+        <div class="teachersInfo-card-header">Disciplinas</div>
+        <div class="disciplines">
+            <div class="disciplines-list">
+                <div><i class="fa-solid fa-check-circle"></i>*</div>
+                <div><i class="fa-solid fa-check-circle"></i>*</div>
+            </div>
+            <div class="diplomes-box">Diplomas</div>
+        </div>
+    </div>
+
+    <div class="description-box">
+        <strong>DESCRIÇÃO</strong>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+    </div>
+
     <!------------- FOOTER ------------->
     <!----------------------------------------------->
     <footer class="footer-container-smaller">

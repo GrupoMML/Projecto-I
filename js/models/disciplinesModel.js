@@ -11,3 +11,5 @@ class Discipline {
         };
     }
 }
+
+export {currentDisciplines}

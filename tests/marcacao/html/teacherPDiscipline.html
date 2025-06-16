@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeachMe - Notifications</title>
+    <title>TeachMe - Disciplines per Teacher</title>
     <link rel="stylesheet" href="../../css/stylesFinal.css">
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <style>
@@ -206,7 +206,7 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
-                    <button class="btn-user" id="profilePhoto2">
+                    <button class="btn-user" id="profilePhoto2"> 
                         <i class="fa-solid fa-user"></i>
                     </button>
                 </div>
@@ -289,43 +289,42 @@
         </div>
     </div>
 
-    
-    <!------------- NOTIFICATIONS - SECTION ------------->
+    <!------------- DISCIPLINES - SECTION  ------------->
     <!----------------------------------------------->
-    <div class="page-wrapper-notifications">
-        <h1 class="notifications-title">Enviar notificação</h1>
-
-        <div class="notifications-container">
-            <div class="notifications-container-content-left">
-                <label for="notifications-sendMessage">Mensagem:</label>
-                <textarea name="message" id="notifications-sendMessage"></textarea>
+    <div class="disciplines-container2">
+        <h1 id="disciplines-title">*</h1>
+        <div class="grid-container2">
+            <div class="rectangle2_2">
+                <img src="../../images/webapp/prof_per_discipline_1.png" alt="Luís">
+                <span class="prof-name">Luís</span>
             </div>
-
-            <div class="notifications-container-content-right">
-                <div class="attach-wrapper">
-                    <div class="attach-group">
-                        <label for="attachImage">Anexar imagem:</label>
-                        <button class="attachBox attachImage">
-                            <i class="fa-solid fa-image"></i>
-                        </button>
-                    </div>
-
-                    <div class="attach-group">
-                    <label for="attachDocument">Anexar documento:</label>
-                        <button class="attachBox attachDocument">
-                            <i class="fa-solid fa-file"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="sendNotification">
-                    <label for="sendOptions">Enviar para:</label>
-                    <div class="btn-row">
-                        <button class="btn-custom btnSendToStudents">Alunos</button>
-                        <button class="btn-custom btnSendToTeachers">Professores</button>
-                    </div>
-                    <button class="btn-custom btnSendMessage">Enviar</button>
-                </div>
+            <div class="rectangle2_2">
+                <img src="../../images/webapp/prof_per_discipline_2.png" alt="Guilherme">
+                <span class="prof-name">Guilherme</span>
+            </div>
+            <div class="rectangle2_2">
+                <img src="../../images/webapp/prof_per_discipline_3.png" alt="Samuel">
+                <span class="prof-name">Samuel</span>
+            </div>
+            <div class="rectangle2_2">
+                <img src="../../images/webapp/prof_per_discipline_4.png" alt="Ana">
+                <span class="prof-name">Ana</span>
+            </div>
+            <div class="rectangle2_2">
+                <img src="../../images/webapp/prof_per_discipline_5.png" alt="Raquel">
+                <span class="prof-name">Raquel</span>
+            </div>
+            <div class="rectangle2_2">
+                <img src="../../images/webapp/prof_per_discipline_6.png" alt="Francisco">
+                <span class="prof-name">Francisco</span>
+            </div>
+            <div class="rectangle2_2">
+                <img src="../../images/webapp/prof_per_discipline_7.png" alt="Pedro">
+                <span class="prof-name">Pedro</span>
+            </div>
+            <div class="rectangle2_2">
+                <img src="../../images/webapp/prof_per_discipline_8.png" alt="Marcos">
+                <span class="prof-name">Marcos</span>
             </div>
         </div>
     </div>
@@ -345,8 +344,7 @@
         </div>
     </footer>
 
-
-    <!------------- NAVBAR DROPDOWN ------------->
+    <!------------- SCRIPTS ------------->
     <!----------------------------------------------->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="../../js/views/sidebarView.js"></script>

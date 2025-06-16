@@ -54,19 +54,15 @@ function renderTableProducts(data, tbodyId, filterName, additionalColumnName) {
           <td>${item.productPrice}</td>
           <td>${Array.isArray(item[additionalColumnName]) ? item[additionalColumnName].join(", ") : item[additionalColumnName]}</td>
           <td>
-            <button 
-              class="btn btn-sm btn-primary me-1 view-item" 
-              data-item='${JSON.stringify(item)}'
-            >
+            <button class="btn btn-sm btn-primary me-1 view-item" data-item='${JSON.stringify(item)}'>
               <i class="fa-solid fa-eye"></i>
             </button>
-            <button 
-              class="btn btn-sm btn-warning me-1 edit-item" 
-              data-item='${JSON.stringify(item)}'
-            >
+            <button class="btn btn-sm btn-warning me-1 edit-item" data-item='${JSON.stringify(item)}'>
               <i class="fa-solid fa-edit"></i>
             </button>
-            <button class="btn btn-sm btn-danger delete-item" data-item='${JSON.stringify(item)}'><i class="fa-solid fa-trash-alt"></i></button>
+            <button class="btn btn-sm btn-danger delete-item" data-item='${JSON.stringify(item)}'>
+              <i class="fa-solid fa-trash-alt"></i>
+            </button>
           </td>
         </tr>`;
     }
@@ -738,4 +734,3 @@ document.addEventListener("click", (e) => {
 document.getElementById("addProductBtn").addEventListener("click", () => showAddModal("prod"));
 document.getElementById("addProfBtn").addEventListener("click", () => showAddModal("prof"));
 document.getElementById("addAlunBtn").addEventListener("click", () => showAddModal("alun"));
-
