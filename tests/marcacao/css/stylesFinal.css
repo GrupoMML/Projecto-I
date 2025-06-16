@@ -2836,13 +2836,15 @@ hr {
 
 /*------------- TEACHERS INFO - SECTION -------------*/
 /*-------------------------------------------------------------------*/
-.teachersInfo-card {
+.teachersInfo-card,
+.teachersDiscipline-section,
+.description-box {
+  width: 100%;
   max-width: 800px;
   margin: 0 auto 30px;
   background: white;
   border: 1px solid #ccc;
   border-radius: 15px;
-  overflow: hidden;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -2857,13 +2859,17 @@ hr {
 
 .teachers-profileInfo {
   display: flex;
-  justify-content: space-between;
-  padding: 30px;
   flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px;
+}
+
+.teachers-leftInfo,
+.teachers-rightInfo {
+  flex: 1 1 100%;
 }
 
 .teachers-leftInfo {
-  width: 50%;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -2883,8 +2889,10 @@ hr {
 }
 
 .teachers-rightInfo {
-  width: 45%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
 .teachers-rightInfo img {
@@ -2892,7 +2900,6 @@ hr {
   height: 140px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 15px;
 }
 
 .teachersRating-box {
@@ -2914,28 +2921,38 @@ hr {
   font-weight: 500;
 }
 
-.teachersDiscipline-section {
-  max-width: 800px;
-  margin: 0 auto 30px;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+.btn-favourites {
+  width: 200px;
+  height: 40px;
+  background-color: rgba(255, 207, 65, 1);
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.btn-favourites:hover {
+  background-color: rgba(243, 243, 243, 1);
 }
 
 .disciplines {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px;
   flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px;
+}
+
+.disciplines-list,
+.diplomes-box {
+  flex: 1 1 250px;
 }
 
 .disciplines-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  font-size: 16px;
+  gap: 10px;
 }
 
 .disciplines-list i {
@@ -2944,7 +2961,6 @@ hr {
 }
 
 .diplomes-box {
-  width: 120px;
   height: 150px;
   background-color: #f3f3f3;
   border-radius: 10px;
@@ -2956,8 +2972,6 @@ hr {
 }
 
 .description-box {
-  max-width: 800px;
-  margin: 0 auto;
   background-color: #fff4d7;
   border-radius: 10px;
   padding: 20px 25px;
@@ -2972,127 +2986,22 @@ hr {
   font-size: 15px;
 }
 
-.teachers-rightInfo {
-  width: 45%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px; 
-}
-
-.image-rating-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.teachers-rightInfo img {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px; 
-}
-
-.teachersRating-box {
-  background-color: #f3f3f3;
-  padding: 10px 15px;
-  border-radius: 12px;
-  display: inline-block;
-}
-
-.teachersRating-box i {
-  color: #ffc107;
-  font-size: 20px;
-}
-
-.teachersRating-box p {
-  font-size: 13px;
-  margin-top: 4px;
-  color: #003366;
-  font-weight: 500;
-}
-
-.favorite-btn {
-  background-color: #0055aa;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
-
-.favorite-btn:hover {
-  background-color: #003366;
-}
-
-.btn-favourites{
-  width: 200px;
-  height: 40px;
-  background-color: rgba(255, 207, 65, 1);
-  color: black;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.btn-favourites:hover{
-  background-color: rgba(243, 243, 243, 1);
-  color: black;
-}
-
+/* Responsivo */
 @media (max-width: 768px) {
-  .teachers-profileInfo {
-    flex-direction: column;
-    padding: 15px;
-  }
-  
-  .teachers-leftInfo,
-  .teachers-rightInfo {
-    width: 100%;
-  }
-  
-  .teachers-rightInfo img {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 15px;
-  }
-  
   .btn-favourites {
     width: 100%;
-    font-size: 18px;
   }
-}
 
-@media (max-width: 480px) {
   .teachersInfo-card-header {
     font-size: 18px;
     padding: 10px;
   }
 
-  .teachers-leftInfo label,
-  .teachersInfo-box {
-    font-size: 13px;
-  }
-  
-  .teachersRating-box i {
-    font-size: 18px;
-  }
-  
-  .teachersRating-box p {
-    font-size: 12px;
-  }
-  
-  .btn-favourites {
-    font-size: 16px;
-    height: 36px;
+  .teachers-rightInfo img {
+    width: 120px;
+    height: 120px;
   }
 }
-
 /*------------- TEACHERS PER DISCIPLINE - SECTION -------------*/
 /*-------------------------------------------------------------------*/
 .disciplines-container2 {
