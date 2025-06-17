@@ -2,18 +2,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
 
+    console.log("ID do professor:", id);
+
     const teachers = JSON.parse(localStorage.getItem("teachers")) || [];
 
     const prof = teachers.find(t => t.id == id);
+
+    console.log("Professor encontrado:", prof);
 
     if (!prof) return;
 
     // Inserir os dados nas respetivas caixas
     document.querySelector(".teachersInfo-card-header").textContent = prof.name;
-    document.querySelectorAll(".teachersInfo-box")[0].textContent = prof.email;
-    document.querySelectorAll(".teachersInfo-box")[1].textContent = prof.locality;
-    document.querySelectorAll(".teachersInfo-box")[2].textContent = prof.availability || "N/A";
-    document.querySelectorAll(".teachersInfo-box")[3].textContent = prof.phone || "N/A";
+    document.getElementById("email").textContent = prof.email || "sem email";
+    document.getElementById("location").textContent = prof.locality || "sem localização";
+    document.getElementById("availability").textContent = prof.availability || "sem disponibilidade";
+    document.getElementById("contact").textContent = prof.phone || "sem contacto";
 
     document.querySelector(".teachers-rightInfo img").src = prof.photo || "https://i.imgur.com/oYiTqum.jpg";
 

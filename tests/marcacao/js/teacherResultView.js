@@ -30,7 +30,7 @@ fetch("../json/index.json")
     // Loop para inserir cada um dos resultados
     resultadosFiltrados.forEach(prof => {
         const div = document.createElement("div");
-        div.classList.add("col-md-4", "mb-4"); // Responsivo: 3 colunas por linha em telas médias+
+        div.classList.add("col-md-4", "mb-3"); // Responsivo: 3 colunas por linha em telas médias+
 
         div.innerHTML = `
             <div class="card text-white bg-primary h-100 shadow" style="cursor: pointer;">
