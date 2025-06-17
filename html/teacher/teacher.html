@@ -223,7 +223,7 @@
             grid-template-columns: 1fr;
         }
 
-        .user-duckling-container {
+        .user-duckmaster-container {
             display: flex;
             flex-direction: column;
             margin-right: 0;
@@ -315,7 +315,7 @@
                 "master-name class-name class-date";
         }
 
-        .students-duckling-style {
+        .teacher-duckmaster-style {
             display: flex;
             width: 700px;
             height: 580px;
@@ -350,7 +350,7 @@
                 "1-collumn 2-collumn";
         }
 
-        .first-column-duckling-style{
+        .first-column-duckmaster-style{
             display: flex;
             flex-direction: column;
             justify-content: top;
@@ -359,7 +359,7 @@
             height: 100%;
         }
 
-        .second-column-duckling-style {
+        .second-column-duckmaster-style {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -369,7 +369,7 @@
             gap: 20px;
         }
 
-        .duckling-type-name {
+        .duckmaster-type-name {
             display: flex;
             width: 100%;
             height: 47px;
@@ -384,12 +384,12 @@
             border-radius: 15px;
         }
 
-        .duckling-type-name p {
+        .duckmaster-type-name p {
             margin: 0;
             padding: 10px;
         }
 
-        .duckling-options {
+        .duckmaster-options {
             display: flex;
             height: 420px;
             width: 100%;
@@ -399,7 +399,7 @@
             padding: 15px;
         }
 
-        .duckling-options-items {
+        .duckmaster-options-items {
             display: flex;
             width: 100%;
             height: 100%;
@@ -409,7 +409,7 @@
             align-content: flex-start;
         }
 
-        .duckling-options-item {
+        .duckmaster-options-item {
             display: flex;
             width: 80px;
             height: 80px;
@@ -421,15 +421,15 @@
             background-color: #EB972E;
         }
 
-        .duckling-options-item img {
+        .duckmaster-options-item img {
             width: 100%;
         }
 
-        .duckling-options-item:hover {
+        .duckmaster-options-item:hover {
             cursor: pointer;
         }
 
-        .duckling-type-items {
+        .duckmaster-type-items {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -439,7 +439,7 @@
             margin-top: 220px;
         }
 
-        .duckling-type-item {
+        .duckmaster-type-item {
             display: flex;
             font-size: 30px;
             width: 83px;
@@ -451,7 +451,7 @@
             background-color: #F3AC2E;
         }
 
-        .duckling-type-item:hover {
+        .duckmaster-type-item:hover {
             cursor: pointer;
             background-color: #EB972E;
         }
@@ -859,17 +859,17 @@
             </div>
         </div>
 
-        <div class="user-duckling-container">
+        <div class="user-duckmaster-container">
             <div id="style-view-container" class="style-view-container">
-                <a href="#students-duckling-style" class="change-style-btn fa-solid fa-pen" style="text-decoration: none; color: black"></a>
+                <a href="#teacher-duckmaster-style" class="change-style-btn fa-solid fa-pen" style="text-decoration: none; color: black"></a>
 
 
-                <img src="../../images/webapp/style-view-background.png" alt="" id="duckling-style" style="width: 270px;">
+                <img src="../../images/webapp/style-view-background.png" alt="" id="duckmaster-style" style="width: 270px;">
                 
-                <div id="duckling-color-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
-                <div id="duckling-clothing-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
-                <div id="duckling-head-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
-                <div id="duckling-accessory-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
+                <div id="duckmaster-color-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
+                <div id="duckmaster-clothing-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
+                <div id="duckmaster-head-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
+                <div id="duckmaster-accessory-choice" class="layer" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1;" hidden></div>
             </div>
 
             <div class="user-reviews">
@@ -922,67 +922,67 @@
         </div>
     </div>
 
-    <!------------- TEACHER DUCKLING STYLE ------------->
+    <!------------- TEACHER duckmaster STYLE ------------->
     <!----------------------------------------------->
 
-    <div class="students-duckling-style" id="students-duckling-style">
+    <div class="teacher-duckmaster-style" id="teacher-duckmaster-style">
         <div class="style-head" style="grid-area: style-head;">
             <h3>Qual o seu estilo hoje?</h3>
         </div>
         <div class="style-body" style="grid-area: style-body;">
-            <div class="first-column-duckling-style" style="grid-area: 1-collumn">
-                <div class="duckling-type-name">
+            <div class="first-column-duckmaster-style" style="grid-area: 1-collumn">
+                <div class="duckmaster-type-name">
                     <p id="type-color">Cor</p>
                     <p id="type-clothing" hidden>Vestuário</p>
                     <p id="type-head" hidden>Cabeça</p>
                     <p id="type-accessory" hidden>Acessórios</p>
                 </div>
-                <div class="duckling-options" id="duckling-style-options">
-                    <div id="duckling-colors" class="duckling-options-items">
-                        <div id="color-1" class="duckling-options-item" style="background-color: #FFCF41;"></div>
-                        <div id="color-2" class="duckling-options-item" style="background-color: #EB972E;"></div>
-                        <div id="color-3" class="duckling-options-item" style="background-color: #D37600;"></div>
-                        <div id="color-4" class="duckling-options-item" style="background-color: #A66100;"></div>
+                <div class="duckmaster-options" id="duckmaster-style-options">
+                    <div id="duckmaster-colors" class="duckmaster-options-items">
+                        <div id="color-1" class="duckmaster-options-item" style="background-color: #ffffff; border: 1px solid grey"></div>
+                        <div id="color-2" class="duckmaster-options-item" style="background-color: #EB972E;"></div>
+                        <div id="color-3" class="duckmaster-options-item" style="background-color: #D37600;"></div>
+                        <div id="color-4" class="duckmaster-options-item" style="background-color: #A66100;"></div>
                     </div>
-                    <div id="duckling-clothes" class="duckling-options-items" hidden>
-                        <div id="clothing-1" class="duckling-options-item fa-solid fa-ban"></div>
-                        <div id="clothing-2" class="duckling-options-item">
-                            <img src="../../images/webapp/duckling-style-clothing1.png" alt="clothing-1">
+                    <div id="duckmaster-clothes" class="duckmaster-options-items" hidden>
+                        <div id="clothing-1" class="duckmaster-options-item fa-solid fa-ban"></div>
+                        <div id="clothing-2" class="duckmaster-options-item">
+                            <img src="../../images/webapp/duckmaster-stand-clothing1.png" alt="clothing-1">
                         </div>
-                        <div id="clothing-3" class="duckling-options-item">
-                            <img src="../../images/webapp/duckling-style-clothing2.png" alt="clothing-2">
+                        <div id="clothing-3" class="duckmaster-options-item">
+                            <img src="../../images/webapp/duckmaster-stand-clothing2.png" alt="clothing-2">
                         </div>
-                        <div id="clothing-4" class="duckling-options-item">
-                            <img src="../../images/webapp/duckling-style-clothing3.png" alt="clothing-3">
-                        </div>
-                    </div>
-                    <div id="duckling-head" class="duckling-options-items" hidden>
-                        <div id="head-1" class="duckling-options-item fa-solid fa-ban"></div>
-                        <div id="head-2" class="duckling-options-item head-option">
-                            <img src="../../images/webapp/duckling-style-head1.png" alt="head-1">
-                        </div>
-                        <div id="head-3" class="duckling-options-item head-option">
-                            <img src="../../images/webapp/duckling-style-head2.png" alt="head-2">
-                        </div>
-                        <div id="head-4" class="duckling-options-item head-option">
-                            <img src="../../images/webapp/duckling-style-head3.png" alt="head-3">
+                        <div id="clothing-4" class="duckmaster-options-item">
+                            <img src="../../images/webapp/duckmaster-stand-clothing3.png" alt="clothing-3">
                         </div>
                     </div>
-                    <div id="duckling-accessory" class="duckling-options-items" hidden>
-                        <div id="accessory-1" class="duckling-options-item fa-solid fa-ban"></div>
-                        <div id="accessory-2" class="duckling-options-item">
-                            <img src="../../images/webapp/duckling-style-accessory1.png" alt="accessory-1">
+                    <div id="duckmaster-head" class="duckmaster-options-items" hidden>
+                        <div id="head-1" class="duckmaster-options-item fa-solid fa-ban"></div>
+                        <div id="head-2" class="duckmaster-options-item head-option">
+                            <img src="../../images/webapp/duckmaster-stand-head1.png" alt="head-1">
                         </div>
-                        <div id="accessory-3" class="duckling-options-item">
-                            <img src="../../images/webapp/duckling-style-accessory2.png" alt="accessory-2">
+                        <div id="head-3" class="duckmaster-options-item head-option">
+                            <img src="../../images/webapp/duckmaster-stand-head2.png" alt="head-2">
                         </div>
-                        <div id="accessory-4" class="duckling-options-item">
-                            <img src="../../images/webapp/duckling-style-accessory3.png" alt="accessory-3">
+                        <div id="head-4" class="duckmaster-options-item head-option">
+                            <img src="../../images/webapp/duckmaster-stand-head3.png" alt="head-3">
+                        </div>
+                    </div>
+                    <div id="duckmaster-accessory" class="duckmaster-options-items" hidden>
+                        <div id="accessory-1" class="duckmaster-options-item fa-solid fa-ban"></div>
+                        <div id="accessory-2" class="duckmaster-options-item">
+                            <img src="../../images/webapp/duckmaster-stand-accessory1.png" alt="accessory-1">
+                        </div>
+                        <div id="accessory-3" class="duckmaster-options-item">
+                            <img src="../../images/webapp/duckmaster-stand-accessory2.png" alt="accessory-2">
+                        </div>
+                        <div id="accessory-4" class="duckmaster-options-item">
+                            <img src="../../images/webapp/duckmaster-stand-accessory3.png" alt="accessory-3">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="second-column-duckling-style" style="grid-area: 2-collumn">
+            <div class="second-column-duckmaster-style" style="grid-area: 2-collumn">
                 <div style="position: relative; width: 350px; height: 350px;">
                     <!-- Background -->
                     <div id="style-background" class="style-options">
@@ -991,60 +991,60 @@
 
                     <!-- Colors -->
                     <div id="option-color-1" class="style-options">
-                        <img src="../../images/webapp/duckling-color-1.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
+                        <img src="../../images/webapp/duckmaster-color-1.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
                     </div>
                     <div id="option-color-2" class="style-options" hidden>
-                        <img src="../../images/webapp/duckling-color-2.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
+                        <img src="../../images/webapp/duckmaster-color-2.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
                     </div>
                     <div id="option-color-3" class="style-options" hidden>
-                        <img src="../../images/webapp/duckling-color-3.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
+                        <img src="../../images/webapp/duckmaster-color-3.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
                     </div>
                     <div id="option-color-4" class="style-options" hidden>
-                        <img src="../../images/webapp/duckling-color-4.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
+                        <img src="../../images/webapp/duckmaster-color-4.png" alt="Edição de pato" style="position: absolute; top: 0; left: 0;">
                     </div>
 
                     <!-- Clothing -->
                     <div id="option-clothing-1" class="style-option" hidden></div>
                     <div id="option-clothing-2" class="style-option" hidden>
-                        <img src="../../images/webapp/duckling-style-clothing1.png" alt="clothing-1">
+                        <img src="../../images/webapp/duckmaster-stand-clothing1.png" alt="clothing-1">
                     </div>
                     <div id="option-clothing-3" class="style-option" hidden>
-                        <img src="../../images/webapp/duckling-style-clothing2.png" alt="clothing-2">
+                        <img src="../../images/webapp/duckmaster-stand-clothing2.png" alt="clothing-2">
                     </div>
                     <div id="option-clothing-4" class="style-option" hidden>
-                        <img src="../../images/webapp/duckling-style-clothing3.png" alt="clothing-3">
+                        <img src="../../images/webapp/duckmaster-stand-clothing3.png" alt="clothing-3">
                     </div>
 
                     <!-- Head -->
                     <div id="option-head-1" class="style-option head" hidden></div>
                     <div id="option-head-2" class="style-option head" hidden>
-                        <img src="../../images/webapp/duckling-style-head1.png" alt="cowboy-hat">
+                        <img src="../../images/webapp/duckmaster-stand-head1.png" alt="cowboy-hat">
                     </div>
                     <div id="option-head-3" class="style-option head" hidden>
-                        <img src="../../images/webapp/duckling-style-head2.png" alt="cap-hat">
+                        <img src="../../images/webapp/duckmaster-stand-head2.png" alt="cap-hat">
                     </div>
                     <div id="option-head-4" class="style-option head" hidden>
-                        <img src="../../images/webapp/duckling-style-head3.png" alt="airpods">
+                        <img src="../../images/webapp/duckmaster-stand-head3.png" alt="airpods">
                     </div>
 
                     <!-- Accessory -->
                     <div id="option-accessory-1" class="style-option" hidden></div>
                     <div id="option-accessory-2" class="style-option" hidden>
-                        <img src="../../images/webapp/duckling-style-accessory1.png" alt="accessory-1">
+                        <img src="../../images/webapp/duckmaster-stand-accessory1.png" alt="accessory-1">
                     </div>
                     <div id="option-accessory-3" class="style-option" hidden>
-                        <img src="../../images/webapp/duckling-style-accessory2.png" alt="accessory-2">
+                        <img src="../../images/webapp/duckmaster-stand-accessory2.png" alt="accessory-2">
                     </div>
                     <div id="option-accessory-4" class="style-option" hidden>
-                        <img src="../../images/webapp/duckling-style-accessory3.png" alt="accessory-3">
+                        <img src="../../images/webapp/duckmaster-stand-accessory3.png" alt="accessory-3">
                     </div>
                 </div>
 
-                <div id="duckling-type" class="duckling-type-items">
-                    <div id="option-color" class="duckling-type-item fa-solid fa-palette"></div>
-                    <div id="option-clothing" class="duckling-type-item fa-solid fa-tshirt"></div>
-                    <div id="option-head" class="duckling-type-item fa-solid fa-hat-cowboy"></div>
-                    <div id="option-accessory" class="duckling-type-item fa-solid fa-suitcase-rolling"></div>
+                <div id="duckmaster-type" class="duckmaster-type-items">
+                    <div id="option-color" class="duckmaster-type-item fa-solid fa-palette"></div>
+                    <div id="option-clothing" class="duckmaster-type-item fa-solid fa-tshirt"></div>
+                    <div id="option-head" class="duckmaster-type-item fa-solid fa-hat-cowboy"></div>
+                    <div id="option-accessory" class="duckmaster-type-item fa-solid fa-suitcase-rolling"></div>
                 </div>
             </div>
         </div>
@@ -1088,27 +1088,27 @@
         document.addEventListener("DOMContentLoaded", function () {
             const options = {
                 "option-clothing": {
-                    show: ["duckling-clothes", "type-clothing"],
-                    hide: ["duckling-colors", "type-color", "duckling-head", "type-head", "duckling-accessory", "type-accessory"]
+                    show: ["duckmaster-clothes", "type-clothing"],
+                    hide: ["duckmaster-colors", "type-color", "duckmaster-head", "type-head", "duckmaster-accessory", "type-accessory"]
                 },
                 "option-color": {
-                    show: ["duckling-colors", "type-color"],
-                    hide: ["duckling-clothes", "type-clothing", "duckling-head", "type-head", "duckling-accessory", "type-accessory"]
+                    show: ["duckmaster-colors", "type-color"],
+                    hide: ["duckmaster-clothes", "type-clothing", "duckmaster-head", "type-head", "duckmaster-accessory", "type-accessory"]
                 },
                 "option-head": {
-                    show: ["duckling-head", "type-head"],
-                    hide: ["duckling-colors", "type-color", "duckling-clothes", "type-clothing", "duckling-accessory", "type-accessory"]
+                    show: ["duckmaster-head", "type-head"],
+                    hide: ["duckmaster-colors", "type-color", "duckmaster-clothes", "type-clothing", "duckmaster-accessory", "type-accessory"]
                 },
                 "option-accessory": {
-                    show: ["duckling-accessory", "type-accessory"],
-                    hide: ["duckling-colors", "type-color", "duckling-clothes", "type-clothing", "duckling-head", "type-head"]
+                    show: ["duckmaster-accessory", "type-accessory"],
+                    hide: ["duckmaster-colors", "type-color", "duckmaster-clothes", "type-clothing", "duckmaster-head", "type-head"]
                 }
             };
 
-            const ducklingType = document.getElementById("duckling-type");
-            if (!ducklingType) return;
+            const duckmasterType = document.getElementById("duckmaster-type");
+            if (!duckmasterType) return;
 
-            ducklingType.addEventListener("click", function (e) {
+            duckmasterType.addEventListener("click", function (e) {
                 const clickedId = e.target.id;
                 if (!options[clickedId]) return;
 
@@ -1126,7 +1126,7 @@
             });
         });
 
-        document.querySelectorAll('.duckling-options-item').forEach(item => {
+        document.querySelectorAll('.duckmaster-options-item').forEach(item => {
             item.addEventListener('click', () => {
                 const idParts = item.id.split('-');
                 const type = idParts[0];  // "color", "clothing", "head", "accessory"
@@ -1155,7 +1155,7 @@
                 if (previewEl) previewEl.hidden = false;
 
                 // Mostrar no style-view-container (lado esquerdo do pato)
-                const viewEl = document.getElementById(`duckling-${type}-choice`);
+                const viewEl = document.getElementById(`duckmaster-${type}-choice`);
                 if (!viewEl || !previewEl) return;
 
                 viewEl.hidden = false;
@@ -1173,7 +1173,7 @@
 
             // Aplica escolhas guardadas no reload
             categories.forEach(type => {
-                const savedIndex = localStorage.getItem(`duckling-${type}`);
+                const savedIndex = localStorage.getItem(`duckmaster-${type}`);
                 if (savedIndex) {
                     applyChoice(type, savedIndex);
                 }
@@ -1181,17 +1181,17 @@
             });
 
             // Guarda novas escolhas
-            document.querySelectorAll(".duckling-options-item").forEach(item => {
+            document.querySelectorAll(".duckmaster-options-item").forEach(item => {
                 item.addEventListener("click", () => {
                     const [type, index] = item.id.split("-");
-                    localStorage.setItem(`duckling-${type}`, index);
+                    localStorage.setItem(`duckmaster-${type}`, index);
                     applyChoice(type, index);
                 });
             });
 
             // Botão de voltar
             document.getElementById("back-button")?.addEventListener("click", () => {
-                const styleSection = document.getElementById("students-duckling-style");
+                const styleSection = document.getElementById("teacher-duckmaster-style");
                 const buttonsSection = document.getElementById("style-back-save-buttons");
 
                 if (styleSection) styleSection.hidden = true;
