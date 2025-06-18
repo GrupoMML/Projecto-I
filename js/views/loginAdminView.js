@@ -6,9 +6,9 @@ if (!localStorage.getItem("admins")) {
   const defaultAdmins = [
     {
       id: 1,
-      name: "Admin Principal",
-      email: "admin1@teachme.com",
-      password: "P@ss9w0r",
+      name: "Admin Miguel",
+      email: "adminmiguel@teachme.com",
+      password: "M1guyy!!",
       priority: 3
     },
     {
