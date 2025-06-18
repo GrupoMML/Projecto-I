@@ -58,20 +58,20 @@
 
     <!------------- SEARCH SECTION ------------->
     <!----------------------------------------------->
-    <div class="secondSearch-container">
+    <form id="searchForm" class="secondSearch-container">
         <div class="choose-class-section">
             <span style="font-size: 30px;" class="fa-solid fa-pencil"></span>
-            <select class="p-2 choose-class" id="choose-class">
+            <select id="disciplina" class="p-2 choose-class" id="choose-class">
                 <option value="" disabled selected>Quero aprender</option>
-                <option value="mat">Matemática</option>
-                <option value="por">Português</option>
-                <option value="fisQui">Física e Química</option>
-                <option value="geolo">Geologia</option>
-                <option value="geo">Geografia</option>
-                <option value="his">História</option>
-                <option value="bio">Biologia</option>
-                <option value="ing">Inglês</option>
-                <option value="fr">Francês</option>
+                <option value="matemática">Matemática</option>
+                <option value="português">Português</option>
+                <option value="física química">Física e Química</option>
+                <option value="geologia">Geologia</option>
+                <option value="geografia">Geografia</option>
+                <option value="história">História</option>
+                <option value="biologia">Biologia</option>
+                <option value="inglês">Inglês</option>
+                <option value="francês">Francês</option>
             </select>
         </div>
 
@@ -79,7 +79,7 @@
 
         <div class="choose-location-section">
             <i style="font-size: 30px;" class="fa-solid fa-location-dot"></i>
-            <select class="p-2 choose-location" id="choose-location">
+            <select id="tipo" class="p-2 choose-location" id="choose-location">
                 <option value="" disabled selected>Local da aula</option>
                 <option value="presencial">Presencial</option>
                 <option value="online">Online</option>
@@ -90,7 +90,7 @@
 
         <div class="choose-region-section">
             <i style="font-size: 30px;" class="fa-solid fa-location-crosshairs"></i>
-            <select class="p-2 choose-region" id="choose-region">
+            <select id="local" class="p-2 choose-region" id="choose-region">
                 <option value="" disabled selected>Região</option>
                 <option value="porto">Porto</option>
                 <option value="lisboa">Lisboa</option>
@@ -113,7 +113,7 @@
         </div>
 
         <button class="button-search">PESQUISAR</button>
-    </div>
+    </form>
     
     
     <!------------- WAVE + DUCK ------------->
@@ -440,9 +440,11 @@
     <!------------- SCRIPTS ------------->
     <!----------------------------------------------->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/init.js"></script>
     <script type="module" src="./js/views/profilePicturesView.js"></script>
     <script type="module" src="./js/views/navbarView.js"></script>
     <script type="module" src="./js/views/profileView2_index.js"></script>
+    <script type="module" src="./js/index.js"></script>
 
 
 </body>

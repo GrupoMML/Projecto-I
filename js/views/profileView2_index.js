@@ -2,7 +2,7 @@ document.getElementById("profilePhoto2").addEventListener('click', () => {
   const loggedUser = JSON.parse(localStorage.getItem('loggedUser'))
 
   if (!loggedUser) {
-    window.location.href = "./html/login/login.html"
+    window.location.href = "./html/main/login.html"
     return
   }
 

@@ -1,3 +1,24 @@
+:root {
+    --primary-blue: #003366;
+    --light-blue: #cce0f5;
+    --light-yellow: #fde8c9;
+    --accent-yellow: #ffc107;
+    --card-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    --sidebar-bg: #1a2c6c;
+    --navbar-bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
 /*------------- CUSTOM BUTTONS -------------*/
 /*-----------------------------------------------*/
 .btn-custom {

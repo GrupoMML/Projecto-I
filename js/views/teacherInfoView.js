@@ -2,13 +2,12 @@ let currentProfessor = null; // Variável global para armazenar o professor atua
 
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const id = parseInt(urlParams.get("id")); 
+    const id = parseInt(urlParams.get("id"));  //
     
-    fetch("../json/index.json")
+    fetch("../../json/index.json")
         .then((res) => res.json())
         .then((json) => {
             const teachers = JSON.parse(localStorage.getItem("teachers")) || json.teachers;
-            console.log("Professores disponíveis:", teachers);
 
             const prof = teachers.find((teacher) => teacher.id === id);
             currentProfessor = prof; // Armazena o professor atual
@@ -21,18 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
             // Dados do professor
             
             // Preencher os dados do professor
-            document.querySelector(".teachersInfo-card-header").textContent = prof.name;
-            document.querySelectorAll(".teachersInfo-box")[0].textContent = prof.email;
-            document.querySelectorAll(".teachersInfo-box")[1].textContent = prof.locality;
-            document.querySelectorAll(".teachersInfo-box")[2].textContent = prof.classType;
-            document.querySelector(".teachers-rightInfo img").src = prof.photo || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80";
-            
+            document.querySelector(".teachersInfo-card-header").textContent = currentProfessor.name;
+            document.querySelectorAll(".teachersInfo-box")[0].textContent = currentProfessor.email;
+            document.querySelectorAll(".teachersInfo-box")[1].textContent = currentProfessor.locality;
+            document.querySelectorAll(".teachersInfo-box")[2].textContent = currentProfessor.classType;
+            document.querySelector(".teachers-rightInfo img").src = currentProfessor.avatar || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80";
+
             // Preencher disciplinas
             const disciplinesList = document.querySelector('.disciplines-list');
-            disciplinesList.innerHTML = prof.disciplines.map(d => 
+            disciplinesList.innerHTML = currentProfessor.disciplines.map(d => 
                 `<div><i class="fa-solid fa-check-circle"></i>${d}</div>`
             ).join('');
-            
+
             // Preencher descrição
             document.querySelector('.description-box p').textContent = prof.aboutMe;
         })
@@ -114,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 modal.hide();
             });
         }
-
 
         // Funções para avaliação
         function setupRatingModal() {
