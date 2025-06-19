@@ -19,7 +19,8 @@ function initdata() {
   "classType": "online",
   "price": "10€/h",
   "points": 50,
-  "priority": 2
+  "priority": 2,
+  "photo": "https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 2,
@@ -36,7 +37,8 @@ function initdata() {
       "classType": "presencial",
       "price": "13€/h",
       "points": 86,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 3,
@@ -53,7 +55,8 @@ function initdata() {
       "classType": "online",
       "price": "16€/h",
       "points": 81,
-      "priority": 2
+      "priority": 2,
+      "photo":"https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 4,
@@ -70,7 +73,8 @@ function initdata() {
       "classType": "presencial",
       "price": "23€/h",
       "points": 57,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://images.unsplash.com/photo-1592621385612-4d7129426394?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 5,
@@ -87,7 +91,9 @@ function initdata() {
       "classType": "presencial",
       "price": "23€/h",
       "points": 71,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+   
     },
     {
       "id": 6,
@@ -104,7 +110,8 @@ function initdata() {
       "classType": "presencial",
       "price": "23€/h",
       "points": 93,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 7,
@@ -121,7 +128,8 @@ function initdata() {
       "classType": "presencial",
       "price": "19€/h",
       "points": 50,
-      "priority": 2
+      "priority": 2,
+      "photo":"https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 8,
@@ -138,7 +146,8 @@ function initdata() {
       "classType": "presencial",
       "price": "10€/h",
       "points": 90,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://images.unsplash.com/photo-1592621385612-4d7129426394?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 9,
@@ -155,7 +164,9 @@ function initdata() {
       "classType": "online",
       "price": "19€/h",
       "points": 58,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+
     },
     {
       "id": 10,
@@ -172,7 +183,8 @@ function initdata() {
       "classType": "online",
       "price": "15€/h",
       "points": 90,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 11,
@@ -189,7 +201,8 @@ function initdata() {
       "classType": "presencial",
       "price": "14€/h",
       "points": 72,
-      "priority": 2
+      "priority": 2,
+      "photo":"https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 12,
@@ -206,7 +219,8 @@ function initdata() {
       "classType": "online",
       "price": "14€/h",
       "points": 94,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://images.unsplash.com/photo-1592621385612-4d7129426394?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 13,
@@ -223,7 +237,9 @@ function initdata() {
       "classType": "online",
       "price": "19€/h",
       "points": 76,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+
     },
     {
       "id": 14,
@@ -240,7 +256,8 @@ function initdata() {
       "classType": "online",
       "price": "18€/h",
       "points": 54,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 15,
@@ -257,7 +274,8 @@ function initdata() {
       "classType": "presencial",
       "price": "18€/h",
       "points": 70,
-      "priority": 2
+      "priority": 2,
+      "photo":"https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 16,
@@ -274,7 +292,8 @@ function initdata() {
       "classType": "online",
       "price": "23€/h",
       "points": 60,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://images.unsplash.com/photo-1592621385612-4d7129426394?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 17,
@@ -291,7 +310,9 @@ function initdata() {
       "classType": "presencial",
       "price": "24€/h",
       "points": 55,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+
     },
     {
       "id": 18,
@@ -308,7 +329,8 @@ function initdata() {
       "classType": "online",
       "price": "15€/h",
       "points": 66,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 19,
@@ -325,7 +347,8 @@ function initdata() {
       "classType": "presencial",
       "price": "14€/h",
       "points": 65,
-      "priority": 2
+      "priority": 2,
+      "photo":"https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       "id": 20,
@@ -342,7 +365,8 @@ function initdata() {
       "classType": "online",
       "price": "11€/h",
       "points": 77,
-      "priority": 2
+      "priority": 2,
+      "photo": "https://images.unsplash.com/photo-1592621385612-4d7129426394?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
     ];
     localStorage.setItem("teachers", JSON.stringify(teachers));
@@ -363,6 +387,7 @@ function initdata() {
         "locality": "Lisboa",
         "disciplines": ["matemática", "português"],
         "aboutMe": "Gosto de ler livros de aventura e jogar futebol.",
+        "favourites": [],
         "points": 10,
         "priority": 1
       },
@@ -380,7 +405,8 @@ function initdata() {
         "disciplines": ["inglês", "ciências"],
         "aboutMe": "Adoro desenhar e aprender novas línguas.",
         "points": 15,
-        "priority": 1
+        "priority": 1,
+        "favourites": []
       },
       {
         "id": 3,
@@ -396,7 +422,8 @@ function initdata() {
         "disciplines": ["história"],
         "aboutMe": "Sou curioso sobre história e tecnologia.",
         "points": 20,
-        "priority": 1
+        "priority": 1,
+        "favourites": []
       },
       {
         "id": 4,
@@ -412,7 +439,8 @@ function initdata() {
         "disciplines": ["biologia", "química"],
         "aboutMe": "Apaixonada por ciência e natureza.",
         "points": 25,
-        "priority": 1
+        "priority": 1,
+        "favourites": []
       },
       {
         "id": 5,
@@ -428,7 +456,8 @@ function initdata() {
         "disciplines": ["educação física"],
         "aboutMe": "Gosto muito de desporto e jogos de equipa.",
         "points": 5,
-        "priority": 1
+        "priority": 1,
+        "favourites": []
       },
       {
         "id": 6,
@@ -444,7 +473,8 @@ function initdata() {
         "disciplines": ["matemática", "física"],
         "aboutMe": "Interesso-me por física e engenharia.",
         "points": 30,
-        "priority": 1
+        "priority": 1,
+        "favourites": []
       },
       {
         "id": 7,
@@ -460,7 +490,8 @@ function initdata() {
         "disciplines": ["português"],
         "aboutMe": "Sou muito criativo e gosto de escrever histórias.",
         "points": 8,
-        "priority": 1
+        "priority": 1,
+        "favourites": []
       },
       {
         "id": 8,
@@ -476,7 +507,8 @@ function initdata() {
         "disciplines": ["inglês", "geografia"],
         "aboutMe": "Adoro viajar e conhecer novos lugares.",
         "points": 18,
-        "priority": 1
+        "priority": 1,
+        "favourites": []
       },
       {
         "id": 9,
@@ -492,7 +524,8 @@ function initdata() {
         "disciplines": ["ciências", "matemática"],
         "aboutMe": "Sou curioso e gosto de experiências científicas.",
         "points": 12,
-        "priority": 1
+        "priority": 1,
+        "favourites": []
       },
       {
         "id": 10,
@@ -508,7 +541,8 @@ function initdata() {
         "disciplines": ["história", "português"],
         "aboutMe": "Gosto de música e de ler poesia.",
         "points": 14,
-        "priority": 1
+        "priority": 1,
+        "favourites": []
       }
     ];
     localStorage.setItem("students", JSON.stringify(students));

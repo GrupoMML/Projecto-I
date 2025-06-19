@@ -143,17 +143,17 @@
                                              class="teacher-profile-img">
                                         
                                         <div class="teachersRating-box text-center p-2 mb-3">
-                                            <div class="mb-1">
+                                            <div id="main-ratingStars" class="mb-1">
                                                 <i class="fa-solid fa-star"></i>
                                                 <i class="fa-solid fa-star"></i>
                                                 <i class="fa-solid fa-star"></i>
                                                 <i class="fa-solid fa-star"></i>
                                                 <i class="fa-solid fa-star-half-stroke"></i>
                                             </div>
-                                            <p class="mb-0 small">Ver avaliações</p>
+                                            <p id="rating-visualizer"class="mb-0 small">Ver avaliações</p>
                                         </div>
                                         
-                                        <button class="btn-favourites w-25 w-md-auto">
+                                        <button id="favouriteButton" class="btn-favourites w-25 w-md-auto">
                                             <i class="fa-solid fa-heart me-2"></i>Favoritar
                                         </button>
                                     </div>
@@ -198,10 +198,10 @@
                     
                     <!-- Botões de Ação -->
                     <div class="d-flex flex-column flex-md-row justify-content-center gap-3 my-5">
-                        <button class="btn btn-success btn-lg py-3" data-bs-toggle="modal" data-bs-target="#scheduleModal">
+                        <button id="scheduleButton" class="btn btn-success btn-lg py-3" data-bs-toggle="modal" data-bs-target="#scheduleModal">
                             <i class="fa-solid fa-calendar-check me-2"></i>Marcar Aula
                         </button>
-                        <button class="btn btn-warning btn-lg py-3" data-bs-toggle="modal" data-bs-target="#ratingModal">
+                        <button id="reviewButton" class="btn btn-warning btn-lg py-3" data-bs-toggle="modal" data-bs-target="#ratingModal">
                             <i class="fa-solid fa-star me-2"></i>Avaliar Professor
                         </button>
                     </div>

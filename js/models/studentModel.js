@@ -34,30 +34,50 @@ class Student{
         this.aboutMe = aboutMe
         this.points = points || 0
         this.priority = priority
-        this.teachers = []
-        this.explanations = []
         this.favourites = []
-    }
-    addTeachers(teacher){
-        this.teachers.push(teacher)
-    }
-    addExplanations(explanation){
-        this.explanations.push(explanation)
-    }
-    addFavourites(favourite){
-        this.favourites.push(favourite)
     }
 }
 
 function addStudent(id, name, email, password, grade, EEcontact, incapacity, gender, dateOfBirth, locality, disciplines, aboutMe){
     const points = 0
     const priority = 1
-    const student = new Student (id, name, email, password, grade, EEcontact, incapacity, gender, dateOfBirth, locality, disciplines, aboutMe, points, priority)
+    let favourites = []
+    const student = new Student (id, name, email, password, grade, EEcontact, incapacity, gender, dateOfBirth, locality, disciplines, aboutMe, points, priority, favourites)
     students.push(student)
     localStorage.setItem("students", JSON.stringify(students));
     return student
 }
 
+function addFavouriteTeacher(studentId, teacherId) {
+    const students = getStudents();
+    const student = students.find(s => s.id == studentId);
+    if (student && !student.favourites.includes(teacherId)) { // Check if the teacher is already favourited
+        student.favourites.push(teacherId);                   // Add the teacher to favourites
+        localStorage.setItem("students", JSON.stringify(students)); // Update localStorage
+    }
+}
+
+function removeFavouriteTeacher(studentId, teacherId) {
+    const students = getStudents();
+    const student = students.find(s => s.id == studentId); // Find the student by ID
+    // If the student exists and the teacher is in their favourites, remove it
+    if (student) {
+        student.favourites = student.favourites.filter(id => id !== teacherId);
+        localStorage.setItem("students", JSON.stringify(students));
+    }
+}
+
+function isTeacherFavourited(studentId, teacherId) {
+    const students = getStudents();
+    const student = students.find(s => s.id == studentId);
+    return student ? student.favourites.includes(teacherId) : false;
+    }
+
+function getFavouriteTeachers(studentId) {
+    const students = getStudents();
+    const student = students.find(s => s.id == studentId);
+    return student ? student.favourites : [];
+}
 
 function updateStudent(updatedStudent) {
     const students = getStudents();
@@ -76,6 +96,6 @@ function deleteStudent(id) {
     localStorage.setItem("students", JSON.stringify(students));
 }
 
-export { getStudents, addStudent, updateStudent, deleteStudent };
+export { getStudents, addStudent, updateStudent, deleteStudent, addFavouriteTeacher, removeFavouriteTeacher, isTeacherFavourited, Student, getFavouriteTeachers };
 
 

@@ -3,8 +3,7 @@
 /* * Review Model * */
 
 const getReviews = () => JSON.parse(localStorage.getItem("reviews")) || [];
-const saveReviews = (reviews) => localStorage.setItem("reviews", JSON.stringify(reviews));
-
+let reviews = getReviews();
 class Review {
     id = '';
     student = '';
@@ -23,20 +22,21 @@ class Review {
         this.date = date || new Date().toISOString();
     }
 }
-function createReview(reviewData) {
-    const reviews = getReviews();
-    const newReview = new Review(
-        reviewData.id || Date.now(),
-        reviewData.student,
-        reviewData.teacher,
-        reviewData.lesson,
-        reviewData.rating,
-        reviewData.comments,
-        reviewData.date
+
+
+function createReview(id,student,teacher,lesson,rating,comment) {
+    const review = new Review(
+        id,
+        student,
+        teacher,
+        lesson,
+        rating,
+        comment,
+        new Date().toISOString()
     );
-    reviews.push(newReview);
+    reviews.push(review);
     localStorage.setItem("reviews", JSON.stringify(reviews));
-    return newReview;
+    return review;
 }
 
 

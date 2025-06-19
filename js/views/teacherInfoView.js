@@ -1,6 +1,8 @@
 import { createLesson } from '../models/lessonsModel.js';
-import {createReview} from '../models/reviewModel.js';
+import { createReview,getReviews } from '../models/reviewModel.js';
 import { teachers } from '../models/teachersModel.js';
+import { addFavouriteTeacher, removeFavouriteTeacher, isTeacherFavourited} from "../models/studentModel.js";
+
 
 const pointsMap = {
     1: 1,
@@ -11,6 +13,22 @@ const pointsMap = {
 };
 
 const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+
+if (loggedUser.role !== "student") {
+    const reviewButton = document.getElementById("reviewButton");
+    if (reviewButton) {
+        reviewButton.style.display = "none";
+    }
+    const scheduleButton = document.getElementById("scheduleButton");
+    if (scheduleButton) {
+        scheduleButton.style.display = "none";
+    }
+    const favoriteButton = document.getElementById("favouriteButton");
+    if (favoriteButton) {
+        favoriteButton.style.display = "none";
+    }
+}
+
 let currentProfessor = null;
 
 
@@ -35,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".teachersInfo-box")[0].textContent = prof.email;
             document.querySelectorAll(".teachersInfo-box")[1].textContent = prof.locality;
             document.querySelectorAll(".teachersInfo-box")[2].textContent = prof.classType;
-            document.querySelector(".teacher-profile-img").src = prof.avatar || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80";
+            document.querySelector(".teacher-profile-img").src = prof.photo || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80";
 
             // Preencher disciplinas
             const disciplinesList = document.querySelector('.disciplines-list');
@@ -44,12 +62,11 @@ document.addEventListener("DOMContentLoaded", () => {
             // Preencher descrição
             document.querySelector('.description-box p').textContent = prof.aboutMe;
         
-
         // Toggle da sidebar em dispositivos móveis
         const sidebarToggle = document.querySelector('.sidebar-toggle');
         const sidebar = document.querySelector('.sidebar');
         
-        const ratingBox = document.querySelector('.teachersRating-box');
+        const ratingBox = document.getElementById('rating-visualizer');
         if (ratingBox) {
             ratingBox.addEventListener('click', function() {
                 if (currentProfessor) {
@@ -58,13 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-
         if (sidebarToggle) {
             sidebarToggle.addEventListener('click', function() {
                 sidebar.classList.toggle('active');
             });
         }
-
 
         // Função para preencher as disciplinas no modal
         function populateDisciplinesModal() {
@@ -251,4 +266,57 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         setupRatingModal();
+
+        // Buscar avaliações
+        const reviews = getReviews().filter(r => r.teacher === id);
+
+        // Calcula a média de avaliações
+        const averageRating = reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length || 0;
+        
+        // Preenche as estrelas da média
+        const ratingStars = document.getElementById('main-ratingStars');
+        ratingStars.innerHTML = '';
+        for (let i = 1; i <= 5; i++) {
+            const star = document.createElement('i');
+            star.className = 'fa-solid';
+            
+            if (i <= Math.floor(averageRating)) {
+                star.classList.add('fa-star');
+            } else if (i - 0.5 <= averageRating) {
+                star.classList.add('fa-star-half-stroke');
+            } else {
+                star.classList.add('fa-star');
+                star.style.color = '#ccc';
+            }
+            
+            ratingStars.appendChild(star);
+        }
+
+
+const teacherId = id; // Obter o ID do professor da página
+const loggedUserId = loggedUser.id; // Obter o ID do utilizador logado
+
+const favouriteBtn = document.getElementById("favouriteButton");
+
+// Atualiza o texto do botão conforme o estado
+function updateFavouriteButton() {
+  if (isTeacherFavourited(loggedUserId, teacherId)) {
+    favouriteBtn.textContent = "Remover dos Favoritos";
+  } else {
+    favouriteBtn.textContent = "Favoritar";
+  }
+}
+
+// Evento de clique
+favouriteBtn.addEventListener("click", () => {
+  if (isTeacherFavourited(loggedUserId, teacherId)) {
+    removeFavouriteTeacher(loggedUserId, teacherId);
+  } else {
+    addFavouriteTeacher(loggedUserId, teacherId);
+  }
+  updateFavouriteButton();
+});
+
+// Inicializa o botão ao carregar a página
+updateFavouriteButton();
 });

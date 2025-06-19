@@ -1,6 +1,7 @@
 // teacherReviewsView.js
 import { getReviews } from '../models/reviewModel.js';
 import { getTeachers } from '../models/teachersModel.js';
+import { getStudents } from '../models/studentModel.js';
 
 const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
 console.log(loggedUser);
@@ -20,9 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Buscar professor
     const teachers = getTeachers();
     const teacher = teachers.find(t => t.id === teacherId);
+
+    const students = getStudents();
     
 
-    const reviews = getReviews().filter(r => r.teacher.id === teacherId);
+    const reviews = getReviews().filter(r => r.teacher === teacherId);
+    const student = students.find(s => s.id === reviews.student);
     console.log(reviews);
 
     
@@ -68,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Adiciona os comentários
     reviews.forEach(review => {
+        const student = students.find(s => s.id === review.student);
         const commentDiv = document.createElement('div');
         commentDiv.className = 'comment';
         
@@ -77,8 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
         commentDiv.innerHTML = `
             <div class="comment-header">
                 <div class="comment-user">
-                    <img src="${review.student.avatar || '../../images/webapp/student1.png'}" alt="Utilizador">
-                    ${review.student.name}
+                    <img src="'../../images/webapp/student1.png'" alt="Utilizador">
+                    ${student.name}
                 </div>
                 <div class="comment-time">${timeAgo}</div>
             </div>
