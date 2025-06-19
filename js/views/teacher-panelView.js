@@ -172,7 +172,7 @@ function renderLessons(lessons, container, isScheduled) {
     if (lessons.length === 0) {
         container.innerHTML = `
             <tr>
-                <td colspan="${isScheduled ? 5 : 7}" class="text-center py-4">
+                <td colspan="${isScheduled ? 7 : 7}" class="text-center py-4">
                     ${isScheduled ? "Nenhuma aula marcada" : "Nenhum pedido pendente"}
                 </td>
             </tr>

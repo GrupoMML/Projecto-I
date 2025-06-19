@@ -68,4 +68,4 @@ function deleteTeacher(id) {
     localStorage.setItem("teachers", JSON.stringify(teachers));
 }
 
-export { getTeachers, addTeacher, updateTeacher, deleteTeacher };
+export { getTeachers, addTeacher, updateTeacher, deleteTeacher, teachers };

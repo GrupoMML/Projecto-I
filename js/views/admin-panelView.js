@@ -539,10 +539,15 @@ async function updateItem(type, id) {
 async function addItem(type) {
     const form = document.querySelector("#itemAddForm");
     const inputs = form.querySelectorAll('input, select, textarea');
-    
+    const maxIdTeacher = teachers.reduce((max, t) => t.id > max ? t.id : max, 0)
+    const idTeacher = maxIdTeacher + 1
+    const maxIdStudent = students.reduce((max, s) => s.id > max ? s.id : max, 0)
+    const idStudent = maxIdStudent + 1
+
     switch (type) {
         case 'teacher':
             const teacherData = {
+                id: idTeacher,
                 name: inputs[0].value,
                 email: inputs[1].value,
                 password: inputs[2].value,
@@ -560,6 +565,7 @@ async function addItem(type) {
             
         case 'student':
             const studentData = {
+                id: idStudent,
                 name: inputs[0].value,
                 email: inputs[1].value,
                 password: 'defaultPassword',

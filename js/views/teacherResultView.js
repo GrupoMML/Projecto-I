@@ -1,9 +1,12 @@
+
+import { getTeachers } from "../models/teachersModel.js";
+
 // Pegando parâmetros da URL
 const urlParams = new URLSearchParams(window.location.search);
 const disciplina = urlParams.get("disciplina")?.trim().toLowerCase() || '';
 const tipo = urlParams.get("tipo")?.trim().toLowerCase() || '';
 const local = urlParams.get("local")?.trim().toLowerCase() || '';
-let professores = [];
+const professores = getTeachers();
 
 // Pegando o contêiner onde serão acrescentados os resultados
 const gridContainer = document.querySelector('.grid-container2');
@@ -23,11 +26,7 @@ if (disciplina && local) {
 
 document.querySelector("#disciplines-title").innerHTML = titleText;
 
-// Fazer o fetch do JSON
-fetch("../../json/index.json")
-    .then((response) => response.json()) 
-    .then((json) => {
-        professores = JSON.parse(localStorage.getItem("teachers")) || json.teachers;
+
         
         // Filtra os resultados de acordo com os parâmetros presentes
         const resultadosFiltrados = professores.filter(prof => {
@@ -72,8 +71,5 @@ fetch("../../json/index.json")
             }
             gridContainer.innerHTML = `<p class="text-center">${message}</p>`;
         }
-    })
-    .catch((error) => {
-        console.error("Erro ao carregar os professores.", error);
-        gridContainer.innerHTML = "<p class='text-center'>Erro ao carregar os resultados</p>";
-    });
+ 
+    

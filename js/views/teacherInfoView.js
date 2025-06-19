@@ -1,5 +1,6 @@
 import { createLesson } from '../models/lessonsModel.js';
 import {createReview} from '../models/reviewModel.js';
+import { teachers } from '../models/teachersModel.js';
 
 const pointsMap = {
     1: 1,
@@ -18,10 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get("id"));
     
-        fetch("../../json/index.json")
-        .then((res) => res.json())
-        .then((json) => {
-            const teachers = JSON.parse(localStorage.getItem("teachers")) || json.teachers;
+        
 
             const prof = teachers.find((teacher) => teacher.id === id);
             currentProfessor = prof; // Armazenar o professor atual para uso posterior
@@ -45,8 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Preencher descrição
             document.querySelector('.description-box p').textContent = prof.aboutMe;
-        })
-        .catch(error => console.error("Erro ao carregar dados:", error));
+        
 
         // Toggle da sidebar em dispositivos móveis
         const sidebarToggle = document.querySelector('.sidebar-toggle');
