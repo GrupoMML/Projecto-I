@@ -229,8 +229,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     const comment = document.getElementById('ratingComment').value;
                     createReview(
                         Date.now(), // ID único
-                        loggedUser, // ID do estudante
-                        currentProfessor, // ID do professor
+                        loggedUser.id, // ID do estudante
+                        currentProfessor.id, // ID do professor
                         "Aula Geral", // Poderia ser específica
                         rating,
                         comment
