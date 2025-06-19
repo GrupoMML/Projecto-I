@@ -1,16 +1,30 @@
-let currentProfessor = null; // Variável global para armazenar o professor atual
+import { createLesson } from '../models/lessonsModel.js';
+import {createReview} from '../models/reviewModel.js';
+
+const pointsMap = {
+    1: 1,
+    2: 3,
+    3: 5,
+    4: 7,
+    5: 10
+};
+
+const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+let currentProfessor = null;
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const id = parseInt(urlParams.get("id"));  //
+    const id = parseInt(urlParams.get("id"));
     
-    fetch("../../json/index.json")
+        fetch("../../json/index.json")
         .then((res) => res.json())
         .then((json) => {
             const teachers = JSON.parse(localStorage.getItem("teachers")) || json.teachers;
 
             const prof = teachers.find((teacher) => teacher.id === id);
-            currentProfessor = prof; // Armazena o professor atual
+            currentProfessor = prof; // Armazenar o professor atual para uso posterior
 
             if (!prof) {
                 console.error("Professor não encontrado para o ID:", id);
@@ -18,19 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             // Dados do professor
-            
             // Preencher os dados do professor
-            document.querySelector(".teachersInfo-card-header").textContent = currentProfessor.name;
-            document.querySelectorAll(".teachersInfo-box")[0].textContent = currentProfessor.email;
-            document.querySelectorAll(".teachersInfo-box")[1].textContent = currentProfessor.locality;
-            document.querySelectorAll(".teachersInfo-box")[2].textContent = currentProfessor.classType;
-            document.querySelector(".teachers-rightInfo img").src = currentProfessor.avatar || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80";
+            document.querySelector(".teachersInfo-card-header").textContent = prof.name;
+            document.querySelectorAll(".teachersInfo-box")[0].textContent = prof.email;
+            document.querySelectorAll(".teachersInfo-box")[1].textContent = prof.locality;
+            document.querySelectorAll(".teachersInfo-box")[2].textContent = prof.classType;
+            document.querySelector(".teacher-profile-img").src = prof.avatar || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80";
 
             // Preencher disciplinas
             const disciplinesList = document.querySelector('.disciplines-list');
-            disciplinesList.innerHTML = currentProfessor.disciplines.map(d => 
-                `<div><i class="fa-solid fa-check-circle"></i>${d}</div>`
-            ).join('');
+            disciplinesList.innerHTML = prof.disciplines.map(d => `<div><i class="fa-solid fa-check-circle"></i>${d}</div>`).join('');
 
             // Preencher descrição
             document.querySelector('.description-box p').textContent = prof.aboutMe;
@@ -41,12 +52,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const sidebarToggle = document.querySelector('.sidebar-toggle');
         const sidebar = document.querySelector('.sidebar');
         
+        const ratingBox = document.querySelector('.teachersRating-box');
+        if (ratingBox) {
+            ratingBox.addEventListener('click', function() {
+                if (currentProfessor) {
+                    window.location.href = `../teacher/teacherReviews.html?id=${currentProfessor.id}`;
+                }
+            });
+        }
+
+
         if (sidebarToggle) {
             sidebarToggle.addEventListener('click', function() {
                 sidebar.classList.toggle('active');
             });
         }
-});
+
 
         // Função para preencher as disciplinas no modal
         function populateDisciplinesModal() {
@@ -91,58 +112,91 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Evento para envio do formulário
-        const scheduleForm = document.getElementById('scheduleForm');
+        const scheduleForm = document.getElementById('scheduleForm')
         if (scheduleForm) {
             scheduleForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Obter disciplinas selecionadas
+                e.preventDefault()
+            
+                const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
+                if (!loggedUser || loggedUser.role !== "student") {
+                    alert("Você precisa estar logado como estudante para marcar aulas")
+                    return
+                }
+
                 const selectedDisciplines = Array.from(
-                    document.querySelectorAll('input[name="disciplines"]:checked')).map(input => input.value);
+                document.querySelectorAll('input[name="disciplines"]:checked')
+                ).map(input => input.value)
                 
                 if (selectedDisciplines.length === 0) {
-                    alert('Por favor, selecione pelo menos uma disciplina.');
-                    return;
+                    alert('Por favor, selecione pelo menos uma disciplina.')
+                    return
                 }
+            
+                const classLocation = document.getElementById('classLocation').value
+                const date = document.getElementById('date').value
+                const time = document.getElementById('time').value
+                const observations = document.getElementById('observations').value
                 
-                // Simulação de envio do formulário
-                alert(`Aula marcada com sucesso para: ${document.getElementById('date').value} às ${document.getElementById('time').value} Disciplinas: ${selectedDisciplines.join(', ')}`);
+                // Combinar data e hora
+                const dateTime = new Date(`${date}T${time}`)
+                
+                try {
+                createLesson(
+                    loggedUser,
+                    currentProfessor,
+                    dateTime,
+                    60, // Duração fixa de 60 minutos
+                    selectedDisciplines,
+                    classLocation,
+                    observations
+                )
+                
+                alert(`Aula marcada com sucesso para: ${dateTime.toLocaleString()}`)
                 
                 // Fechar o modal
-                const modal = bootstrap.Modal.getInstance(scheduleModal);
-                modal.hide();
-            });
-        }
+                const modal = bootstrap.Modal.getInstance(scheduleModal)
+                modal.hide()
+                } catch (error) {
+                console.error("Erro ao marcar aula:", error)
+                alert("Erro ao marcar aula. Por favor, tente novamente.")
+                }
+            })
+            }
 
         // Funções para avaliação
         function setupRatingModal() {
             const ratingModal = document.getElementById('ratingModal');
             if (ratingModal) {
-                ratingModal.addEventListener('show.bs.modal', function () {
+                ratingModal.addEventListener('show.bs.modal', function() {
                     if (currentProfessor) {
                         document.getElementById('ratingTeacherName').textContent = currentProfessor.name;
                     }
 
                     // Resetar estrelas
-                    document.querySelectorAll('#ratingStars i').forEach(star => {
-                        star.classList.remove('active');
+                    const stars = document.querySelectorAll('#ratingStars i');
+                    stars.forEach(star => {
+                        star.classList.remove('fas', 'fa-star', 'active');
+                        star.classList.add('far', 'fa-star');
                     });
                     document.getElementById('selectedRating').value = 0;
                 });
             }
 
             // Configurar clique nas estrelas
-            document.querySelectorAll('#ratingStars i').forEach(star => {
-                star.addEventListener('click', function () {
+            const stars = document.querySelectorAll('#ratingStars i');
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
                     const rating = parseInt(this.getAttribute('data-rating'));
                     document.getElementById('selectedRating').value = rating;
 
                     // Atualizar visualização das estrelas
-                    document.querySelectorAll('#ratingStars i').forEach((s, index) => {
+                    stars.forEach((s, index) => {
                         if (index < rating) {
-                            s.classList.add('active');
+                            s.classList.remove('far');
+                            s.classList.add('fas', 'active');
                         } else {
-                            s.classList.remove('active');
+                            s.classList.remove('fas', 'active');
+                            s.classList.add('far');
                         }
                     });
                 });
@@ -150,32 +204,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const ratingForm = document.getElementById('ratingForm');
             if (ratingForm) {
-                ratingForm.addEventListener('submit', function (e) {
+                ratingForm.addEventListener('submit', function(e) {
                     e.preventDefault();
 
-                    const rating = document.getElementById('selectedRating').value;
-                    if (rating === "0") {
+                    const rating = parseInt(document.getElementById('selectedRating').value);
+                    if (rating === 0) {
                         alert('Por favor, selecione uma avaliação.');
                         return;
                     }
 
-                    const ratingData = {
-                        teacherId: currentProfessor.id,
-                        rating: rating,
-                        comment: document.getElementById('ratingComment').value,
-                        date: new Date().toISOString()
-                    };
+                    // Calcular pontos baseado na avaliação
+                    const pointsToAdd = pointsMap[rating];
+                    
+                    // Atualizar pontos do professor
+                    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+                    const teacherIndex = teachers.findIndex(t => t.id === currentProfessor.id);
+                    
+                    if (teacherIndex !== -1) {
+                        teachers[teacherIndex].points = (teachers[teacherIndex].points || 0) + pointsToAdd;
+                        localStorage.setItem("teachers", JSON.stringify(teachers));
+                        
+                        // Atualizar currentProfessor para refletir mudanças
+                        currentProfessor.points = teachers[teacherIndex].points;
+                    }
 
-                    // Simular envio de avaliação
-                    console.log("Avaliação enviada:", ratingData);
-                    alert(`Avaliação de ${rating} estrelas enviada para ${currentProfessor.name} com sucesso!`);
-
+                    // Criar e salvar a avaliação
+                    const comment = document.getElementById('ratingComment').value;
+                    createReview(
+                        Date.now(), // ID único
+                        loggedUser, // ID do estudante
+                        currentProfessor, // ID do professor
+                        "Aula Geral", // Poderia ser específica
+                        rating,
+                        comment
+                    );
+                    
                     // Fechar o modal
                     const modal = bootstrap.Modal.getInstance(ratingModal);
                     modal.hide();
 
                     // Resetar o formulário
                     ratingForm.reset();
+                    stars.forEach(star => {
+                        star.classList.remove('fas', 'active');
+                        star.classList.add('far');
+                    });
                 });
             }
         }
+
+        setupRatingModal();
+});

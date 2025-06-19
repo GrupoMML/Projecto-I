@@ -1,6 +1,7 @@
 //------------------ STUDENT CLASS ----------------------
 //----------------------------------------------------------
-const students = []
+const getStudents = () => JSON.parse(localStorage.getItem("students")) || [];
+
 
 class Student{
     id = ''
@@ -55,6 +56,6 @@ function addStudent(id, name, email, password, grade, EEcontact, incapacity, gen
     return student
 }
 
-export { students, addStudent }
+export { getStudents, addStudent }
 
 

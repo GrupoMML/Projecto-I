@@ -1,26 +1,72 @@
-//------------------ LESSONS CLASS ----------------------
-//----------------------------------------------------------
-const lessons = []
+//------------------ LESSONS CLASS ---------------------
+//------------------------------------------------------
+const getLessons = () => JSON.parse(localStorage.getItem("lessons")) || [];
+const saveLessons = (lessons) => localStorage.setItem("lessons", JSON.stringify(lessons));
 
 class Lesson {
-  constructor(id, student, teacher, dateTime, durationMinutes) {
-    this.id = id
-    this.student = student
-    this.teacher = teacher
-    this.dateTime = new Date(dateTime)
-    this.durationMinutes = durationMinutes
+  constructor(id, student, teacher, dateTime, durationMinutes, disciplines, location, observations, state = "pending") {
+    this.id = id;
+    this.student = student;
+    this.teacher = teacher;
+    this.dateTime = new Date(dateTime);
+    this.durationMinutes = durationMinutes;
+    this.disciplines = disciplines;
+    this.location = location;
+    this.observations = observations;
+    this.state = state; // pending, accepted, rejected, completed
   }
 }
 
-function createLesson(studentId, teacherId, dateTime, durationMinutes) {
-  const student = students.find(s => s.id === studentId)
-  const teacher = teachers.find(t => t.id === teacherId)
-  if (!student || !teacher) throw new Error("Estudante ou professor não encontrado")
-
-  const id = lessons.length + 1
-  const lesson = new Lesson(id, student, teacher, dateTime, durationMinutes)
-  lessons.push(lesson)
-  return lesson
+function createLesson(student, teacher, dateTime, durationMinutes, disciplines, location, observations) {
+  const lessons = getLessons();
+  const id = lessons.length > 0 ? Math.max(...lessons.map(l => l.id)) + 1 : 1;
+  
+  const lesson = new Lesson(
+    id,
+    student,
+    teacher,
+    dateTime,
+    durationMinutes,
+    disciplines,
+    location,
+    observations
+  );
+  
+  lessons.push(lesson);
+  saveLessons(lessons);
+  return lesson;
 }
 
-export { lessons, createLesson }
+// Função que procura aulas do estudante
+function getStudentLessons(studentId) {
+  const lessons = getLessons();
+  return lessons.filter(lesson => 
+    lesson.student.id === studentId &&
+    (lesson.state === "accepted" || lesson.state === "pending")
+  );
+}
+
+// Função que procura aulas do professor
+function getTeacherLessons(teacherId) {
+  const lessons = getLessons();
+  return lessons.filter(lesson => 
+    lesson.teacher.id === teacherId &&
+    (lesson.state === "pending" || lesson.state === "accepted")
+  );
+}
+
+// Função para atualizar o estado da aula
+function updateLessonState(lessonId, newState) {
+  const lessons = getLessons();
+  const lessonIndex = lessons.findIndex(l => l.id === lessonId);
+  
+  if (lessonIndex !== -1) {
+    lessons[lessonIndex].state = newState;
+    saveLessons(lessons);
+    return true;
+  }
+  return false;
+}
+
+// Exportar funções para uso externo
+export { createLesson, getStudentLessons, getTeacherLessons, updateLessonState};

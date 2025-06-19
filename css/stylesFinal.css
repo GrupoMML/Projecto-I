@@ -1,5 +1,22 @@
 @import url('teacherInfo.css');
+@import url('teacher.css');
+@import url('teacherReview.css');
 
+
+/*------------- Disciplines.html -------------*/
+.rectangle2 {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rectangle2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.rectangle2 img {
+    pointer-events: none; /* Impede que a imagem interfira com o clique */
+}
 
 /*------------- CUSTOM BUTTONS -------------*/
 /*-----------------------------------------------*/
