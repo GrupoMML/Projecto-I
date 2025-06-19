@@ -76,7 +76,7 @@
         padding: auto;
         width: 90%;
         height: auto;
-        margin-top: 150px;
+        margin-top: 400px;
         }
 
         .user-points {
@@ -192,13 +192,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
                     <div class="controls-container ms-auto text-end">
-                        <a href="../main/store.html"><button class="btn-custom btn-store">Loja</button></a>
                         <a href="../main/aboutUS.html"><button class="btn-custom btn-aboutUs">Sobre nós</button></a>
                         <a href="../main/FAQ.html" style="text-decoration: none;"><button class="btn-custom btn-faq">?</button></a>
-                        <a href="../main/storeCart.html" style="text-decoration: none;">
-                            <button class="btn-custom btn-cart">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </button></a>
                         <div class="search-container">
                             <input type="text" class="search-input" placeholder="Pesquisar...">
                             <button class="btn-search">
@@ -225,14 +220,9 @@
                 <a href="../../index.html" style="text-decoration: none; color: #003366;"><span>Página principal</span></a>
             </div>
 
-            <div class="menu-items studentView teacherView" data-url="../main/leaderboard.html">
+            <div class="menu-items studentView adminView" data-url="../main/leaderboard.html">
                 <i class="fa-solid fa-trophy"></i>
                 <span>Leaderboards</span>
-            </div>
-
-            <div class="menu-items studentView teacherView adminView">
-                <i class="fa-solid fa-comments"></i>
-                <span>Mensagens</span>
             </div>
 
             <div class="menu-items studentView teacherView" data-url="../VR/access.html">
@@ -271,8 +261,10 @@
             </div>
 
             <div class="user-level-container" id="menuItemLeaderboards">
-                <i class="fa-solid fa-trophy" id="user-level-icon" data-qtd="0"></i>
-                <div id="logged-user-points" class="user-points">0 pontos</div>
+                <i class="fa-solid fa-certificate" data-qtd="0"></i>
+                <div id="user-level-progress">0 pontos</div>
+                <div class="user-level-progress-bar"></div>
+                <div id="user-ranking">Rank 1001 / 1000</div>
             </div>
 
             <div class="menu-items studentView teacherView adminView" id="settingsMenuItem">
@@ -338,7 +330,6 @@
         <div class="footer-content">
             <a href="../../index.html">Home</a> |
             <a href="../main/contacts.html">Contactos</a> |
-            <a href="../main/store.html">Loja</a> |
             <a href="#">Termos e condições</a> |
             <a href="#">Política de Privacidade</a> |
             <a href="../main/FAQ.html">FAQ</a> 
