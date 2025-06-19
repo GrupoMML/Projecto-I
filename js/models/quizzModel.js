@@ -1,31 +1,45 @@
 //------------------ QUIZZ CLASS ----------------------
-//-----------------------------------------------------
-class Quizz{
-    quizzID = '' 
-    quizzName = ''
-    quizzDiscipline = ''
-    question = [
-        questionID = '',
-        questionDescription = '',
-        answer1 = '',
-        answer2 = '',
-        answer3 = '',
-        answer4 = '',
-        correctAnswer = '',
-        time = ''
-    ]
-    constructor(quizzID, quizzName, quizzDiscipline, question, questionID, questionDescription, answer1, answer2, answer3, answer4, correctAnswer, time){
-        this.quizzID = quizzID
-        this.quizzName = quizzName
-        this.quizzDiscipline = quizzDiscipline
-        this. question = question
+//----------------------------------------------------------
+class Question {
+    constructor(questionID, description, answers, correctAnswer, time) {
         this.questionID = questionID
-        this.questionDescription = questionDescription
-        this.answer1 = answer1
-        this.answer2 = answer2
-        this.answer3 = answer3
-        this.answer4 = answer4
+        this.description = description
+        this.answers = answers  
         this.correctAnswer = correctAnswer
         this.time = time
     }
 }
+
+class Quizz {
+    constructor(quizzID, quizzName, quizzDiscipline, studentEmail = "") {
+        this.quizzID = quizzID
+        this.quizzName = quizzName
+        this.quizzDiscipline = quizzDiscipline
+        this.studentEmail = studentEmail
+        this.questions = []  
+    }
+
+    addQuestion(question) {
+        this.questions.push(question)
+    }
+}
+
+const quizzes = []
+
+function createQuizz(quizzID, quizzName, quizzDiscipline, studentEmail = "") {
+    const quizz = new Quizz(quizzID, quizzName, quizzDiscipline, studentEmail)
+    quizzes.push(quizz)
+    return quizz
+}
+
+function createQuestion(questionID, description, answer1, answer2, answer3, answer4, correctAnswer, time) {
+    return new Question(
+        questionID,
+        description,
+        [answer1, answer2, answer3, answer4],
+        correctAnswer,
+        time
+    )
+}
+
+export { quizzes, createQuizz, createQuestion}
