@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
         const profilePhoto = document.getElementById('profilePhoto')
         const profilePhoto2 = document.getElementById('profilePhoto2')
 
-        if (profilePhoto) profilePhoto.src = loggedUser.photo;
+        if (profilePhoto) profilePhoto.src = loggedUser.photo
         
         if (profilePhoto2) {
         profilePhoto2.style.backgroundImage = `url(${loggedUser.photo})`
