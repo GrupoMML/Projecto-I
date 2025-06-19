@@ -32,7 +32,7 @@ class Student{
         this.locality = locality
         this.disciplines = disciplines
         this.aboutMe = aboutMe
-        this.points = points
+        this.points = points || 0
         this.priority = priority
         this.teachers = []
         this.explanations = []
