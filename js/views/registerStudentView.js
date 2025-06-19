@@ -1,10 +1,11 @@
 //------------------ IMPORTS ----------------------
 //----------------------------------------------------------
-import { students, addStudent } from "../models/studentModel.js" 
+import { getStudents, addStudent } from "../models/studentModel.js" 
 
 //------------------ STUDENT REGISTER ----------------------
 //----------------------------------------------------------
-const storedStudents = JSON.parse(localStorage.getItem("students")) || []
+const storedStudents =  getStudents()
+const students = []
 students.length = 0               
 students.push(...storedStudents)
 

@@ -1,7 +1,7 @@
 //------------------ TEACHER CLASS ----------------------
 //----------------------------------------------------------
 const getTeachers = () => JSON.parse(localStorage.getItem("teachers")) || [];
-
+let teachers = getTeachers();
 class Teacher{
     id = ''
     name = ''
@@ -47,7 +47,25 @@ function addTeacher(id, name, email, password, incapacity, gender, dateOfBirth, 
         explanationLocal, classType, price, points, priority
     )
     teachers.push(teacher)
+    localStorage.setItem("teachers", JSON.stringify(teachers));
     return teacher
 }
 
-export { getTeachers, addTeacher }
+function updateTeacher(updatedTeacher) {
+    const teachers = getTeachers();
+    const index = teachers.findIndex(t => t.id == updatedTeacher.id);
+    if (index !== -1) {
+        teachers[index] = { ...teachers[index], ...updatedTeacher };
+        localStorage.setItem("teachers", JSON.stringify(teachers));
+        return teachers[index];
+    }
+    return null;
+}
+
+function deleteTeacher(id) {
+    let teachers = getTeachers();
+    teachers = teachers.filter(t => t.id != id);
+    localStorage.setItem("teachers", JSON.stringify(teachers));
+}
+
+export { getTeachers, addTeacher, updateTeacher, deleteTeacher };

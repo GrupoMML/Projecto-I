@@ -1,7 +1,9 @@
 // teacherReviewsView.js
 import { getReviews } from '../models/reviewModel.js';
 import { getTeachers } from '../models/teachersModel.js';
-import { getStudents } from '../models/studentModel.js';
+
+const loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+console.log(loggedUser);
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,9 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Buscar professor
     const teachers = getTeachers();
-    const students = getStudents();
     const teacher = teachers.find(t => t.id === teacherId);
     
+
+    const reviews = getReviews().filter(r => r.teacher.id === teacherId);
+    console.log(reviews);
 
     
     if (!teacher) {
@@ -28,16 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Preencher cabeçalho
-    document.getElementById("user-greeting").textContent = teacher.name;
-    document.getElementById("profilePhoto").src = teacher.avatar || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80";
+    document.getElementById("teacher-name").textContent = teacher.name;
+    document.getElementById("profilePhoto").src = teacher.photo || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80";
 
     // Buscar avaliações
-    const reviews = getReviews().filter(r => r.teacher === teacherId);
     
-    // Calcular média de avaliações
+    
+    // Calcula a média de avaliações
     const averageRating = reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length || 0;
     
-    // Preencher estrelas da média
+    // Preenche as estrelas da média
     const ratingStars = document.querySelector('.rating-stars');
     ratingStars.innerHTML = '';
     for (let i = 1; i <= 5; i++) {
@@ -56,13 +60,13 @@ document.addEventListener("DOMContentLoaded", () => {
         ratingStars.appendChild(star);
     }
     
-    // Preencher comentários
+    // Preenche os comentários
     const commentsSection = document.querySelector('.comments-section');
-    // Remover exemplos estáticos
+    // Limpa o conteudo estatico
     const exampleComments = commentsSection.querySelectorAll('.comment');
     exampleComments.forEach(c => c.remove());
     
-    // Adicionar comentários reais
+    // Adiciona os comentários
     reviews.forEach(review => {
         const commentDiv = document.createElement('div');
         commentDiv.className = 'comment';
@@ -88,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Função auxiliar para formatar tempo decorrido
+// Tempod desde que a avaliação foi feita
 function formatTimeAgo(date) {
     const now = new Date();
     const diffMs = now - date;

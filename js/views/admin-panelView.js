@@ -1,736 +1,612 @@
-let teachers = [];
-let students = [];
-let products = [];
-const pageSize = 6;
-let filterNameProf = '', filterEmailProf = '', filterDisciplineProf = '';
-let filterNameAlun = '', filterEmailAlun = '', filterGradeAlun = '';
-let filterNameProd = '', filterCategoryProd = '';
-let tableStates = {
-  prof: { sortCol: '', sortAsc: true, curPage: 1 },
-  alun: { sortCol: '', sortAsc: true, curPage: 1 },
-  prod: { sortCol: '', sortAsc: true, curPage: 1 }
-};
-function renderTableProducts(data, tbodyId, filterName, additionalColumnName) {
-    const state = tableStates.prod;
+import { getTeachers, addTeacher as addTeacherModel, updateTeacher as updateTeacherModel, deleteTeacher as deleteTeacherModel } from "../models/teachersModel.js";
+import { getStudents, addStudent as addStudentModel, updateStudent as updateStudentModel, deleteStudent as deleteStudentModel } from "../models/studentModel.js";
+import { getReviews, deleteReview as deleteReviewModel } from "../models/reviewModel.js";
 
-    let filtrados = data.filter((item) =>
-        item.productName.toLowerCase().includes(filterName.toLowerCase()) &&
-        (
-            Array.isArray(item[additionalColumnName]) 
-                ? item[additionalColumnName].join(", ").toLowerCase().includes(filterCategoryProd.toLowerCase()) 
-                : (item[additionalColumnName] ? item[additionalColumnName].toLowerCase().includes(filterCategoryProd.toLowerCase()) : filterCategoryProd === '')
-        )
-    );
-
-    // Ordenar
-    if (state.sortCol) {
-        filtrados.sort((a, b) => {
-            let valA = a[state.sortCol];
-            let valB = b[state.sortCol];
-            
-            // Check if we're sorting a numeric column (like productPrice)
-            if (state.sortCol === 'productPrice') {
-                valA = parseFloat(valA) || 0;
-                valB = parseFloat(valB) || 0;
-            }
-            
-            if (valA < valB) return state.sortAsc ? -1 : 1;
-            if (valA > valB) return state.sortAsc ? 1 : -1;
-            return 0;
-        });
-    }
-
-    const totalPages = Math.ceil(filtrados.length / pageSize);
-    if (state.curPage > totalPages) state.curPage = totalPages || 1;
-
-    const start = (state.curPage - 1) * pageSize;
-    const paged = filtrados.slice(start, start + pageSize);
-
-    let output = '';
-    for (let item of paged) {
-        output += `
-        <tr>
-          <td>${item.productName}</td>
-          <td>${item.productPrice}</td>
-          <td>${Array.isArray(item[additionalColumnName]) ? item[additionalColumnName].join(", ") : item[additionalColumnName]}</td>
-          <td>
-            <button class="btn btn-sm btn-primary me-1 view-item" data-item='${JSON.stringify(item)}'>
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <button class="btn btn-sm btn-warning me-1 edit-item" data-item='${JSON.stringify(item)}'>
-              <i class="fa-solid fa-edit"></i>
-            </button>
-            <button class="btn btn-sm btn-danger delete-item" data-item='${JSON.stringify(item)}'>
-              <i class="fa-solid fa-trash-alt"></i>
-            </button>
-          </td>
-        </tr>`;
-    }
-
-    document.querySelector(tbodyId).innerHTML = output;
-
-    renderPagination(filtrados.length, 'prod');
+let loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+if (!loggedUser || loggedUser.role !== "admin") {
+    window.location.href = "../../html/main/login.html";
 }
-function renderTable(data, tbodyId, filterName, filterEmail, filterAdditional, additionalColumnName, tableType) {
-    const state = tableStates[tableType];
 
-    let filtrados = data.filter((item) =>
-        item.name.toLowerCase().includes(filterName.toLowerCase()) &&
-        (item.email ? item.email.toLowerCase().includes(filterEmail.toLowerCase()) : filterEmail === '') &&
-        (
-            Array.isArray(item[additionalColumnName]) 
-                ? item[additionalColumnName].join(", ").toLowerCase().includes(filterAdditional.toLowerCase()) 
-                : (item[additionalColumnName] ? item[additionalColumnName].toLowerCase().includes(filterAdditional.toLowerCase()) : filterAdditional === '') 
-        )
+// Estado global
+const state = {
+    teachers: getTeachers(),
+    students: getStudents(),
+    reviews: getReviews(),
+    filters: {
+        prof: { name: '', email: '', discipline: '' },
+        alun: { name: '', email: '', grade: '' },
+        rev: { student: '', teacher: '', rating: '' }
+    },
+    sort: {
+        prof: { col: '', asc: true },
+        alun: { col: '', asc: true },
+        rev: { col: '', asc: true }
+    },
+    pagination: {
+        prof: { page: 1 },
+        alun: { page: 1 },
+        rev: { page: 1 }
+    }
+};
+
+console.log(state.reviews);
+
+const pageSize = 6;
+
+// Funções de renderização
+function renderTable(tableType) {
+    switch (tableType) {
+        case 'prof':
+            renderTeachersTable();
+            break;
+        case 'alun':
+            renderStudentsTable();
+            break;
+        case 'rev':
+            renderReviewsTable();
+            break;
+    }
+    updateSortIcons(tableType);
+}
+
+function renderTeachersTable() {
+    const { filters, sort, pagination } = state;
+    const filtered = state.teachers.filter(teacher => 
+        teacher.name.toLowerCase().includes(filters.prof.name.toLowerCase()) &&
+        teacher.email.toLowerCase().includes(filters.prof.email.toLowerCase()) &&
+        teacher.disciplines.join(", ").toLowerCase().includes(filters.prof.discipline.toLowerCase())
     );
 
-    // Ordenar
-    if (state.sortCol) {
-        filtrados.sort((a, b) => {
-        if (a[state.sortCol] < b[state.sortCol]) return state.sortAsc ? -1 : 1;
-        if (a[state.sortCol] > b[state.sortCol]) return state.sortAsc ? 1 : -1;
-        return 0;
-        });
-    }
+    const sorted = sortData(filtered, sort.prof.col, sort.prof.asc);
+    renderPaginatedData(sorted, pagination.prof.page, '#tbody-professores', renderTeacherRow);
+    renderPagination(sorted.length, 'prof');
+}
 
-    const totalPages = Math.ceil(filtrados.length / pageSize);
-    if (state.curPage > totalPages) state.curPage = totalPages || 1;
+function renderStudentsTable() {
+    const { filters, sort, pagination } = state;
+    const filtered = state.students.filter(student => 
+        student.name.toLowerCase().includes(filters.alun.name.toLowerCase()) &&
+        student.email.toLowerCase().includes(filters.alun.email.toLowerCase()) &&
+        student.grade.toLowerCase().includes(filters.alun.grade.toLowerCase())
+    );
 
-    const start = (state.curPage - 1) * pageSize;
-    const paged = filtrados.slice(start, start + pageSize);
+    const sorted = sortData(filtered, sort.alun.col, sort.alun.asc);
+    renderPaginatedData(sorted, pagination.alun.page, '#tbody-alunos', renderStudentRow);
+    renderPagination(filtered.length, 'alun');
+}
 
-    let output = '';
-    for (let item of paged) {
-        output += `
+function renderReviewsTable() {
+    const { filters, sort, pagination } = state;
+    const filtered = state.reviews.filter(review => {
+        // Para arrays, verificamos se algum elemento corresponde ao filtro
+        const studentMatch = review.student?.some(s => 
+            s.toLowerCase().includes(filters.rev.student.toLowerCase()));
+        
+        const teacherMatch = review.teacher?.some(t => 
+            t.toLowerCase().includes(filters.rev.teacher.toLowerCase()));
+        
+        const ratingMatch = filters.rev.rating === '' || 
+            review.rating.toString() === filters.rev.rating;
+        
+        return studentMatch && teacherMatch && ratingMatch;
+    });
+
+    const sorted = sortData(filtered, sort.rev.col, sort.rev.asc, true);
+    renderPaginatedData(sorted, pagination.rev.page, '#tbody-reviews', renderReviewRow);
+    renderPagination(filtered.length, 'rev');
+}
+
+// Funções auxiliares de renderização
+function sortData(data, column, ascending, isReview = false) {
+    if (!column) return data;
+    
+    return [...data].sort((a, b) => {
+        let valA = a[column];
+        let valB = b[column];
+        
+        if (isReview) {
+            if (column === 'rating') {
+                valA = parseFloat(valA);
+                valB = parseFloat(valB);
+            } else if (column === 'date') {
+                valA = new Date(valA).getTime();
+                valB = new Date(valB).getTime();
+            }
+        }
+        
+        return ascending ? 
+            (valA < valB ? -1 : valA > valB ? 1 : 0) :
+            (valA > valB ? -1 : valA < valB ? 1 : 0);
+    });
+}
+
+function renderPaginatedData(data, page, selector, renderRow) {
+    const start = (page - 1) * pageSize;
+    const paged = data.slice(start, start + pageSize);
+    
+    document.querySelector(selector).innerHTML = paged.map(renderRow).join('');
+}
+
+function renderTeacherRow(teacher) {
+    return `
         <tr>
-            <td>${item.name}</td>
-            <td>${item.email}</td>
-            <td>${Array.isArray(item[additionalColumnName]) ? item[additionalColumnName].join(", ") : item[additionalColumnName]}</td>
+            <td>${teacher.name}</td>
+            <td>${teacher.email}</td>
+            <td>${teacher.disciplines.join(", ")}</td>
             <td>
-              <button 
-                class="btn btn-sm btn-primary me-1 view-item" 
-                data-item='${JSON.stringify(item)}'
-              >
-                <i class="fa-solid fa-eye"></i>
-              </button>
-                <button class="btn btn-sm btn-warning me-1 edit-item"
-                data-item='${JSON.stringify(item)}'
-              >
-                <i class="fa-solid fa-edit"></i>
-              </button>
-              <button class="btn btn-sm btn-danger" data-item='${JSON.stringify(item)}'><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-sm btn-primary me-1 view-item" data-type="teacher" data-id="${teacher.id}">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-warning me-1 edit-item" data-type="teacher" data-id="${teacher.id}">
+                    <i class="fa-solid fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-danger delete-item" data-type="teacher" data-id="${teacher.id}">
+                    <i class="fa-solid fa-trash-alt"></i>
+                </button>
             </td>
         </tr>`;
-    }
-
-  document.querySelector(tbodyId).innerHTML = output;
-  renderPagination(filtrados.length, tableType);
 }
+
+function renderStudentRow(student) {
+    return `
+        <tr>
+            <td>${student.name}</td>
+            <td>${student.email}</td>
+            <td>${student.grade}</td>
+            <td>
+                <button class="btn btn-sm btn-primary me-1 view-item" data-type="student" data-id="${student.id}">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-warning me-1 edit-item" data-type="student" data-id="${student.id}">
+                    <i class="fa-solid fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-danger delete-item" data-type="student" data-id="${student.id}">
+                    <i class="fa-solid fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>`;
+}
+
+function renderReviewRow(review) {
+    // Para arrays, juntamos os elementos com vírgula
+    const students = Array.isArray(review.student) ? 
+        review.student.join(", ") : 
+        review.student || '';
+    
+    const teachers = Array.isArray(review.teacher) ? 
+        review.teacher.join(", ") : 
+        review.teacher || '';
+    
+    const comments = review.comments || '';
+    
+    return `
+        <tr>
+            <td>${students}</td>
+            <td>${teachers}</td>
+            <td>${review.lesson || ''}</td>
+            <td>${review.rating || ''}</td>
+            <td>${comments.substring(0, 30)}${comments.length > 30 ? '...' : ''}</td>
+            <td>${review.date ? new Date(review.date).toLocaleDateString() : ''}</td>
+            <td>
+                <button class="btn btn-sm btn-primary me-1 view-item" data-type="review" data-id="${review.id}">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-warning me-1 edit-item" data-type="review" data-id="${review.id}">
+                    <i class="fa-solid fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-danger delete-item" data-type="review" data-id="${review.id}">
+                    <i class="fa-solid fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>`;
+}
+
 function renderPagination(totalItems, tableType) {
-    const state = tableStates[tableType];
     const totalPages = Math.ceil(totalItems / pageSize);
     const container = document.getElementById(`pagination-${tableType}`);
     container.innerHTML = '';
-
+    
     for (let i = 1; i <= totalPages; i++) {
         const li = document.createElement("li");
-        li.className = `page-item ${i === state.curPage ? "active" : ""}`;
+        li.className = `page-item ${i === state.pagination[tableType].page ? "active" : ""}`;
         li.innerHTML = `<button class="page-link">${i}</button>`;
         li.addEventListener("click", () => {
-        state.curPage = i;
-        renderTableFromType(tableType);
+            state.pagination[tableType].page = i;
+            renderTable(tableType);
         });
         container.appendChild(li);
     }
 }
-function renderTableFromType(tableType) {
-  if (tableType === 'prof') {
-    renderTable(teachers, '#tbody-professores', filterNameProf, filterEmailProf, filterDisciplineProf, 'disciplines', 'prof');
-  } else if (tableType === 'alun') {
-    renderTable(students, '#tbody-alunos', filterNameAlun, filterEmailAlun, filterGradeAlun, 'grade', 'alun');
-  } else {
-    renderTableProducts(products, '#tbody-produtos', filterNameProd, 'productType', 'prod');
-  }
+
+// Funções de UI
+function updateSortIcons(tableType) {
+    const sortMap = {
+        prof: {
+            name: 'sortNameProf',
+            email: 'sortEmailProf'
+        },
+        alun: {
+            name: 'sortNameAlun',
+            email: 'sortEmailAlun'
+        },
+        rev: {
+            student: 'sortStudentRev',
+            teacher: 'sortTeacherRev',
+            lesson: 'sortLessonRev',
+            rating: 'sortRatingRev',
+            date: 'sortDateRev'
+        }
+    };
+    
+    Object.entries(sortMap[tableType]).forEach(([col, id]) => {
+        const icon = document.querySelector(`#${id} i`);
+        if (state.sort[tableType].col === col) {
+            icon.className = state.sort[tableType].asc ? 'fas fa-sort-up' : 'fas fa-sort-down';
+        } else {
+            icon.className = 'fas fa-sort';
+        }
+    });
 }
-function populateSelectFromStorage(selectId, storageKey, additionalColumnName) {
-  const stored = localStorage.getItem(storageKey);
-  if (!stored) return;
 
-  const data = JSON.parse(stored);
-  const set = new Set(
-    data.map((item) =>
-      Array.isArray(item[additionalColumnName])
-        ? item[additionalColumnName].join(", ")
-        : item[additionalColumnName]
-    )
-  );
-
-  const arr = Array.from(set).sort((a, b) => {
-    const numA = parseFloat(a);
-    const numB = parseFloat(b);
-    if (!isNaN(numA) && !isNaN(numB)) {
-      return numA - numB;
+// Funções de Modal
+function showItemModal(type, id) {
+    const item = state[`${type}s`].find(item => item.id == id);
+    if (!item) return;
+    
+    let content = '';
+    
+    switch (type) {
+        case 'teacher':
+            content = `
+                <p>Email: ${item.email}</p>
+                <p>Disciplina: ${item.disciplines.join(", ")}</p>
+                <p>Data de Nascimento: ${item.dateOfBirth || 'Não disponível'}</p>
+                <p>Localidade: ${item.locality || 'Não disponível'}</p>
+                <p>Descrição: ${item.aboutMe || 'Não disponível'}</p>
+                <p>Preço por Hora: ${item.price || 'Não disponível'}</p>
+            `;
+            break;
+            
+        case 'student':
+            content = `
+                <p>Email: ${item.email}</p>
+                <p>Telefone: ${item.EEcontact || 'Não disponível'}</p>
+                <p>Disciplinas: ${item.disciplines.join(", ") || 'Nenhuma'}</p>
+                <p>Escolaridade: ${item.grade}</p>
+                <p>Data de Nascimento: ${item.dateOfBirth || 'Não disponível'}</p>
+                <p>Localidade: ${item.locality || 'Não disponível'}</p>
+                <p>Descrição: ${item.aboutMe || 'Não disponível'}</p>
+            `;
+            break;
+            
+        function renderReviewRow(review) {
+    // Para arrays, juntamos os elementos com vírgula
+    const students = Array.isArray(review.student) ? 
+        review.student.join(", ") : 
+        review.student || '';
+    
+    const teachers = Array.isArray(review.teacher) ? 
+        review.teacher.join(", ") : 
+        review.teacher || '';
+    
+    const comments = review.comments || '';
+    
+    return `
+        <tr>
+            <td>${students}</td>
+            <td>${teachers}</td>
+            <td>${review.lesson || ''}</td>
+            <td>${review.rating || ''}</td>
+            <td>${comments.substring(0, 30)}${comments.length > 30 ? '...' : ''}</td>
+            <td>${review.date ? new Date(review.date).toLocaleDateString() : ''}</td>
+            <td>
+                <button class="btn btn-sm btn-primary me-1 view-item" data-type="review" data-id="${review.id}">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-warning me-1 edit-item" data-type="review" data-id="${review.id}">
+                    <i class="fa-solid fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-danger delete-item" data-type="review" data-id="${review.id}">
+                    <i class="fa-solid fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>`;
+}
     }
-    return a.localeCompare(b);
-  });
-
-  const select = document.querySelector(selectId);
-  select.innerHTML = "<option value=''>Todos</option>";
-  arr.forEach((item) => {
-    if (item)
-      select.innerHTML += `<option value="${item.toLowerCase()}">${item}</option>`;
-  });
+    
+    document.getElementById('itemModalLabel').innerHTML = item.name || `Review de ${item.student}`;
+    document.getElementById('itemModalBody').innerHTML = content;
+    new bootstrap.Modal(document.getElementById('itemModal')).show();
 }
-function loadData() {
-  fetch("../../json/index.json")
-    .then((res) => res.json())
-    .then((json) => {
-        teachers = JSON.parse(localStorage.getItem("teachers")) || json.teachers;
-        students = JSON.parse(localStorage.getItem("students")) || json.students;
-        products = JSON.parse(localStorage.getItem("products")) || json.products;
 
-        console.log("products", products);
-
-        populateSelectFromStorage("#filterDisciplineProf", "teachers", "disciplines");
-        populateSelectFromStorage("#filterGradeAlun", "students", "grade");
-        populateSelectFromStorage("#filterCategoryProd", "products", "productType");
-
-        renderTableFromType('prof');
-        renderTableFromType('alun');
-        renderTableFromType('prod');
-    })
-    .catch(console.error);
-}
-loadData();
-// Filtros professores
-document.querySelector("#filterNameProf").addEventListener("input", (e) => {
-  filterNameProf = e.target.value;
-  tableStates.prof.curPage = 1;
-  renderTableFromType('prof');
-});
-document.querySelector("#filterEmailProf").addEventListener("input", (e) => {
-  filterEmailProf = e.target.value;
-  tableStates.prof.curPage = 1;
-  renderTableFromType('prof');
-});
-document.querySelector("#filterDisciplineProf").addEventListener("change", (e) => {
-  filterDisciplineProf = e.target.value;
-  tableStates.prof.curPage = 1;
-  renderTableFromType('prof');
-});
-// Filtros Alunos
-document.querySelector("#filterNameAlun").addEventListener("input", (e) => {
-  filterNameAlun = e.target.value;
-  tableStates.alun.curPage = 1;
-  renderTableFromType('alun');
-});
-document.querySelector("#filterEmailAlun").addEventListener("input", (e) => {
-  filterEmailAlun = e.target.value;
-  tableStates.alun.curPage = 1;
-  renderTableFromType('alun');
-});
-document.querySelector("#filterGradeAlun").addEventListener("change", (e) => {
-  filterGradeAlun = e.target.value;
-  tableStates.alun.curPage = 1;
-  renderTableFromType('alun');
-});
-// Filtros Produtos
-document.querySelector("#filterNameProd").addEventListener("input", (e) => {
-  filterNameProd = e.target.value;
-  tableStates.prod.curPage = 1;
-  renderTableFromType('prod');
-});
-document.querySelector("#filterCategoryProd").addEventListener("change", (e) => {
-  filterCategoryProd = e.target.value;
-  tableStates.prod.curPage = 1;
-  renderTableFromType('prod');
-});
-// Visualização de item
-document.querySelector('#tbody-produtos').addEventListener('click', (e) => {
-  const btn = e.target.closest('.view-item');
-  if (btn) {
-    const item = JSON.parse(btn.dataset.item);
-    showItemModalProduct(item);
-  }
-});
-document.querySelector('#tbody-professores').addEventListener('click', (e) => {
-  const btn = e.target.closest('.view-item');
-  if (btn) {
-    const item = JSON.parse(btn.dataset.item);
-    showItemModalTeacher(item);
-  }
-});
-document.querySelector('#tbody-alunos').addEventListener('click', (e) => {
-  const btn = e.target.closest('.view-item');
-  if (btn) {
-    const item = JSON.parse(btn.dataset.item);
-    showItemModalAlun(item);
-  }
-});
-// Editar item
-document.querySelector("#tbody-produtos").addEventListener("click", (e) => {
-  if (e.target.closest(".edit-item")) {
-    const item = JSON.parse(e.target.closest(".edit-item").dataset.item);
-    showEditProductModal(item);
-  }
-});
-document.querySelector("#tbody-professores").addEventListener("click", (e) => {
-  if (e.target.closest(".edit-item")) {
-    const item = JSON.parse(e.target.closest(".edit-item").dataset.item);
-    showEditTeacherModal(item);
-  }
-});
-document.querySelector("#tbody-alunos").addEventListener("click", (e) => {
-  if (e.target.closest(".edit-item")) {
-    const item = JSON.parse(e.target.closest(".edit-item").dataset.item);
-    showEditAlunModal(item);
-  }
-});
-// Ordenação
-[
-  { id: 'sortNameProf', col: 'name', type: 'prof' },
-  { id: 'sortEmailProf', col: 'email', type: 'prof' },
-  { id: 'sortNameAlun', col: 'name', type: 'alun' },
-  { id: 'sortEmailAlun', col: 'email', type: 'alun' },
-  { id: 'sortNameProd', col: 'productName', type: 'prod' },
-  { id: 'sortPriceProd', col: 'productPrice', type: 'prod' }
-].forEach(({ id, col, type }) => {
-  document.getElementById(id).addEventListener("click", () => {
-    const state = tableStates[type];
-    if (state.sortCol === col) {
-      state.sortAsc = !state.sortAsc;
-    } else {
-      state.sortCol = col;
-      state.sortAsc = true;
+function showEditModal(type, id) {
+    const item = state[`${type}s`].find(item => item.id == id);
+    if (!item) return;
+    
+    let formHTML = '';
+    
+    switch (type) {
+        case 'teacher':
+            formHTML = `
+                <input type="text" value="${item.name}" class="form-control mb-2" placeholder="Nome">
+                <input type="email" value="${item.email}" class="form-control mb-2" placeholder="Email">
+                <input type="text" value="${item.disciplines.join(", ")}" class="form-control mb-2" placeholder="Disciplinas">
+                <input type="date" value="${item.dateOfBirth}" class="form-control mb-2">
+                <input type="text" value="${item.locality}" class="form-control mb-2" placeholder="Localidade">
+                <textarea class="form-control mb-2" placeholder="Sobre mim">${item.aboutMe}</textarea>
+                <input type="text" value="${item.price}" class="form-control mb-2" placeholder="Preço por Hora">
+                <button class="btn btn-primary mt-3" data-action="save" data-type="teacher" data-id="${item.id}">Salvar</button>
+            `;
+            break;
+            
+        case 'student':
+            formHTML = `
+                <input type="text" value="${item.name}" class="form-control mb-2" placeholder="Nome">
+                <input type="email" value="${item.email}" class="form-control mb-2" placeholder="Email">
+                <select class="form-control mb-2">
+                    ${['1º Ano', '2º Ano', '3º Ano', '4º Ano', '5º Ano', '6º Ano', 
+                       '7º Ano', '8º Ano', '9º Ano', '10º Ano', '11º Ano', '12º Ano']
+                       .map(grade => `<option ${grade === item.grade ? 'selected' : ''}>${grade}</option>`)
+                       .join('')}
+                </select>
+                <input type="text" value="${item.EEcontact}" class="form-control mb-2" placeholder="Telefone">
+                <input type="date" value="${item.dateOfBirth}" class="form-control mb-2">
+                <input type="text" value="${item.locality}" class="form-control mb-2" placeholder="Localidade">
+                <textarea class="form-control mb-2" placeholder="Sobre mim">${item.aboutMe}</textarea>
+                <button class="btn btn-primary mt-3" data-action="save" data-type="student" data-id="${item.id}">Salvar</button>
+            `;
+            break;
     }
-    updateSortIcons();
-    renderTableFromType(type);
-  });
-});
-function updateSortIcons() {
-  const map = {
-    sortNameProf: ['prof', 'name'],
-    sortEmailProf: ['prof', 'email'],
-    sortNameAlun: ['alun', 'name'],
-    sortEmailAlun: ['alun', 'email'],
-    sortNameProd: ['prod', 'productName'],
-    sortPriceProd: ['prod', 'productPrice'],
-  };
-
-  for (let id in map) {
-    const icon = document.querySelector(`#${id} i`);
-    const [type, col] = map[id];
-    const state = tableStates[type];
-    if (state.sortCol === col) {
-      icon.className = state.sortAsc ? 'fas fa-sort-up' : 'fas fa-sort-down';
-    } else {
-      icon.className = 'fas fa-sort';
-    }
-  }
+    
+    document.querySelector("#itemEditModalLabel").innerHTML = `Editar ${type === 'review' ? 'Review' : type}`;
+    document.querySelector("#itemEditForm").innerHTML = formHTML;
+    new bootstrap.Modal(document.getElementById("itemEditModal")).show();
 }
-// Modal de criação de item
+
 function showAddModal(type) {
-  let title = "";
-  let formHTML = "";
-
-  if (type === "prod") {
-    title = "Adicionar Produto";
-    formHTML = `
-      <input type="text" id="addProductType" class="form-control mb-2" placeholder="Categoria">
-      <input type="text" id="addProductName" class="form-control mb-2" placeholder="Nome">
-      <input type="number" id="addProductQuantity" class="form-control mb-2" placeholder="Quantidade">
-      <input type="text" id="addProductQuality" class="form-control mb-2" placeholder="Qualidade">
-      <input type="text" id="addProductSize" class="form-control mb-2" placeholder="Tamanho">
-      <input type="text" id="addProductColor" class="form-control mb-2" placeholder="Cor">
-      <input type="number" id="addProductPrice" class="form-control mb-2" placeholder="Valor">
-      <input type="text" id="addProductCoupon" class="form-control mb-2" placeholder="Cupom de Desconto">
-      <button class="btn btn-primary mt-3" id="itemAddBtnProd">Adicionar</button>
-    `;
-  }
-  else if (type === "prof") {
-    title = "Adicionar Professor";
-    formHTML = `
-      <input type="text" id="addTeacherName" class="form-control mb-2" placeholder="Nome">
-      <input type="email" id="addTeacherEmail" class="form-control mb-2" placeholder="Email">
-      <input type="password" id="addTeacherPassword" class="form-control mb-2" placeholder="Senha">
-      <input type="text" id="addTeacherDisciplines" class="form-control mb-2" placeholder="Disciplinas (separadas por vírgula)">
-      <input type="date" id="addTeacherDOB" class="form-control mb-2">
-      <input type="text" id="addTeacherLocality" class="form-control mb-2" placeholder="Localidade">
-      <textarea id="addTeacherAboutMe" class="form-control mb-2" placeholder="Sobre mim"></textarea>
-      <input type="text" id="addTeacherPrice" class="form-control mb-2" placeholder="Preço por Hora">
-      <button class="btn btn-primary mt-3" id="itemAddBtnProf">Adicionar</button>
-    `;
-  }
-  else if (type === "alun") {
-    title = "Adicionar Aluno";
-    formHTML = `
-      <input type="text" id="addAlunName" class="form-control mb-2" placeholder="Nome">
-      <input type="email" id="addAlunEmail" class="form-control mb-2" placeholder="Email">
-      <select id="addAlunGrade" class="form-control mb-2">
-        <option value="">Selecione o Ano Escolar</option>
-        <option value="1º Ano">1º Ano</option>
-        <option value="2º Ano">2º Ano</option>
-        <option value="3º Ano">3º Ano</option>
-        <option value="4º Ano">4º Ano</option>
-        <option value="5º Ano">5º Ano</option>
-        <option value="6º Ano">6º Ano</option>
-        <option value="7º Ano">7º Ano</option>
-        <option value="8º Ano">8º Ano</option>
-        <option value="9º Ano">9º Ano</option>
-        <option value="10º Ano">10º Ano</option>
-        <option value="11º Ano">11º Ano</option>
-        <option value="12º Ano">12º Ano</option>  
-      </select>
-      <select id="addAlunGender" class="form-control mb-2">
-        <option value="masculino">Masculino</option>
-        <option value="feminino">Feminino</option>
-      </select>
-      <input type="date" id="addAlunDOB" class="form-control mb-2">
-      <input type="text" id="addAlunLocality" class="form-control mb-2" placeholder="Localidade">
-      <textarea id="addAlunAboutMe" class="form-control mb-2" placeholder="Sobre mim"></textarea>
-      <button class="btn btn-primary mt-3" id="itemAddBtnAlun">Adicionar</button>
-    `;
-  }
-
-  
-  
-  document.getElementById("itemAddModalLabel").innerHTML = title;
-  document.getElementById("itemAddForm").innerHTML = formHTML;
-
-  new bootstrap.Modal(document.getElementById("itemAddModal")).show();
-}
-// Modal de visualização de item
-function showItemModalProduct(item) {
-  // Preencha o modal com os dados do item
-  document.getElementById('itemModalLabel').innerHTML = item.productName;
-  
-  document.getElementById('itemModalBody').innerHTML = `
-    <p>Valor: ${item.productPrice}</p>
-    <p>Categoria: ${item.productType ? item.productType : ''}</p>
-    <p>Quantidade: ${item.productQuantity ? item.productQuantity : 'Indisponível'}</p>
-    <p>Cor: ${item.productColor ? item.productColor : 'Indisponível'}</p>
-
-  `;
-  
-  // Mostre o modal
-  new bootstrap.Modal(document.getElementById('itemModal')).show();
-}
-function showItemModalTeacher(item) {
-  // Preencha o modal com os dados do item
-  document.getElementById('itemModalLabel').innerHTML = item.name;
-  
-  document.getElementById('itemModalBody').innerHTML = `
-    <p>Email: ${item.email}</p>
-    <p>Disciplina: ${item.disciplines ? item.disciplines.join(", ") : 'Nenhuma disciplina atribuída.'}</p>
-    <p>Data de Nascimento: ${item.dateOfBirth ? item.dateOfBirth : 'Nenhuma data de nascimento disponível.'}</p>
-    <p>Localidade: ${item.locality ? item.locality : 'Nenhuma localidade disponível.'}</p>
-    <p>Descrição: ${item.aboutMe ? item.aboutMe : 'Nenhuma descrição disponível.'}</p>
-    <p>Preço por Hora: ${item.price ? item.price : 'Nenhum preço por hora disponível.'}</p>
-  `;
-  
-  // Mostre o modal
-  new bootstrap.Modal(document.getElementById('itemModal')).show();
-}
-function showItemModalAlun(item) {
-  // Preencha o modal com os dados do item
-  document.getElementById('itemModalLabel').innerHTML = item.name;
-  
-  document.getElementById('itemModalBody').innerHTML = `
-    <p>Email: ${item.email}</p>
-    <p>Número de Telefone (EE): ${item.EEcontact ? item.EEcontact : 'Nenhum telefone disponível.'}</p>
-    <p>Disciplinas: ${item.disciplines ? item.disciplines.join(", ") : 'Nenhuma disciplina atribuída.'}</p>
-    <p>Escolaridade: ${item.grade}</p>
-    <p>Data de Nascimento: ${item.dateOfBirth ? item.dateOfBirth : 'Nenhuma data de nascimento disponível.'}</p>
-    <p>Localidade: ${item.locality ? item.locality : 'Nenhuma localidade disponível.'}</p>
-    <p>Descrição: ${item.aboutMe ? item.aboutMe : 'Nenhuma descrição disponível.'}</p>
-
-  `;
-  
-  // Mostre o modal
-  new bootstrap.Modal(document.getElementById('itemModal')).show();
-}
-// Modal de edição de item
-function showEditProductModal(item) {
-  // Preencha o modal com os dados do item
-  document.querySelector("#itemEditModalLabel").innerHTML = "Editar " + item.productName;
-
-  document.querySelector("#itemEditForm").innerHTML = `
-    <input type="text" id="editProductType" value="${item.productType}" class="form-control mb-2" placeholder="Categoria">
-    <input type="text" id="editProductName" value="${item.productName}" class="form-control mb-2" placeholder="Nome">
-    <input type="hidden" id="editProductId" value="${item.productID}">
-    <input type="number" id="editProductQuantity" value="${item.productQuantity}" class="form-control mb-2" placeholder="Quantidade">
-    <input type="text" id="editProductQuality" value="${item.productQuality}" class="form-control mb-2" placeholder="Qualidade">
-    <input type="text" id="editProductSize" value="${item.productSize}" class="form-control mb-2" placeholder="Tamanho">
-    <input type="text" id="editProductColor" value="${item.productColor}" class="form-control mb-2" placeholder="Cor">
-    <input type="number" id="editProductPrice" value="${item.productPrice}" class="form-control mb-2" placeholder="Valor">
-    <input type="hidden" id="editProductCoupon" value="${item.productCoupon}" class="form-control mb-2" placeholder="Cupom de Desconto">
-
-    <button class="btn btn-primary mt-3" id="itemSaveBtnProd">Salvar</button>
-  `;
-
-  new bootstrap.Modal(document.getElementById("itemEditModal")).show();
-}
-function showEditTeacherModal(item) {
-  // Preencha o modal com os dados do item
-  document.querySelector("#itemEditModalLabel").innerHTML = "Editar " + item.name;
-
-  document.querySelector("#itemEditForm").innerHTML = `
-    <input type="text" id="editteacherName" value="${item.name}" class="form-control mb-2" placeholder="Nome">
-    <input type="email" id="editteacherEmail" value="${item.email}" class="form-control mb-2" placeholder="Email">
-    <input type="text" id="editteacherDisciplines" value="${item.disciplines.join(", ")}" class="form-control mb-2" placeholder="Disciplinas (separadas por vírgula)">
-    <input type="date" id="editteacherDOB" value="${item.dateOfBirth}" class="form-control mb-2">
-    <input type="text" id="editteacherLocality" value="${item.locality}" class="form-control mb-2" placeholder="Localidade">
-    <textarea id="editteacherAboutMe" class="form-control mb-2" placeholder="Sobre mim">${item.aboutMe}</textarea>
-    <input type="text" id="editteacherPrice" value="${item.price}" class="form-control mb-2" placeholder="Preço por Hora">
-    <input type="hidden" id="editteacherId" value="${item.id}">
-
-    <button class="btn btn-primary mt-3" id="itemSaveBtnProf">Salvar</button>
-  `;
-
-  new bootstrap.Modal(document.getElementById("itemEditModal")).show();
-}
-function showEditAlunModal(item) {
-  // Preencha o modal com os dados do item
-  document.querySelector("#itemEditModalLabel").innerHTML = "Editar " + item.name;
-
-  document.querySelector("#itemEditForm").innerHTML = `
-    <input type="text" id="editAlunName" value="${item.name}" class="form-control mb-2" placeholder="Nome">
-    <input type="email" id="editAlunEmail" value="${item.email}" class="form-control mb-2" placeholder="Email">
-    <select id="editAlunGrade" class="form-control mb-2">
-    <option value="">Selecione o Ano Escolar</option>
-      <option value="1º Ano" ${item.grade === "1º Ano" ? "selected" : ""}>1º Ano</option>
-      <option value="2º Ano" ${item.grade === "2º Ano" ? "selected" : ""}>2º Ano</option>
-      <option value="3º Ano" ${item.grade === "3º Ano" ? "selected" : ""}>3º Ano</option>
-      <option value="4º Ano" ${item.grade === "4º Ano" ? "selected" : ""}>4º Ano</option>
-      <option value="5º Ano" ${item.grade === "5º Ano" ? "selected" : ""}>5º Ano</option>
-      <option value="6º Ano" ${item.grade === "6º Ano" ? "selected" : ""}>6º Ano</option>
-      <option value="7º Ano" ${item.grade === "7º Ano" ? "selected" : ""}>7º Ano</option>
-      <option value="8º Ano" ${item.grade === "8º Ano" ? "selected" : ""}>8º Ano</option>
-      <option value="9º Ano" ${item.grade === "9º Ano" ? "selected" : ""}>9º Ano</option>
-      <option value="10º Ano" ${item.grade === "10º Ano" ? "selected" : ""}>10º Ano</option>
-      <option value="11º Ano" ${item.grade === "11º Ano" ? "selected" : ""}>11º Ano</option>
-      <option value="12º Ano" ${item.grade === "12º Ano" ? "selected" : ""}>12º Ano</option>
-    </select>
-    <input id="editEEcontact" type="text" value="${item.EEcontact}" class="form-control mb-2" placeholder="Número de Telefone (EE)">
-    <select id="editAlunIncapacity" class="form-control mb-2">
-      <option value="não" ${item.incapacity === "não" ? "selected" : ""}>Não</option>
-      <option value="sim" ${item.incapacity === "sim" ? "selected" : ""}>Sim</option>
-    </select>
-    <select id="editAlunGender" class="form-control mb-2">
-      <option value="masculino" ${item.gender === "masculino" ? "selected" : ""}>Masculino</option>
-      <option value="feminino" ${item.gender === "feminino" ? "selected" : ""}>Feminino</option>
-    </select>
-    <input type="date" id="editAlunDOB" value="${item.dateOfBirth}" class="form-control mb-2">
-    <input type="text" id="editAlunLocality" value="${item.locality}" class="form-control mb-2" placeholder="Localidade">
-    <textarea id="editAlunAboutMe" class="form-control mb-2" placeholder="Sobre mim">${item.aboutMe}</textarea>
-    <input type="hidden" id="editAlunId" value="${item.id}">
-
-    <button class="btn btn-primary mt-3" id="itemSaveBtnAlun">Salvar</button>
-  `;
-  new bootstrap.Modal(document.getElementById("itemEditModal")).show();
-}
-// Apagar item
-document.querySelector("#tbody-produtos").addEventListener("click", (e) => {
-  if (e.target.closest(".btn-danger")) {
-    const item = JSON.parse(e.target.closest(".btn-danger").dataset.item);
-
-    // opcional: confirmação
-    if (confirm("Deseja excluir o item?")) {
-      products = products.filter((p) => p.id !== item.id);
-      localStorage.setItem("products", JSON.stringify(products));
-      renderTableFromType("prod");
-      // removido
-    }
-  }
-});
-document.querySelector("#tbody-professores").addEventListener("click", (e) => {
-  if (e.target.closest(".btn-danger")) {
-    const item = JSON.parse(e.target.closest(".btn-danger").dataset.item);
+    let formHTML = '';
     
-
-    // opcional: confirmação
-    if (confirm("Deseja excluir o item?")) {
-      teachers = teachers.filter((p) => p.id !== item.id);
-      localStorage.setItem("teachers", JSON.stringify(teachers));
-      renderTableFromType("prof");
-      // removido
+    switch (type) {
+        case 'teacher':
+            formHTML = `
+                <input type="text" class="form-control mb-2" placeholder="Nome">
+                <input type="email" class="form-control mb-2" placeholder="Email">
+                <input type="password" class="form-control mb-2" placeholder="Senha">
+                <input type="text" class="form-control mb-2" placeholder="Disciplinas">
+                <input type="date" class="form-control mb-2">
+                <input type="text" class="form-control mb-2" placeholder="Localidade">
+                <textarea class="form-control mb-2" placeholder="Sobre mim"></textarea>
+                <input type="text" class="form-control mb-2" placeholder="Preço por Hora">
+                <button class="btn btn-primary mt-3" data-action="add" data-type="teacher">Adicionar</button>
+            `;
+            break;
+            
+        case 'student':
+            formHTML = `
+                <input type="text" class="form-control mb-2" placeholder="Nome">
+                <input type="email" class="form-control mb-2" placeholder="Email">
+                <select class="form-control mb-2">
+                    <option value="">Selecione o Ano Escolar</option>
+                    ${['1º Ano', '2º Ano', '3º Ano', '4º Ano', '5º Ano', '6º Ano', 
+                       '7º Ano', '8º Ano', '9º Ano', '10º Ano', '11º Ano', '12º Ano']
+                       .map(grade => `<option>${grade}</option>`).join('')}
+                </select>
+                <input type="text" class="form-control mb-2" placeholder="Telefone">
+                <input type="date" class="form-control mb-2">
+                <input type="text" class="form-control mb-2" placeholder="Localidade">
+                <textarea class="form-control mb-2" placeholder="Sobre mim"></textarea>
+                <button class="btn btn-primary mt-3" data-action="add" data-type="student">Adicionar</button>
+            `;
+            break;
     }
-  }
-});
-document.querySelector("#tbody-alunos").addEventListener("click", (e) => {
-  if (e.target.closest(".btn-danger")) {
-    const item = JSON.parse(e.target.closest(".btn-danger").dataset.item);
     
-    // opcional: confirmação
-    if (confirm("Deseja excluir o item?")) {
-      students = students.filter((s) => s.id !== item.id);
-      localStorage.setItem("students", JSON.stringify(students));
-      renderTableFromType("alun");
-      // removido
-    }
-  }
-});
-// Guardar item editado
-document.addEventListener("click", (e) => {
-  if (e.target.id === "itemSaveBtnProd") {
-    const id = document.querySelector("#editProductId").value;
+    document.getElementById("itemAddModalLabel").innerHTML = `Adicionar ${type === 'review' ? 'Review' : type}`;
+    document.getElementById("itemAddForm").innerHTML = formHTML;
+    new bootstrap.Modal(document.getElementById("itemAddModal")).show();
+}
 
-    const index = products.findIndex((item) => item.productID == id);
+// Event Listeners
+function setupEventListeners() {
+    // Filtros
+    document.querySelectorAll('[id^="filter"]').forEach(input => {
+        const [_, tableType, filterType] = input.id.match(/filter(\w+)(\w+)/) || [];
+        if (tableType && filterType) {
+            const type = tableType.toLowerCase();
+            input.addEventListener('input', () => {
+                state.filters[type][filterType.toLowerCase()] = input.value;
+                state.pagination[type].page = 1;
+                renderTable(type);
+            });
+        }
+    });
     
-    if (index !== -1) {
-      products[index].productType = document.querySelector("#editProductType").value;
-      products[index].productName = document.querySelector("#editProductName").value;
-      products[index].productQuantity = parseInt(document.querySelector("#editProductQuantity").value);
-      products[index].productQuality = document.querySelector("#editProductQuality").value;
-      products[index].productSize = document.querySelector("#editProductSize").value;
-      products[index].productColor = document.querySelector("#editProductColor").value;
-      products[index].productPrice = parseFloat(document.querySelector("#editProductPrice").value);
-      products[index].productCoupon = document.querySelector("#editProductCoupon").value;
-
-      console.log("Produto atualizado.", products[index]);
-
-      localStorage.setItem("products", JSON.stringify(products));
-      populateSelectFromStorage("#filterCategoryProd", "products", "productType");
-
-      renderTableFromType("prod");
-      bootstrap.Modal.getInstance(document.querySelector("#itemEditModal")).hide();
-    } else {
-      console.error("Produto não encontrado!");
-    }
-  }
-  if (e.target.id === "itemSaveBtnProf") {
-    const id = document.querySelector("#editTeacherId").value;
-
-    // Busca o item pelo id
-    const index = teachers.findIndex((item) => item.id == id);
+    // Ordenação
+    document.querySelectorAll('[id^="sort"]').forEach(header => {
+        const [_, tableType, col] = header.id.match(/sort(\w+)(\w+)/) || [];
+        if (tableType && col) {
+            const type = tableType.toLowerCase();
+            header.addEventListener('click', () => {
+                if (state.sort[type].col === col.toLowerCase()) {
+                    state.sort[type].asc = !state.sort[type].asc;
+                } else {
+                    state.sort[type].col = col.toLowerCase();
+                    state.sort[type].asc = true;
+                }
+                renderTable(type);
+            });
+        }
+    });
     
-    if (index !== -1) {
-      teachers[index].name = document.querySelector("#editteacherName").value;
-      teachers[index].email = document.querySelector("#editteacherEmail").value;
-      teachers[index].disciplines = document.querySelector("#editteacherDisciplines").value.split(",").map(d => d.trim()); 
-      teachers[index].dateOfBirth = document.querySelector("#editteacherDOB").value;
-      teachers[index].locality = document.querySelector("#editteacherLocality").value;
-      teachers[index].aboutMe = document.querySelector("#editteacherAboutMe").value;
-      teachers[index].price = parseFloat(document.querySelector("#editteacherPrice").value);
+    // Botões de ação
+    document.body.addEventListener('click', async (e) => {
+        const btn = e.target.closest('[data-action]');
+        if (!btn) return;
+        
+        const action = btn.dataset.action;
+        const type = btn.dataset.type;
+        const id = btn.dataset.id;
+        
+        try {
+            if (action === 'view') {
+                showItemModal(type, id);
+            } 
+            else if (action === 'edit') {
+                showEditModal(type, id);
+            } 
+            else if (action === 'delete') {
+                if (confirm("Tem certeza que deseja excluir?")) {
+                    await deleteItem(type, id);
+                    renderTable(type);
+                }
+            } 
+            else if (action === 'save') {
+                await updateItem(type, id);
+                bootstrap.Modal.getInstance(document.querySelector("#itemEditModal")).hide();
+                renderTable(type);
+            } 
+            else if (action === 'add') {
+                await addItem(type);
+                bootstrap.Modal.getInstance(document.querySelector("#itemAddModal")).hide();
+                renderTable(type);
+            }
+        } catch (error) {
+            console.error(`Erro ao ${action} ${type}:`, error);
+            alert(`Erro ao ${action} ${type}`);
+        }
+    });
+    
+    // Botões de adicionar
+    document.getElementById("addProfBtn").addEventListener("click", () => showAddModal("teacher"));
+    document.getElementById("addAlunBtn").addEventListener("click", () => showAddModal("student"));
+}
 
-      console.log("teacher atualizado.", teachers[index]);
-
-      localStorage.setItem("teachers", JSON.stringify(teachers));
-
-      // Atualiza o select de disciplinas
-      populateSelectFromStorage("#filterDisciplineProf", "teachers", "disciplines");
-      // Re-renderize a tabela
-      renderTableFromType("prof");
-
-      // Feche o modal
-      bootstrap.Modal.getInstance(document.querySelector("#itemEditModal")).hide();
-
-    } else {
-      console.error("professor não encontrado!");
+// Funções CRUD
+async function deleteItem(type, id) {
+    switch (type) {
+        case 'teacher':
+            deleteTeacherModel(id);
+            state.teachers = getTeachers();
+            break;
+        case 'student':
+            deleteStudentModel(id);
+            state.students = getStudents();
+            break;
+        case 'review':
+            deleteReviewModel(id);
+            state.reviews = getReviews();
+            break;
     }
-  } 
-  if (e.target.id === "itemSaveBtnAlun") {
-    const id = document.querySelector("#editAlunId").value;
+}
 
-  // Busca o item pelo id
-  const index = students.findIndex((item) => item.id == id);
-  
-  if (index !== -1) {
-    students[index].name = document.querySelector("#editAlunName").value;
-    students[index].email = document.querySelector("#editAlunEmail").value;
-    students[index].grade = document.querySelector("#editAlunGrade").value;
-    students[index].dateOfBirth = document.querySelector("#editAlunDOB").value;
-    students[index].locality = document.querySelector("#editAlunLocality").value;
-    students[index].aboutMe = document.querySelector("#editAlunAboutMe").value;
+async function updateItem(type, id) {
+    const form = document.querySelector("#itemEditForm");
+    const inputs = form.querySelectorAll('input, select, textarea');
+    
+    switch (type) {
+        case 'teacher':
+            const teacherData = {
+                id,
+                name: inputs[0].value,
+                email: inputs[1].value,
+                disciplines: inputs[2].value.split(',').map(d => d.trim()),
+                dateOfBirth: inputs[3].value,
+                locality: inputs[4].value,
+                aboutMe: inputs[5].value,
+                price: parseFloat(inputs[6].value)
+            };
+            updateTeacherModel(teacherData);
+            state.teachers = getTeachers();
+            break;
+            
+        case 'student':
+            const studentData = {
+                id,
+                name: inputs[0].value,
+                email: inputs[1].value,
+                grade: inputs[2].value,
+                EEcontact: inputs[3].value,
+                dateOfBirth: inputs[4].value,
+                locality: inputs[5].value,
+                aboutMe: inputs[6].value
+            };
+            updateStudentModel(studentData);
+            state.students = getStudents();
+            break;
+            
+    }
+}
 
-    console.log("Aluno atualizado.", students[index]);
+async function addItem(type) {
+    const form = document.querySelector("#itemAddForm");
+    const inputs = form.querySelectorAll('input, select, textarea');
+    
+    switch (type) {
+        case 'teacher':
+            const teacherData = {
+                name: inputs[0].value,
+                email: inputs[1].value,
+                password: inputs[2].value,
+                disciplines: inputs[3].value.split(',').map(d => d.trim()),
+                dateOfBirth: inputs[4].value,
+                locality: inputs[5].value,
+                aboutMe: inputs[6].value,
+                price: parseFloat(inputs[7].value),
+                points: 0,
+                priority: 2
+            };
+            addTeacherModel(teacherData);
+            state.teachers = getTeachers();
+            break;
+            
+        case 'student':
+            const studentData = {
+                name: inputs[0].value,
+                email: inputs[1].value,
+                password: 'defaultPassword',
+                grade: inputs[2].value,
+                EEcontact: inputs[3].value || '000000000',
+                incapacity: 'não',
+                gender: 'masculino',
+                dateOfBirth: inputs[4].value,
+                locality: inputs[5].value,
+                aboutMe: inputs[6].value,
+                points: 0,
+                priority: 1
+            };
+            addStudentModel(studentData);
+            state.students = getStudents();
+            break;
+    }
+}
 
-    localStorage.setItem("students", JSON.stringify(students));
-
-    // Atualiza o select de grau escolar
-    populateSelectFromStorage("#filterGradeAlun", "students", "grade");
-    // Re-renderize a tabela
-    renderTableFromType("alun");
-
-    // Feche o modal
-    bootstrap.Modal.getInstance(document.querySelector("#itemEditModal")).hide();
-
-  } else {
-    console.error("Aluno não encontrado!");
-  }
-  }
-});
-// Adicionar novo item
-document.addEventListener("click", (e) => {
-  // Produto
-  if (e.target.id === "itemAddBtnProd") {
-    e.preventDefault();
-    const newItem = {
-      productID: Date.now(),
-      productType: document.getElementById("addProductType").value,
-      productName: document.getElementById("addProductName").value,
-      productQuantity: parseInt(document.getElementById("addProductQuantity").value),
-      productQuality: document.getElementById("addProductQuality").value,
-      productSize: document.getElementById("addProductSize").value,
-      productColor: document.getElementById("addProductColor").value,
-      productPrice: parseFloat(document.getElementById("addProductPrice").value),
-      productCoupon: document.getElementById("addProductCoupon").value
-    };
-    products.push(newItem);
-    localStorage.setItem("products", JSON.stringify(products));
-    populateSelectFromStorage("#filterCategoryProd", "products", "productType");
-    renderTableFromType("prod");
-    bootstrap.Modal.getInstance(document.getElementById("itemAddModal")).hide();
-  }
-  // Professor
-  if (e.target.id === "itemAddBtnProf") {
-    e.preventDefault();
-    const newItem = {
-      id: Date.now(),
-      name: document.getElementById("addTeacherName").value,
-      email: document.getElementById("addTeacherEmail").value,
-      disciplines: document.getElementById("addTeacherDisciplines").value.split(",").map(d => d.trim()),
-      dateOfBirth: document.getElementById("addTeacherDOB").value,
-      locality: document.getElementById("addTeacherLocality").value,
-      aboutMe: document.getElementById("addTeacherAboutMe").value,
-      password: document.getElementById("addTeacherPassword").value,
-      price: parseFloat(document.getElementById("addTeacherPrice").value),
-      points: 0, // Pontos iniciais
-      priority: 2 // Prioridade inicial
-    };
-    teachers.push(newItem);
-    localStorage.setItem("teachers", JSON.stringify(teachers));
+// Inicialização
+function init() {
+    // Preencher selects de filtro
     populateSelectFromStorage("#filterDisciplineProf", "teachers", "disciplines");
-    renderTableFromType("prof");
-    bootstrap.Modal.getInstance(document.getElementById("itemAddModal")).hide();
-  }
-  // Aluno
-  if (e.target.id === "itemAddBtnAlun") {
-    e.preventDefault();
-    const newItem = {
-      id: Date.now(),
-      name: document.getElementById("addAlunName").value,
-      email: document.getElementById("addAlunEmail").value,
-      password: "defaultPassword", // Senha padrão, pode ser alterada depois
-      grade: document.getElementById("addAlunGrade").value,
-      EEcontact: "000000000", // Número de telefone do responsável, pode ser alterado depois
-      incapacity: "não", // Informação sobre incapacidade, pode ser alterada depois
-      gender: document.getElementById("addAlunGender").value,
-      dateOfBirth: document.getElementById("addAlunDOB").value,
-      locality: document.getElementById("addAlunLocality").value,
-      disciplines: [], // Inicialmente vazio, pode ser preenchido depois
-      aboutMe: document.getElementById("addAlunAboutMe").value,
-      points: 0, // Pontos iniciais
-      priority: 1 
-    };
-    students.push(newItem);
-    localStorage.setItem("students", JSON.stringify(students));
     populateSelectFromStorage("#filterGradeAlun", "students", "grade");
-    renderTableFromType("alun");
-    bootstrap.Modal.getInstance(document.getElementById("itemAddModal")).hide();
-  }
-});
+    
+    // Renderizar tabelas
+    renderTable('prof');
+    renderTable('alun');
+    renderTable('rev');
+    
+    // Configurar listeners
+    setupEventListeners();
+}
 
-document.getElementById("addProductBtn").addEventListener("click", () => showAddModal("prod"));
-document.getElementById("addProfBtn").addEventListener("click", () => showAddModal("prof"));
-document.getElementById("addAlunBtn").addEventListener("click", () => showAddModal("alun"));
+// Função auxiliar para preencher selects
+function populateSelectFromStorage(selectId, storageKey, property) {
+    const items = JSON.parse(localStorage.getItem(storageKey)) || [];
+    const values = [...new Set(items.map(item => 
+        Array.isArray(item[property]) ? 
+        item[property].join(", ") : 
+        item[property]
+    ))].filter(Boolean).sort();
+    
+    const select = document.querySelector(selectId);
+    select.innerHTML = `<option value="">Todos</option>` + 
+        values.map(val => `<option value="${val.toLowerCase()}">${val}</option>`).join('');
+}
+
+// Iniciar aplicação
+init();

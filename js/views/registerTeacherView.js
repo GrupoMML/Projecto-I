@@ -1,8 +1,9 @@
 //------------------ IMPORTS ----------------------
 //----------------------------------------------------------
-import { teachers, addTeacher } from "../models/teachersModel.js" 
+import { getTeachers, addTeacher } from "../models/teachersModel.js" 
 
-const storedTeachers = JSON.parse(localStorage.getItem("teachers")) || []
+const storedTeachers = getTeachers()
+const teachers = []
 teachers.length = 0
 teachers.push(...storedTeachers)
 

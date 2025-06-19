@@ -9,7 +9,7 @@ if (!loggedUser || loggedUser.role !== "teacher") {
     loadTeacherLessons();
 }
 
- document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const options = {
         "option-clothing": {
             show: ["duckling-clothes", "type-clothing"],
@@ -197,6 +197,8 @@ function renderLessons(lessons, container, isScheduled) {
             <td>${lesson.location}</td>
             <td>${formattedDate}</td>
             <td>${formattedTime}</td>
+            <td>${lesson.teacher.id}</td>
+            <td>${lesson.id}</td>
             ${!isScheduled ? `
                 <td>${lesson.observations || '-'}</td>
                 <td class="text-center">

@@ -6,6 +6,13 @@ const getReviews = () => JSON.parse(localStorage.getItem("reviews")) || [];
 const saveReviews = (reviews) => localStorage.setItem("reviews", JSON.stringify(reviews));
 
 class Review {
+    id = '';
+    student = '';
+    teacher = '';
+    lesson = '';
+    rating = 0;
+    comments = '';
+    date = '';
     constructor(id, student, teacher, lesson, rating, comments, date) {
         this.id = id;
         this.student = student;
@@ -16,12 +23,27 @@ class Review {
         this.date = date || new Date().toISOString();
     }
 }
-function createReview(id, student, teacher, lesson, rating, comments, date) {
+function createReview(reviewData) {
     const reviews = getReviews();
-    const review = new Review(id, student, teacher, lesson, rating, comments, date);
-    reviews.push(review);
-    saveReviews(reviews);
-    return review;
+    const newReview = new Review(
+        reviewData.id || Date.now(),
+        reviewData.student,
+        reviewData.teacher,
+        reviewData.lesson,
+        reviewData.rating,
+        reviewData.comments,
+        reviewData.date
+    );
+    reviews.push(newReview);
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+    return newReview;
 }
 
-export { getReviews, createReview, Review };
+
+function deleteReview(id) {
+    let reviews = getReviews();
+    reviews = reviews.filter(r => r.id != id);
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+}
+
+export { getReviews, createReview, deleteReview };

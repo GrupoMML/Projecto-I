@@ -1,6 +1,10 @@
-const data = {
-  "teachers": [
-    {
+
+initdata();
+
+function initdata() {
+  if(!localStorage.teachers) {
+    const teachers = [
+      {
   "id": 1,
   "name": "Carlos Mestre",
   "email": "carlos@teacher.com",
@@ -340,411 +344,193 @@ const data = {
       "points": 77,
       "priority": 2
     }
-  ],
-  "students": [
-    {
-    "id": 1,
-    "name": "João Silva",
-    "email": "joao@student.com",
-    "password": "J0@siLva",
-    "grade": "6º ano",
-    "EEcontact": "912345678",
-    "incapacity": "não",
-    "gender": "masculino",
-    "dateOfBirth": "2012-04-15",
-    "locality": "Lisboa",
-    "disciplines": ["matemática", "português"],
-    "aboutMe": "Gosto de ler livros de aventura e jogar futebol.",
-    "points": 10,
-    "priority": 1
-    },
-    {
-    "id": 2,
-    "name": "Ana Martins",
-    "email": "ana@student.com",
-    "password": "An@8mRtS",
-    "grade": "8º ano",
-    "EEcontact": "913456789",
-    "incapacity": "não",
-    "gender": "feminino",
-    "dateOfBirth": "2010-07-22",
-    "locality": "Porto",
-    "disciplines": ["inglês", "ciências"],
-    "aboutMe": "Adoro desenhar e aprender novas línguas.",
-    "points": 15,
-    "priority": 1
-    },
-    {
-    "id": 3,
-    "name": "Pedro Costa",
-    "email": "pedro@student.com",
-    "password": "P3dr0_C$",
-    "grade": "9º ano",
-    "EEcontact": "914567890",
-    "incapacity": "sim",
-    "gender": "masculino",
-    "dateOfBirth": "2009-11-05",
-    "locality": "Coimbra",
-    "disciplines": ["história"],
-    "aboutMe": "Sou curioso sobre história e tecnologia.",
-    "points": 20,
-    "priority": 1
-    },
-    {
-    "id": 4,
-    "name": "Beatriz Almeida",
-    "email": "beatriz@student.com",
-    "password": "B3@tr1zAl",
-    "grade": "11º ano",
-    "EEcontact": "915678901",
-    "incapacity": "não",
-    "gender": "feminino",
-    "dateOfBirth": "2007-02-18",
-    "locality": "Braga",
-    "disciplines": ["biologia", "química"],
-    "aboutMe": "Apaixonada por ciência e natureza.",
-    "points": 25,
-    "priority": 1
-    },
-    {
-    "id": 5,
-    "name": "Rui Gonçalves",
-    "email": "rui@student.com",
-    "password": "Ru1G0nc!",
-    "grade": "7º ano",
-    "EEcontact": "916789012",
-    "incapacity": "não",
-    "gender": "masculino",
-    "dateOfBirth": "2011-09-30",
-    "locality": "Setúbal",
-    "disciplines": ["educação física"],
-    "aboutMe": "Gosto muito de desporto e jogos de equipa.",
-    "points": 5,
-    "priority": 1
-    },
-    {
-    "id": 6,
-    "name": "Mariana Lopes",
-    "email": "mariana@student.com",
-    "password": "M@r1L0ps",
-    "grade": "12º ano",
-    "EEcontact": "917890123",
-    "incapacity": "não",
-    "gender": "feminino",
-    "dateOfBirth": "2006-05-12",
-    "locality": "Faro",
-    "disciplines": ["matemática", "física"],
-    "aboutMe": "Interesso-me por física e engenharia.",
-    "points": 30,
-    "priority": 1
-    },
-    {
-    "id": 7,
-    "name": "Tiago Fernandes",
-    "email": "tiago@student.com",
-    "password": "T!4g0FnD",
-    "grade": "5º ano",
-    "EEcontact": "918901234",
-    "incapacity": "sim",
-    "gender": "masculino",
-    "dateOfBirth": "2013-01-25",
-    "locality": "Leiria",
-    "disciplines": ["português"],
-    "aboutMe": "Sou muito criativo e gosto de escrever histórias.",
-    "points": 8,
-    "priority": 1
-    },
-    {
-    "id": 8,
-    "name": "Sofia Ribeiro",
-    "email": "sofia@student.com",
-    "password": "S0f!R1bR",
-    "grade": "10º ano",
-    "EEcontact": "919012345",
-    "incapacity": "não",
-    "gender": "feminino",
-    "dateOfBirth": "2008-03-08",
-    "locality": "Viseu",
-    "disciplines": ["inglês", "geografia"],
-    "aboutMe": "Adoro viajar e conhecer novos lugares.",
-    "points": 18,
-    "priority": 1
-    },
-    {
-    "id": 9,
-    "name": "Diogo Nunes",
-    "email": "diogo@student.com",
-    "password": "D!0g0Nun",
-    "grade": "8º ano",
-    "EEcontact": "920123456",
-    "incapacity": "não",
-    "gender": "masculino",
-    "dateOfBirth": "2010-10-10",
-    "locality": "Aveiro",
-    "disciplines": ["ciências", "matemática"],
-    "aboutMe": "Sou curioso e gosto de experiências científicas.",
-    "points": 12,
-    "priority": 1
-    },
-    {
-    "id": 10,
-    "name": "Carolina Pinto",
-    "email": "carolina@student.com",
-    "password": "C@r0lPin",
-    "grade": "9º ano",
-    "EEcontact": "921234567",
-    "incapacity": "sim",
-    "gender": "feminino",
-    "dateOfBirth": "2009-12-19",
-    "locality": "Guimarães",
-    "disciplines": ["história", "português"],
-    "aboutMe": "Gosto de música e de ler poesia.",
-    "points": 14,
-    "priority": 1
-    }
-  ],
-  "admins": [
-    {
-    "id": 1,
-    "name": "Admin Principal",
-    "email": "admin1@teachme.com",
-    "password": "P@ss9w0r",
-    "priority": 3
-    },
-    {
-    "id": 2,
-    "name": "Admin Secundário",
-    "email": "admin2@teachme.com",
-    "password": "X2!mN4#z",
-    "priority": 3
-    }
-  ],
-  "products": [
-{
-  "productType": "Roupa Casual",
-  "productName": "T-shirt",
-  "productID": 1,
-  "productQuantity": "100",
-  "productQuality": "Alta",
-  "productSize": "M",
-  "productColor": "Vermelho",
-  "productPrice": "19.99",
-  "productCoupon": "SUMMER10"
-},
-{
-  "productType": "Roupa Casual",
-  "productName": "Jeans",
-  "productID": 2,
-  "productQuantity": "50",
-  "productQuality": "Média",
-  "productSize": "L",
-  "productColor": "Azul",
-  "productPrice": "49.99",
-  "productCoupon": "DENIM5"
-},
-{
-  "productType": "Calçado",
-  "productName": "Ténis",
-  "productID": 3,
-  "productQuantity": "75",
-  "productQuality": "Premium",
-  "productSize": "42",
-  "productColor": "Branco",
-  "productPrice": "89.99",
-  "productCoupon": "SNEAK20"
-},
-{
-  "productType": "Acessórios",
-  "productName": "Mochila",
-  "productID": 4,
-  "productQuantity": "40",
-  "productQuality": "Alta",
-  "productSize": "Standard",
-  "productColor": "Preto",
-  "productPrice": "59.99",
-  "productCoupon": "BAG15"
-},
-{
-  "productType": "Acessórios",
-  "productName": "Relógio",
-  "productID": 5,
-  "productQuantity": "30",
-  "productQuality": "Luxo",
-  "productSize": "Tamanho Único",
-  "productColor": "Prateado",
-  "productPrice": "129.99",
-  "productCoupon": "TIME25"
-},
-{
-  "productType": "Acessórios",
-  "productName": "Óculos de Sol",
-  "productID": 6,
-  "productQuantity": "120",
-  "productQuality": "Média",
-  "productSize": "Universal",
-  "productColor": "Castanho",
-  "productPrice": "24.99",
-  "productCoupon": "SHADE10"
-},
-{
-  "productType": "Acessórios",
-  "productName": "Chapéu",
-  "productID": 7,
-  "productQuantity": "200",
-  "productQuality": "Alta",
-  "productSize": "L",
-  "productColor": "Verde",
-  "productPrice": "14.99",
-  "productCoupon": "HAT5"
-},
-{
-  "productType": "Sobretudos",
-  "productName": "Casaco",
-  "productID": 8,
-  "productQuantity": "20",
-  "productQuality": "Premium",
-  "productSize": "XL",
-  "productColor": "Cinzento",
-  "productPrice": "99.99",
-  "productCoupon": "WINTER20"
-},
-{
-  "productType": "Calçado",
-  "productName": "Meias",
-  "productID": 9,
-  "productQuantity": "300",
-  "productQuality": "Standard",
-  "productSize": "Tamanho Único",
-  "productColor": "Branco",
-  "productPrice": "4.99",
-  "productCoupon": "FEET2"
-},
-{
-  "productType": "Acessórios",
-  "productName": "Cinto",
-  "productID": 10,
-  "productQuantity": "60",
-  "productQuality": "Alta",
-  "productSize": "M",
-  "productColor": "Castanho",
-  "productPrice": "19.99",
-  "productCoupon": "BELT7"
-},
-{
-  "productType": "Acessórios",
-  "productName": "Cachecol",
-  "productID": 11,
-  "productQuantity": "80",
-  "productQuality": "Alta",
-  "productSize": "Tamanho Único",
-  "productColor": "Bordeaux",
-  "productPrice": "12.99",
-  "productCoupon": "SCARF10"
-},
-{
-  "productType": "Acessórios",
-  "productName": "Luvas",
-  "productID": 12,
-  "productQuantity": "150",
-  "productQuality": "Média",
-  "productSize": "M",
-  "productColor": "Preto",
-  "productPrice": "9.99",
-  "productCoupon": "WARM5"
-},
-{
-  "productType": "Acessórios",
-  "productName": "Gorro",
-  "productID": 13,
-  "productQuantity": "110",
-  "productQuality": "Standard",
-  "productSize": "Tamanho Único",
-  "productColor": "Azul Marinho",
-  "productPrice": "7.99",
-  "productCoupon": "BEAN15"
-},
-{
-  "productType": "Sobretudos",
-  "productName": "Casaco de Cabedal",
-  "productID": 14,
-  "productQuantity": "25",
-  "productQuality": "Premium",
-  "productSize": "L",
-  "productColor": "Castanho",
-  "productPrice": "149.99",
-  "productCoupon": "LEATHER25"
-},
-{
-  "productType": "Calçado",
-  "productName": "Sapatilhas de Corrida",
-  "productID": 15,
-  "productQuantity": "90",
-  "productQuality": "Alta",
-  "productSize": "43",
-  "productColor": "Cinzento",
-  "productPrice": "74.99",
-  "productCoupon": "RUN10"
-},
-{
-  "productType": "Roupa Casual",
-  "productName": "Camisola de Alças",
-  "productID": 16,
-  "productQuantity": "130",
-  "productQuality": "Standard",
-  "productSize": "S",
-  "productColor": "Branco",
-  "productPrice": "11.99",
-  "productCoupon": "TANK5"
-},
-{
-  "productType": "Roupa Casual",
-  "productName": "Calças Chino",
-  "productID": 17,
-  "productQuantity": "60",
-  "productQuality": "Alta",
-  "productSize": "M",
-  "productColor": "Caqui",
-  "productPrice": "39.99",
-  "productCoupon": "CHINO15"
-},
-{
-  "productType": "Roupa Casual",
-  "productName": "T-shirt com Estampa",
-  "productID": 18,
-  "productQuantity": "140",
-  "productQuality": "Média",
-  "productSize": "L",
-  "productColor": "Preto",
-  "productPrice": "21.99",
-  "productCoupon": "GRAPHIC20"
-},
-{
-  "productType": "Sobretudos",
-  "productName": "Blazer",
-  "productID": 19,
-  "productQuantity": "35",
-  "productQuality": "Premium",
-  "productSize": "M",
-  "productColor": "Azul Marinho",
-  "productPrice": "89.99",
-  "productCoupon": "BLAZER10"
-},
-{
-  "productType": "Calçado",
-  "productName": "Chinelos",
-  "productID": 20,
-  "productQuantity": "250",
-  "productQuality": "Standard",
-  "productSize": "41",
-  "productColor": "Azul",
-  "productPrice": "6.99",
-  "productCoupon": "FLIP5"
-}
-  ]
-}
+    ];
+    localStorage.setItem("teachers", JSON.stringify(teachers));
+  }
+  
+  if(!localStorage.students) {
+    const students = [
+      {
+        "id": 1,
+        "name": "João Silva",
+        "email": "joao@student.com",
+        "password": "J0@siLva",
+        "grade": "6º ano",
+        "EEcontact": "912345678",
+        "incapacity": "não",
+        "gender": "masculino",
+        "dateOfBirth": "2012-04-15",
+        "locality": "Lisboa",
+        "disciplines": ["matemática", "português"],
+        "aboutMe": "Gosto de ler livros de aventura e jogar futebol.",
+        "points": 10,
+        "priority": 1
+      },
+      {
+        "id": 2,
+        "name": "Ana Martins",
+        "email": "ana@student.com",
+        "password": "An@8mRtS",
+        "grade": "8º ano",
+        "EEcontact": "913456789",
+        "incapacity": "não",
+        "gender": "feminino",
+        "dateOfBirth": "2010-07-22",
+        "locality": "Porto",
+        "disciplines": ["inglês", "ciências"],
+        "aboutMe": "Adoro desenhar e aprender novas línguas.",
+        "points": 15,
+        "priority": 1
+      },
+      {
+        "id": 3,
+        "name": "Pedro Costa",
+        "email": "pedro@student.com",
+        "password": "P3dr0_C$",
+        "grade": "9º ano",
+        "EEcontact": "914567890",
+        "incapacity": "sim",
+        "gender": "masculino",
+        "dateOfBirth": "2009-11-05",
+        "locality": "Coimbra",
+        "disciplines": ["história"],
+        "aboutMe": "Sou curioso sobre história e tecnologia.",
+        "points": 20,
+        "priority": 1
+      },
+      {
+        "id": 4,
+        "name": "Beatriz Almeida",
+        "email": "beatriz@student.com",
+        "password": "B3@tr1zAl",
+        "grade": "11º ano",
+        "EEcontact": "915678901",
+        "incapacity": "não",
+        "gender": "feminino",
+        "dateOfBirth": "2007-02-18",
+        "locality": "Braga",
+        "disciplines": ["biologia", "química"],
+        "aboutMe": "Apaixonada por ciência e natureza.",
+        "points": 25,
+        "priority": 1
+      },
+      {
+        "id": 5,
+        "name": "Rui Gonçalves",
+        "email": "rui@student.com",
+        "password": "Ru1G0nc!",
+        "grade": "7º ano",
+        "EEcontact": "916789012",
+        "incapacity": "não",
+        "gender": "masculino",
+        "dateOfBirth": "2011-09-30",
+        "locality": "Setúbal",
+        "disciplines": ["educação física"],
+        "aboutMe": "Gosto muito de desporto e jogos de equipa.",
+        "points": 5,
+        "priority": 1
+      },
+      {
+        "id": 6,
+        "name": "Mariana Lopes",
+        "email": "mariana@student.com",
+        "password": "M@r1L0ps",
+        "grade": "12º ano",
+        "EEcontact": "917890123",
+        "incapacity": "não",
+        "gender": "feminino",
+        "dateOfBirth": "2006-05-12",
+        "locality": "Faro",
+        "disciplines": ["matemática", "física"],
+        "aboutMe": "Interesso-me por física e engenharia.",
+        "points": 30,
+        "priority": 1
+      },
+      {
+        "id": 7,
+        "name": "Tiago Fernandes",
+        "email": "tiago@student.com",
+        "password": "T!4g0FnD",
+        "grade": "5º ano",
+        "EEcontact": "918901234",
+        "incapacity": "sim",
+        "gender": "masculino",
+        "dateOfBirth": "2013-01-25",
+        "locality": "Leiria",
+        "disciplines": ["português"],
+        "aboutMe": "Sou muito criativo e gosto de escrever histórias.",
+        "points": 8,
+        "priority": 1
+      },
+      {
+        "id": 8,
+        "name": "Sofia Ribeiro",
+        "email": "sofia@student.com",
+        "password": "S0f!R1bR",
+        "grade": "10º ano",
+        "EEcontact": "919012345",
+        "incapacity": "não",
+        "gender": "feminino",
+        "dateOfBirth": "2008-03-08",
+        "locality": "Viseu",
+        "disciplines": ["inglês", "geografia"],
+        "aboutMe": "Adoro viajar e conhecer novos lugares.",
+        "points": 18,
+        "priority": 1
+      },
+      {
+        "id": 9,
+        "name": "Diogo Nunes",
+        "email": "diogo@student.com",
+        "password": "D!0g0Nun",
+        "grade": "8º ano",
+        "EEcontact": "920123456",
+        "incapacity": "não",
+        "gender": "masculino",
+        "dateOfBirth": "2010-10-10",
+        "locality": "Aveiro",
+        "disciplines": ["ciências", "matemática"],
+        "aboutMe": "Sou curioso e gosto de experiências científicas.",
+        "points": 12,
+        "priority": 1
+      },
+      {
+        "id": 10,
+        "name": "Carolina Pinto",
+        "email": "carolina@student.com",
+        "password": "C@r0lPin",
+        "grade": "9º ano",
+        "EEcontact": "921234567",
+        "incapacity": "sim",
+        "gender": "feminino",
+        "dateOfBirth": "2009-12-19",
+        "locality": "Guimarães",
+        "disciplines": ["história", "português"],
+        "aboutMe": "Gosto de música e de ler poesia.",
+        "points": 14,
+        "priority": 1
+      }
+    ];
+    localStorage.setItem("students", JSON.stringify(students));
+  }
 
-localStorage.setItem('teachMEData', JSON.stringify(data));
-
-const storedData = localStorage.getItem("teachMEData");
-    const parsedData = JSON.parse(storedData);
-    console.log("Dados armazenados:", parsedData);
+  if(!localStorage.admins) {
+    const admins = [
+      {
+        "id": 1,
+        "name": "Admin Principal",
+        "email": "admin1@teachme.com",
+        "password": "P@ss9w0r",
+        "priority": 3
+      },
+      {
+        "id": 2,
+        "name": "Admin Secundário",
+        "email": "admin2@teachme.com",
+        "password": "X2!mN4#z",
+        "priority": 3
+      }
+    ];
+    localStorage.setItem("admins", JSON.stringify(admins));
+  }
+}

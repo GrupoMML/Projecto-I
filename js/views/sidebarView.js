@@ -43,4 +43,6 @@ if (!loggedUser) {
     document.getElementById('menuItemLeaderboards').addEventListener('click', () => {
         window.location.href = "../../html/main/leaderboard.html"
     })
+
+    document.getElementById('logged-user-points').textContent = loggedUser.points;
 }

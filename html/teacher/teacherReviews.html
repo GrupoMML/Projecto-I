@@ -70,19 +70,18 @@
 
         .user-level-container {
         display: grid;
-        grid-template-areas:
-            "level progres"
-            "bar bar"
-            "ranking ranking";
         color: white;
         background-color: #003366;
         border-radius: 15px;
-        padding: 10px;
-        margin: 30px auto 0 auto;
+        padding: auto;
         width: 90%;
-        max-width: 230px;
-        gap: 8px;
+        height: auto;
         margin-top: 150px;
+        }
+
+        .user-points {
+        font-size: 20px;
+        color: #ffffff;
         }
 
         .fa-certificate {
@@ -180,119 +179,12 @@
         }
         }
     </style>
-    <!------------- NAVBAR  ------------->
-    <!----------------------------------------------->
-    <nav class="navbar navbar-expand-lg bg-white">
-        <div class="container-fluid">
-            <div class="brand">
-                <a href="../../index.html"><img src="../../images/webapp/logo.png" alt="Duck Icon" id="logo"></a>
-            </div>
-            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                <div class="controls-container ms-auto text-end">
-                    <a href="../main/store.html"><button class="btn-custom btn-store">Loja</button></a>
-                    <a href="../main/aboutUS.html"><button class="btn-custom btn-aboutUs">Sobre nós</button></a>
-                    <a href="../main/FAQ.html" style="text-decoration: none;"><button class="btn-custom btn-faq">?</button></a>
-                    <a href="../main/storeCart.html" style="text-decoration: none;">
-                        <button class="btn-custom btn-cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </button></a>
-                    <div class="search-container">
-                        <input type="text" class="search-input" placeholder="Pesquisar...">
-                        <button class="btn-search">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </div>
-                    <button class="btn-user" id="profilePhoto2">
-                        <i class="fa-solid fa-user"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!------------- MENU - LEFT SIDEBAR  ------------->
-    <!----------------------------------------------->
-    <div class="side-menu">
-        <div class="menu-brand">
-            <a href="../../index.html" style="text-align: center;"><img src="../../images/webapp/logo.png" alt="TeachMe Logo" class="logo-img"></a>
-        </div>
-
-        <div class="menu-items studentView teacherView">
-            <i class="fa-solid fa-house"></i>
-            <a href="../../index.html" style="text-decoration: none; color: #003366;"><span>Página principal</span></a>
-        </div>
-
-        <div class="menu-items studentView teacherView">
-            <i class="fa-solid fa-calendar-days"></i>
-            <span>Calendário de aulas</span>
-        </div>
-
-        <div class="menu-items studentView teacherView adminView">
-            <i class="fa-solid fa-comments"></i>
-            <span>Mensagens</span>
-        </div>
-
-        <div class="menu-items studentView teacherView" data-url="../VR/access.html">
-            <i class="fa-solid fa-vr-cardboard"></i>
-            <span>Sala de aula</span>
-        </div>
-
-        <div class="menu-items studentView teacherView" data-url="../main/disciplines.html">
-            <i class="fa-solid fa-book"></i>
-            <span>Disciplinas</span>
-        </div>
-
-        <div class="menu-items studentView" data-url="../student/favourites.html">
-            <i class="fa-solid fa-heart"></i>
-            <span>Favoritos</span>
-        </div>
-
-        <div class="menu-items teacherView" data-url="../teacher/reviewForm.html">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <span>Formulários</span>
-        </div>
-
-        <div class="menu-items studentView" data-url="../student/quizz.html">
-            <i class="fas fa-question-circle"></i>
-            <span>Quizzes</span>
-        </div>
-
-        <div class="menu-items teacherView" data-url="../teacher/createQuizz.html">
-            <i class="fas fa-question-circle"></i>
-            <span>Quizzes Alunos</span>
-        </div>
-
-        <div class="menu-items adminView" data-url="../main/leaderboard.html">
-            <i class="fa-solid fa-chart-bar"></i>
-            <span>Leaderboards</span>
-        </div>
-
-        <div class="menu-items adminView" data-url="../admin/notifications.html">
-            <i class="fa-solid fa-comments"></i>
-            <span>Notificações</span>
-        </div>
-
-        <div class="user-level-container" id="menuItemLeaderboards">
-            <i class="fa-solid fa-certificate" data-qtd="0"></i>
-            <div id="user-level-progress">0 pontos</div>
-            <div class="user-level-progress-bar"></div>
-            <div id="user-ranking">Rank 1001 / 1000</div>
-        </div>
-
-        <div class="menu-items studentView teacherView adminView" id="settingsMenuItem">
-            <i class="fa-solid fa-gear" style="color: #EB972E;"></i>
-            <span style="color: #EB972E;">Definições</span>
-        </div>
-    </div>
-
+    
     <!------------- REVIEWS - SECTION  ------------->
     <!----------------------------------------------->
     <div class="rating-container">
         <div class="profile-rated">
-            <h2 id="user-greeting">*</h2>
+            <h2 id="teacher-name">*</h2>
             <img src="" alt="Foto do Professor(a)" id="profilePhoto"/>
             <div class="rating-stars">
             <i class="fa-solid fa-star"></i>

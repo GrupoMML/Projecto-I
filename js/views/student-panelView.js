@@ -31,7 +31,7 @@ function renderLessons(lessons, container, isScheduled) {
     if (lessons.length === 0) {
         container.innerHTML = `
             <tr>
-                <td colspan="${isScheduled ? 6 : 6}" class="text-center py-4">
+                <td colspan="${isScheduled ? 8 : 6}" class="text-center py-4">
                     ${isScheduled ? "Nenhuma aula marcada" : "Nenhum pedido pendente"}
                 </td>
             </tr>
@@ -56,6 +56,8 @@ function renderLessons(lessons, container, isScheduled) {
             <td>${lesson.location}</td>
             <td>${formattedDate}</td>
             <td>${formattedTime}</td>
+            <td>${lesson.teacher.id}</td>
+            <td>${lesson.id}</td>
             ${isScheduled ? `
                 <td class="text-center">
                     <button class="btn btn-outline-danger btn-sm cancel-btn" data-id="${lesson.id}">
@@ -67,6 +69,7 @@ function renderLessons(lessons, container, isScheduled) {
                     <span class="badge bg-warning text-dark">Pendente</span>
                 </td>
             `}
+            
         `;
         
         container.appendChild(row);
