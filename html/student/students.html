@@ -850,12 +850,6 @@
                 <h1>Bem vindo(a) novamente,</h1> 
                 <h1 id="user-greeting"></h1>
             </div>
-            <div class="user-notification-area">
-                <p style="font-size: 24px; margin: 0;">Notificações</p>
-                <hr style="margin: 10px">
-                <div id="notification-cards">               
-                </div>
-            </div>
         </div>
 
         <div class="user-duckling-container">
@@ -911,6 +905,8 @@
                     <th>Local</th>
                     <th>Data</th>
                     <th>Hora</th>
+                    <th>Sala</th>
+                    <th>Palavra-Passe</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -1081,150 +1077,5 @@
     <script type="module" src="../../js/views/profilePicturesView.js"></script>
     <script type="module" src="../../js/views/profileView.js"></script>
     <script type="module" src="../../js/views/avatarViewStudent.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const options = {
-                "option-clothing": {
-                    show: ["duckling-clothes", "type-clothing"],
-                    hide: ["duckling-colors", "type-color", "duckling-head", "type-head", "duckling-accessory", "type-accessory"]
-                },
-                "option-color": {
-                    show: ["duckling-colors", "type-color"],
-                    hide: ["duckling-clothes", "type-clothing", "duckling-head", "type-head", "duckling-accessory", "type-accessory"]
-                },
-                "option-head": {
-                    show: ["duckling-head", "type-head"],
-                    hide: ["duckling-colors", "type-color", "duckling-clothes", "type-clothing", "duckling-accessory", "type-accessory"]
-                },
-                "option-accessory": {
-                    show: ["duckling-accessory", "type-accessory"],
-                    hide: ["duckling-colors", "type-color", "duckling-clothes", "type-clothing", "duckling-head", "type-head"]
-                }
-            };
-
-            const ducklingType = document.getElementById("duckling-type");
-            if (!ducklingType) return;
-
-            ducklingType.addEventListener("click", function (e) {
-                const clickedId = e.target.id;
-                if (!options[clickedId]) return;
-
-                const { show, hide } = options[clickedId];
-
-                show.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) el.hidden = false;
-                });
-
-                hide.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) el.hidden = true;
-                });
-            });
-        });
-
-        document.querySelectorAll('.duckling-options-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const idParts = item.id.split('-');
-                const type = idParts[0];  // "color", "clothing", "head", "accessory"
-                const index = idParts[1]; // "1", "2", etc.
-
-                // Esconde todos os elementos da categoria selecionada
-                document.querySelectorAll(`[id^="option-${type}-"]`).forEach(opt => {
-                    opt.hidden = true;
-                });
-
-                // Mostra o selecionado
-                const selectedOption = document.getElementById(`option-${type}-${index}`);
-                if (selectedOption) {
-                    selectedOption.hidden = false;
-                }
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const categories = ["color", "clothing", "head", "accessory"];
-
-            function applyChoice(type, index) {
-                // Mostrar no preview (lado direito)
-                document.querySelectorAll(`[id^="option-${type}-"]`).forEach(el => el.hidden = true);
-                const previewEl = document.getElementById(`option-${type}-${index}`);
-                if (previewEl) previewEl.hidden = false;
-
-                // Mostrar no style-view-container (lado esquerdo do pato)
-                const viewEl = document.getElementById(`duckling-${type}-choice`);
-                if (!viewEl || !previewEl) return;
-
-                viewEl.hidden = false;
-
-                // Aplica cor de fundo ou conteúdo visual
-                const bgColor = previewEl.style.backgroundColor;
-                if (bgColor) {
-                    viewEl.style.background = bgColor;
-                    viewEl.innerHTML = "";
-                } else {
-                    viewEl.style.background = "none";
-                    viewEl.innerHTML = previewEl.innerHTML;
-                }
-            }
-
-            // Aplica escolhas guardadas no reload
-            categories.forEach(type => {
-                const savedIndex = localStorage.getItem(`duckling-${type}`);
-                if (savedIndex) {
-                    applyChoice(type, savedIndex);
-                }
-
-            });
-
-            // Guarda novas escolhas
-            document.querySelectorAll(".duckling-options-item").forEach(item => {
-                item.addEventListener("click", () => {
-                    const [type, index] = item.id.split("-");
-                    localStorage.setItem(`duckling-${type}`, index);
-                    applyChoice(type, index);
-                });
-            });
-
-            // Botão de voltar
-            document.getElementById("back-button")?.addEventListener("click", () => {
-                const styleSection = document.getElementById("students-duckling-style");
-                const buttonsSection = document.getElementById("style-back-save-buttons");
-
-                if (styleSection) styleSection.hidden = true;
-                if (buttonsSection) buttonsSection.hidden = true;
-            });
-
-            // Função para mostrar mensagem de sucesso
-            function showSaveMessage() {
-                let msg = document.getElementById("save-success-msg");
-
-                if (!msg) {
-                    msg = document.createElement("div");
-                    msg.id = "save-success-msg";
-                    msg.textContent = "Alterações salvas com sucesso!";
-                    msg.style.position = "fixed";
-                    msg.style.bottom = "20px";
-                    msg.style.right = "20px";
-                    msg.style.backgroundColor = "#4caf50";
-                    msg.style.color = "white";
-                    msg.style.padding = "10px 20px";
-                    msg.style.borderRadius = "8px";
-                    msg.style.boxShadow = "0 2px 6px rgba(0,0,0,0.2)";
-                    msg.style.zIndex = "9999";
-                    document.body.appendChild(msg);
-                }
-
-                msg.style.display = "block";
-                setTimeout(() => {
-                    msg.style.display = "none";
-                }, 3000);
-            }
-        });
-
-
-
-    </script>
 </body>
 </html>

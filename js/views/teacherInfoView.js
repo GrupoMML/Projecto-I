@@ -1,6 +1,6 @@
 import { createLesson } from '../models/lessonsModel.js';
 import { createReview,getReviews } from '../models/reviewModel.js';
-import { teachers } from '../models/teachersModel.js';
+import { getTeachers } from '../models/teachersModel.js';
 import { addFavouriteTeacher, removeFavouriteTeacher, isTeacherFavourited} from "../models/studentModel.js";
 
 
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = parseInt(urlParams.get("id"));
     
         
-
+            const teachers = getTeachers()
             const prof = teachers.find((teacher) => teacher.id === id);
             currentProfessor = prof; // Armazenar o professor atual para uso posterior
 
