@@ -2,26 +2,6 @@
 import { addAdmin } from "../models/adminModel.js"
 
 //------------------ INICIALIZAR ADMINS ----------------------
-if (!localStorage.getItem("admins")) {
-  const defaultAdmins = [
-    {
-      id: 1,
-      name: "Admin Miguel",
-      email: "adminmiguel@teachme.com",
-      password: "M1guyy!!",
-      priority: 3
-    },
-    {
-      id: 2,
-      name: "Admin Secundário",
-      email: "admin2@teachme.com",
-      password: "X2!mN4#z",
-      priority: 3
-    }
-  ]
-  localStorage.setItem("admins", JSON.stringify(defaultAdmins));
-}
-
 const adminsData = JSON.parse(localStorage.getItem("admins")) || []
 
 document.querySelector("#btn-login").addEventListener('click', event => {

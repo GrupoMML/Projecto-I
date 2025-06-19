@@ -1,7 +1,6 @@
 //------------------ TEACHER CLASS ----------------------
 //----------------------------------------------------------
 const getTeachers = () => JSON.parse(localStorage.getItem("teachers")) || [];
-let teachers = getTeachers();
 class Teacher{
     id = ''
     name = ''
@@ -39,14 +38,30 @@ class Teacher{
     }
 }
 
-function addTeacher(id, name, email, password, incapacity, gender, dateOfBirth, locality, diplomes, disciplines, aboutMe, explanationLocal = 0, classType = "online", price = "", points = 0, priority = 2){
+function addTeacher(teacherData) {
     const teacher = new Teacher(
-        id, name, email, password, incapacity, gender, dateOfBirth, locality, 
-        diplomes, disciplines, aboutMe, explanationLocal, classType, price, points, priority
-    )
-    teachers.push(teacher)
+        teacherData.id,
+        teacherData.name,
+        teacherData.email,
+        teacherData.password || '1234',
+        teacherData.incapacity || 'não',
+        teacherData.gender || 'não definido',
+        teacherData.dateOfBirth || '',
+        teacherData.locality || '',
+        teacherData.diplomes || '',
+        teacherData.disciplines || [],
+        teacherData.aboutMe || '',
+        teacherData.explanationLocal || '',
+        teacherData.classType || 'online',
+        teacherData.price || '',
+        teacherData.points || 0,
+        teacherData.priority || 2
+    );
+
+    const teachers = getTeachers();
+    teachers.push(teacher);
     localStorage.setItem("teachers", JSON.stringify(teachers));
-    return teacher
+    return teacher;
 }
 
 function updateTeacher(updatedTeacher) {
@@ -62,8 +77,8 @@ function updateTeacher(updatedTeacher) {
 
 function deleteTeacher(id) {
     let teachers = getTeachers();
-    teachers = teachers.filter(t => t.id != id);
+    teachers = teachers.filter(t => t.id != Number(id));
     localStorage.setItem("teachers", JSON.stringify(teachers));
 }
 
-export { getTeachers, addTeacher, updateTeacher, deleteTeacher, teachers };
+export { getTeachers, addTeacher, updateTeacher, deleteTeacher };

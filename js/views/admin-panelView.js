@@ -1,12 +1,11 @@
-import { getTeachers, addTeacher as addTeacherModel, updateTeacher as updateTeacherModel, deleteTeacher as deleteTeacherModel } from "../models/teachersModel.js";
-import { getStudents, addStudent as addStudentModel, updateStudent as updateStudentModel, deleteStudent as deleteStudentModel } from "../models/studentModel.js";
-import { getReviews, deleteReview as deleteReviewModel } from "../models/reviewModel.js";
+import { getTeachers, addTeacher, updateTeacher, deleteTeacher } from "../models/teachersModel.js";
+import { getStudents, addStudent, updateStudent, deleteStudent } from "../models/studentModel.js";
+import { getReviews, deleteReview } from "../models/reviewModel.js";
 
 let loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 if (!loggedUser || loggedUser.role !== "admin") {
     window.location.href = "../../html/main/login.html";
 }
-
 // Estado global
 const state = {
     teachers: getTeachers(),
@@ -28,11 +27,8 @@ const state = {
         rev: { page: 1 }
     }
 };
-
 console.log(state.reviews);
-
 const pageSize = 6;
-
 // Funções de renderização
 function renderTable(tableType) {
     switch (tableType) {
@@ -48,7 +44,6 @@ function renderTable(tableType) {
     }
     updateSortIcons(tableType);
 }
-
 function renderTeachersTable() {
     const { filters, sort, pagination } = state;
     const filtered = state.teachers.filter(teacher => 
@@ -61,7 +56,6 @@ function renderTeachersTable() {
     renderPaginatedData(sorted, pagination.prof.page, '#tbody-professores', renderTeacherRow);
     renderPagination(sorted.length, 'prof');
 }
-
 function renderStudentsTable() {
     const { filters, sort, pagination } = state;
     const filtered = state.students.filter(student => 
@@ -74,28 +68,35 @@ function renderStudentsTable() {
     renderPaginatedData(sorted, pagination.alun.page, '#tbody-alunos', renderStudentRow);
     renderPagination(filtered.length, 'alun');
 }
-
 function renderReviewsTable() {
     const { filters, sort, pagination } = state;
-    const filtered = state.reviews.filter(review => {
-        // Para arrays, verificamos se algum elemento corresponde ao filtro
-        const studentMatch = review.student?.some(s => 
-            s.toLowerCase().includes(filters.rev.student.toLowerCase()));
-        
-        const teacherMatch = review.teacher?.some(t => 
-            t.toLowerCase().includes(filters.rev.teacher.toLowerCase()));
-        
-        const ratingMatch = filters.rev.rating === '' || 
-            review.rating.toString() === filters.rev.rating;
-        
+    
+    // Mapas para converter IDs em nomes
+    const studentMap = Object.fromEntries(state.students.map(s => [s.id, s.name]));
+    const teacherMap = Object.fromEntries(state.teachers.map(t => [t.id, t.name]));
+
+    // Adicionar nomes às reviews temporariamente
+    const enrichedReviews = state.reviews.map(review => ({
+        ...review,
+        studentName: studentMap[review.student] || '',
+        teacherName: teacherMap[review.teacher] || ''
+    }));
+
+    // Aplicar filtros
+    const filtered = enrichedReviews.filter(review => {
+        const studentMatch = review.studentName.toLowerCase().includes(filters.rev.student.toLowerCase());
+        const teacherMatch = review.teacherName.toLowerCase().includes(filters.rev.teacher.toLowerCase());
+        const ratingMatch = filters.rev.rating === '' || review.rating?.toString() === filters.rev.rating;
         return studentMatch && teacherMatch && ratingMatch;
     });
 
+    // Aplicar ordenação
     const sorted = sortData(filtered, sort.rev.col, sort.rev.asc, true);
+
+    // Renderizar
     renderPaginatedData(sorted, pagination.rev.page, '#tbody-reviews', renderReviewRow);
     renderPagination(filtered.length, 'rev');
 }
-
 // Funções auxiliares de renderização
 function sortData(data, column, ascending, isReview = false) {
     if (!column) return data;
@@ -119,14 +120,12 @@ function sortData(data, column, ascending, isReview = false) {
             (valA > valB ? -1 : valA < valB ? 1 : 0);
     });
 }
-
 function renderPaginatedData(data, page, selector, renderRow) {
     const start = (page - 1) * pageSize;
     const paged = data.slice(start, start + pageSize);
     
     document.querySelector(selector).innerHTML = paged.map(renderRow).join('');
 }
-
 function renderTeacherRow(teacher) {
     return `
         <tr>
@@ -134,19 +133,18 @@ function renderTeacherRow(teacher) {
             <td>${teacher.email}</td>
             <td>${teacher.disciplines.join(", ")}</td>
             <td>
-                <button class="btn btn-sm btn-primary me-1 view-item" data-type="teacher" data-id="${teacher.id}">
+                <button class="btn btn-sm btn-primary me-1 view-item" data-type="teacher" data-id="${teacher.id}" data-action="view">
                     <i class="fa-solid fa-eye"></i>
                 </button>
-                <button class="btn btn-sm btn-warning me-1 edit-item" data-type="teacher" data-id="${teacher.id}">
+                <button class="btn btn-sm btn-warning me-1 edit-item" data-type="teacher" data-id="${teacher.id}" data-action="edit">
                     <i class="fa-solid fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger delete-item" data-type="teacher" data-id="${teacher.id}">
+                <button class="btn btn-sm btn-danger delete-item" data-type="teacher" data-id="${teacher.id}" data-action="delete">
                     <i class="fa-solid fa-trash-alt"></i>
                 </button>
             </td>
         </tr>`;
 }
-
 function renderStudentRow(student) {
     return `
         <tr>
@@ -154,53 +152,43 @@ function renderStudentRow(student) {
             <td>${student.email}</td>
             <td>${student.grade}</td>
             <td>
-                <button class="btn btn-sm btn-primary me-1 view-item" data-type="student" data-id="${student.id}">
+                <button class="btn btn-sm btn-primary me-1 view-item" data-type="student" data-id="${student.id}" data-action="view">
                     <i class="fa-solid fa-eye"></i>
                 </button>
-                <button class="btn btn-sm btn-warning me-1 edit-item" data-type="student" data-id="${student.id}">
+                <button class="btn btn-sm btn-warning me-1 edit-item" data-type="student" data-id="${student.id}" data-action="edit">
                     <i class="fa-solid fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-danger delete-item" data-type="student" data-id="${student.id}">
+                <button class="btn btn-sm btn-danger delete-item" data-type="student" data-id="${student.id}" data-action="delete">
                     <i class="fa-solid fa-trash-alt"></i>
                 </button>
             </td>
         </tr>`;
 }
-
 function renderReviewRow(review) {
-    // Para arrays, juntamos os elementos com vírgula
-    const students = Array.isArray(review.student) ? 
-        review.student.join(", ") : 
-        review.student || '';
-    
-    const teachers = Array.isArray(review.teacher) ? 
-        review.teacher.join(", ") : 
-        review.teacher || '';
-    
-    const comments = review.comments || '';
-    
+    const studentMap = Object.fromEntries(state.students.map(s => [s.id, s.name]));
+    const teacherMap = Object.fromEntries(state.teachers.map(t => [t.id, t.name]));
+
+    const studentName = studentMap[review.student] || 'Aluno removido';
+    const teacherName = teacherMap[review.teacher] || 'Professor removido';;
+
     return `
         <tr>
-            <td>${students}</td>
-            <td>${teachers}</td>
+            <td>${studentName}</td>
+            <td>${teacherName}</td>
             <td>${review.lesson || ''}</td>
             <td>${review.rating || ''}</td>
-            <td>${comments.substring(0, 30)}${comments.length > 30 ? '...' : ''}</td>
+            <td>${(review.comments || '').substring(0, 30)}${(review.comments || '').length > 30 ? '...' : ''}</td>
             <td>${review.date ? new Date(review.date).toLocaleDateString() : ''}</td>
             <td>
-                <button class="btn btn-sm btn-primary me-1 view-item" data-type="review" data-id="${review.id}">
+                <button class="btn btn-sm btn-primary me-1 view-item" data-type="review" data-id="${review.id}" data-action="view">
                     <i class="fa-solid fa-eye"></i>
                 </button>
-                <button class="btn btn-sm btn-warning me-1 edit-item" data-type="review" data-id="${review.id}">
-                    <i class="fa-solid fa-edit"></i>
-                </button>
-                <button class="btn btn-sm btn-danger delete-item" data-type="review" data-id="${review.id}">
+                <button class="btn btn-sm btn-danger delete-item" data-type="review" data-id="${review.id}" data-action="delete">
                     <i class="fa-solid fa-trash-alt"></i>
                 </button>
             </td>
         </tr>`;
 }
-
 function renderPagination(totalItems, tableType) {
     const totalPages = Math.ceil(totalItems / pageSize);
     const container = document.getElementById(`pagination-${tableType}`);
@@ -217,7 +205,6 @@ function renderPagination(totalItems, tableType) {
         container.appendChild(li);
     }
 }
-
 // Funções de UI
 function updateSortIcons(tableType) {
     const sortMap = {
@@ -237,9 +224,12 @@ function updateSortIcons(tableType) {
             date: 'sortDateRev'
         }
     };
-    
+
+    if (!sortMap[tableType]) return;
+
     Object.entries(sortMap[tableType]).forEach(([col, id]) => {
         const icon = document.querySelector(`#${id} i`);
+        if (!icon) return;
         if (state.sort[tableType].col === col) {
             icon.className = state.sort[tableType].asc ? 'fas fa-sort-up' : 'fas fa-sort-down';
         } else {
@@ -247,14 +237,13 @@ function updateSortIcons(tableType) {
         }
     });
 }
-
 // Funções de Modal
 function showItemModal(type, id) {
     const item = state[`${type}s`].find(item => item.id == id);
     if (!item) return;
-    
+
     let content = '';
-    
+
     switch (type) {
         case 'teacher':
             content = `
@@ -266,59 +255,41 @@ function showItemModal(type, id) {
                 <p>Preço por Hora: ${item.price || 'Não disponível'}</p>
             `;
             break;
-            
+
         case 'student':
             content = `
                 <p>Email: ${item.email}</p>
                 <p>Telefone: ${item.EEcontact || 'Não disponível'}</p>
-                <p>Disciplinas: ${item.disciplines.join(", ") || 'Nenhuma'}</p>
+                <p>Disciplinas: ${item.disciplines?.join(", ") || 'Nenhuma'}</p>
                 <p>Escolaridade: ${item.grade}</p>
                 <p>Data de Nascimento: ${item.dateOfBirth || 'Não disponível'}</p>
                 <p>Localidade: ${item.locality || 'Não disponível'}</p>
                 <p>Descrição: ${item.aboutMe || 'Não disponível'}</p>
             `;
             break;
-            
-        function renderReviewRow(review) {
-    // Para arrays, juntamos os elementos com vírgula
-    const students = Array.isArray(review.student) ? 
-        review.student.join(", ") : 
-        review.student || '';
-    
-    const teachers = Array.isArray(review.teacher) ? 
-        review.teacher.join(", ") : 
-        review.teacher || '';
-    
-    const comments = review.comments || '';
-    
-    return `
-        <tr>
-            <td>${students}</td>
-            <td>${teachers}</td>
-            <td>${review.lesson || ''}</td>
-            <td>${review.rating || ''}</td>
-            <td>${comments.substring(0, 30)}${comments.length > 30 ? '...' : ''}</td>
-            <td>${review.date ? new Date(review.date).toLocaleDateString() : ''}</td>
-            <td>
-                <button class="btn btn-sm btn-primary me-1 view-item" data-type="review" data-id="${review.id}">
-                    <i class="fa-solid fa-eye"></i>
-                </button>
-                <button class="btn btn-sm btn-warning me-1 edit-item" data-type="review" data-id="${review.id}">
-                    <i class="fa-solid fa-edit"></i>
-                </button>
-                <button class="btn btn-sm btn-danger delete-item" data-type="review" data-id="${review.id}">
-                    <i class="fa-solid fa-trash-alt"></i>
-                </button>
-            </td>
-        </tr>`;
-}
+
+        case 'review':
+            const studentMap = Object.fromEntries(state.students.map(s => [s.id, s.name]));
+            const teacherMap = Object.fromEntries(state.teachers.map(t => [t.id, t.name]));
+
+            const studentName = studentMap[item.student] || item.student || '';
+            const teacherName = teacherMap[item.teacher] || item.teacher || '';
+
+            content = `
+                <p><strong>Aluno:</strong> ${studentName}</p>
+                <p><strong>Professor:</strong> ${teacherName}</p>
+                <p><strong>Aula:</strong> ${item.lesson || 'Não disponível'}</p>
+                <p><strong>Classificação:</strong> ${item.rating || 'Não disponível'}</p>
+                <p><strong>Comentário:</strong> ${item.comments || 'Nenhum'}</p>
+                <p><strong>Data:</strong> ${item.date ? new Date(item.date).toLocaleDateString() : 'Sem data'}</p>
+            `;
+            break;
     }
-    
+
     document.getElementById('itemModalLabel').innerHTML = item.name || `Review de ${item.student}`;
     document.getElementById('itemModalBody').innerHTML = content;
     new bootstrap.Modal(document.getElementById('itemModal')).show();
 }
-
 function showEditModal(type, id) {
     const item = state[`${type}s`].find(item => item.id == id);
     if (!item) return;
@@ -362,7 +333,6 @@ function showEditModal(type, id) {
     document.querySelector("#itemEditForm").innerHTML = formHTML;
     new bootstrap.Modal(document.getElementById("itemEditModal")).show();
 }
-
 function showAddModal(type) {
     let formHTML = '';
     
@@ -404,14 +374,14 @@ function showAddModal(type) {
     document.getElementById("itemAddForm").innerHTML = formHTML;
     new bootstrap.Modal(document.getElementById("itemAddModal")).show();
 }
-
 // Event Listeners
 function setupEventListeners() {
     // Filtros
     document.querySelectorAll('[id^="filter"]').forEach(input => {
-        const [_, tableType, filterType] = input.id.match(/filter(\w+)(\w+)/) || [];
-        if (tableType && filterType) {
-            const type = tableType.toLowerCase();
+        const match = input.id.match(/^filter([A-Z][a-z]+)(Prof|Alun|Rev)$/);
+        if (match) {
+            const [, filterType, tableTypeSuffix] = match;
+            const type = tableTypeSuffix.toLowerCase();
             input.addEventListener('input', () => {
                 state.filters[type][filterType.toLowerCase()] = input.value;
                 state.pagination[type].page = 1;
@@ -419,17 +389,28 @@ function setupEventListeners() {
             });
         }
     });
-    
+
     // Ordenação
-    document.querySelectorAll('[id^="sort"]').forEach(header => {
-        const [_, tableType, col] = header.id.match(/sort(\w+)(\w+)/) || [];
-        if (tableType && col) {
-            const type = tableType.toLowerCase();
-            header.addEventListener('click', () => {
-                if (state.sort[type].col === col.toLowerCase()) {
+    const sortHeaderMap = {
+        sortNameProf:  { type: "prof", col: "name" },
+        sortEmailProf: { type: "prof", col: "email" },
+        sortNameAlun:  { type: "alun", col: "name" },
+        sortEmailAlun: { type: "alun", col: "email" },
+        sortStudentRev: { type: "rev", col: "studentName" },
+        sortTeacherRev: { type: "rev", col: "teacherName" },
+        sortLessonRev:  { type: "rev", col: "lesson" },
+        sortRatingRev:  { type: "rev", col: "rating" },
+        sortDateRev:    { type: "rev", col: "date" },
+    };
+
+    Object.entries(sortHeaderMap).forEach(([id, { type, col }]) => {
+        const header = document.getElementById(id);
+        if (header) {
+            header.addEventListener("click", () => {
+                if (state.sort[type].col === col) {
                     state.sort[type].asc = !state.sort[type].asc;
                 } else {
-                    state.sort[type].col = col.toLowerCase();
+                    state.sort[type].col = col;
                     state.sort[type].asc = true;
                 }
                 renderTable(type);
@@ -456,7 +437,8 @@ function setupEventListeners() {
             else if (action === 'delete') {
                 if (confirm("Tem certeza que deseja excluir?")) {
                     await deleteItem(type, id);
-                    renderTable(type);
+                    const renderMap = { teacher: 'prof', student: 'alun', review: 'rev' };
+                    if (renderMap[type]) renderTable(renderMap[type]);
                 }
             } 
             else if (action === 'save') {
@@ -479,112 +461,118 @@ function setupEventListeners() {
     document.getElementById("addProfBtn").addEventListener("click", () => showAddModal("teacher"));
     document.getElementById("addAlunBtn").addEventListener("click", () => showAddModal("student"));
 }
-
 // Funções CRUD
-async function deleteItem(type, id) {
+async function addItem(type) {
+    const form = document.querySelector("#itemAddForm");
+    const inputs = form.querySelectorAll('input, select, textarea');
+
+    const idTeacher = state.teachers.reduce((max, t) => t.id > max ? t.id : max, 0) + 1;
+    const idStudent = state.students.reduce((max, s) => s.id > max ? s.id : max, 0) + 1;
+
     switch (type) {
-        case 'teacher':
-            deleteTeacherModel(id);
+        case 'teacher': {
+            const teacherData = {
+                id: idTeacher,
+                name: inputs[0].value || 'Sem nome',
+                email: inputs[1].value || 'sem@email.com',
+                password: inputs[2].value || '1234',
+                disciplines: inputs[3].value ? inputs[3].value.split(',').map(d => d.trim()) : [],
+                dateOfBirth: inputs[4].value || '',
+                locality: inputs[5].value || '',
+                aboutMe: inputs[6].value || '',
+                price: parseFloat(inputs[7].value) || 0,
+                incapacity: 'não',
+                gender: 'não definido',
+                diplomes: '',
+                explanationLocal: '',
+                classType: 'online',
+                points: 0,
+                priority: 2
+            };
+            addTeacher(teacherData);
             state.teachers = getTeachers();
             break;
-        case 'student':
-            deleteStudentModel(id);
+        }
+
+        case 'student': {
+            const studentData = {
+                id: idStudent,
+                name: inputs[0].value || 'Sem nome',
+                email: inputs[1].value || 'sem@email.com',
+                password: 'defaultPassword',
+                grade: inputs[2].value || '1º Ano',
+                EEcontact: inputs[3].value || '000000000',
+                incapacity: 'não',
+                gender: 'não definido',
+                dateOfBirth: inputs[4].value || '',
+                locality: inputs[5].value || '',
+                disciplines: '',
+                aboutMe: inputs[6].value || '',
+                points: 0,
+                priority: 1
+            };
+            addStudent(studentData);
             state.students = getStudents();
             break;
-        case 'review':
-            deleteReviewModel(id);
-            state.reviews = getReviews();
-            break;
+        }
     }
 }
 
 async function updateItem(type, id) {
     const form = document.querySelector("#itemEditForm");
     const inputs = form.querySelectorAll('input, select, textarea');
-    
-    switch (type) {
-        case 'teacher':
-            const teacherData = {
-                id,
-                name: inputs[0].value,
-                email: inputs[1].value,
-                disciplines: inputs[2].value.split(',').map(d => d.trim()),
-                dateOfBirth: inputs[3].value,
-                locality: inputs[4].value,
-                aboutMe: inputs[5].value,
-                price: parseFloat(inputs[6].value)
-            };
-            updateTeacherModel(teacherData);
-            state.teachers = getTeachers();
-            break;
-            
-        case 'student':
-            const studentData = {
-                id,
-                name: inputs[0].value,
-                email: inputs[1].value,
-                grade: inputs[2].value,
-                EEcontact: inputs[3].value,
-                dateOfBirth: inputs[4].value,
-                locality: inputs[5].value,
-                aboutMe: inputs[6].value
-            };
-            updateStudentModel(studentData);
-            state.students = getStudents();
-            break;
-            
-    }
-}
-
-async function addItem(type) {
-    const form = document.querySelector("#itemAddForm");
-    const inputs = form.querySelectorAll('input, select, textarea');
-    const maxIdTeacher = teachers.reduce((max, t) => t.id > max ? t.id : max, 0)
-    const idTeacher = maxIdTeacher + 1
-    const maxIdStudent = students.reduce((max, s) => s.id > max ? s.id : max, 0)
-    const idStudent = maxIdStudent + 1
 
     switch (type) {
-        case 'teacher':
+        case 'teacher': {
             const teacherData = {
-                id: idTeacher,
-                name: inputs[0].value,
-                email: inputs[1].value,
-                password: inputs[2].value,
-                disciplines: inputs[3].value.split(',').map(d => d.trim()),
-                dateOfBirth: inputs[4].value,
-                locality: inputs[5].value,
-                aboutMe: inputs[6].value,
-                price: parseFloat(inputs[7].value),
-                points: 0,
-                priority: 2
+                id,
+                name: inputs[0].value || 'Sem nome',
+                email: inputs[1].value || 'sem@email.com',
+                disciplines: inputs[2].value ? inputs[2].value.split(',').map(d => d.trim()) : [],
+                dateOfBirth: inputs[3].value || '',
+                locality: inputs[4].value || '',
+                aboutMe: inputs[5].value || '',
+                price: parseFloat(inputs[6].value) || 0
             };
-            addTeacherModel(teacherData);
+            updateTeacher(teacherData);
             state.teachers = getTeachers();
             break;
-            
-        case 'student':
+        }
+
+        case 'student': {
             const studentData = {
-                id: idStudent,
-                name: inputs[0].value,
-                email: inputs[1].value,
-                password: 'defaultPassword',
-                grade: inputs[2].value,
+                id,
+                name: inputs[0].value || 'Sem nome',
+                email: inputs[1].value || 'sem@email.com',
+                grade: inputs[2].value || '1º Ano',
                 EEcontact: inputs[3].value || '000000000',
-                incapacity: 'não',
-                gender: 'masculino',
-                dateOfBirth: inputs[4].value,
-                locality: inputs[5].value,
-                aboutMe: inputs[6].value,
-                points: 0,
-                priority: 1
+                dateOfBirth: inputs[4].value || '',
+                locality: inputs[5].value || '',
+                aboutMe: inputs[6].value || ''
             };
-            addStudentModel(studentData);
+            updateStudent(studentData);
             state.students = getStudents();
             break;
+        }
     }
 }
 
+async function deleteItem(type, id) {
+    switch (type) {
+        case 'teacher':
+            deleteTeacher(id);
+            state.teachers = getTeachers();
+            break;
+        case 'student':
+            deleteStudent(id);
+            state.students = getStudents();
+            break;
+        case 'review':
+            deleteReview(id);
+            state.reviews = getReviews();
+            break;
+    }
+}
 // Inicialização
 function init() {
     // Preencher selects de filtro
@@ -599,7 +587,6 @@ function init() {
     // Configurar listeners
     setupEventListeners();
 }
-
 // Função auxiliar para preencher selects
 function populateSelectFromStorage(selectId, storageKey, property) {
     const items = JSON.parse(localStorage.getItem(storageKey)) || [];
@@ -613,6 +600,5 @@ function populateSelectFromStorage(selectId, storageKey, property) {
     select.innerHTML = `<option value="">Todos</option>` + 
         values.map(val => `<option value="${val.toLowerCase()}">${val}</option>`).join('');
 }
-
 // Iniciar aplicação
 init();

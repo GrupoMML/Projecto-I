@@ -1,9 +1,6 @@
 //------------------ STUDENT CLASS ----------------------
 //----------------------------------------------------------
 const getStudents = () => JSON.parse(localStorage.getItem("students")) || [];
-let students = getStudents();
-
-
 class Student{
     id = ''
     name = ''
@@ -38,29 +35,43 @@ class Student{
     }
 }
 
-function addStudent(id, name, email, password, grade, EEcontact, incapacity, gender, dateOfBirth, locality, disciplines, aboutMe){
-    const points = 0
-    const priority = 1
-    let favourites = []
-    const student = new Student (id, name, email, password, grade, EEcontact, incapacity, gender, dateOfBirth, locality, disciplines, aboutMe, points, priority, favourites)
-    students.push(student)
+function addStudent(studentData) {
+    const student = new Student(
+        studentData.id,
+        studentData.name,
+        studentData.email,
+        studentData.password || '1234',
+        studentData.grade || '',
+        studentData.EEcontact || '',
+        studentData.incapacity || 'não',
+        studentData.gender || 'não definido',
+        studentData.dateOfBirth || '',
+        studentData.locality || '',
+        studentData.disciplines || '',
+        studentData.aboutMe || '',
+        studentData.points || 0,
+        studentData.priority || 1
+    );
+
+    const students = getStudents();
+    student.favourites = [];
+    students.push(student);
     localStorage.setItem("students", JSON.stringify(students));
-    return student
+    return student;
 }
 
 function addFavouriteTeacher(studentId, teacherId) {
     const students = getStudents();
     const student = students.find(s => s.id == studentId);
-    if (student && !student.favourites.includes(teacherId)) { // Check if the teacher is already favourited
-        student.favourites.push(teacherId);                   // Add the teacher to favourites
-        localStorage.setItem("students", JSON.stringify(students)); // Update localStorage
+    if (student && !student.favourites.includes(teacherId)) { 
+        student.favourites.push(teacherId);                   
+        localStorage.setItem("students", JSON.stringify(students)); 
     }
 }
 
 function removeFavouriteTeacher(studentId, teacherId) {
     const students = getStudents();
-    const student = students.find(s => s.id == studentId); // Find the student by ID
-    // If the student exists and the teacher is in their favourites, remove it
+    const student = students.find(s => s.id == studentId); 
     if (student) {
         student.favourites = student.favourites.filter(id => id !== teacherId);
         localStorage.setItem("students", JSON.stringify(students));
@@ -92,10 +103,8 @@ function updateStudent(updatedStudent) {
 
 function deleteStudent(id) {
     let students = getStudents();
-    students = students.filter(s => s.id != id);
+    students = students.filter(s => s.id != Number(id));
     localStorage.setItem("students", JSON.stringify(students));
 }
 
 export { getStudents, addStudent, updateStudent, deleteStudent, addFavouriteTeacher, removeFavouriteTeacher, isTeacherFavourited, Student, getFavouriteTeachers };
-
-

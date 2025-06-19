@@ -42,7 +42,7 @@ function createReview(id,student,teacher,lesson,rating,comment) {
 
 function deleteReview(id) {
     let reviews = getReviews();
-    reviews = reviews.filter(r => r.id != id);
+    reviews = reviews.filter(r => r.id != Number(id));
     localStorage.setItem("reviews", JSON.stringify(reviews));
 }
 
