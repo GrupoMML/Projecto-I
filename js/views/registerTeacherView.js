@@ -1,6 +1,6 @@
 //------------------ IMPORTS ----------------------
-//----------------------------------------------------------
-import { getTeachers, addTeacher } from "../models/teachersModel.js" 
+//----------------------------------------------------------------------------------------
+import { getTeachers, addTeacher } from "../models/teachersModel.js"
 
 const storedTeachers = getTeachers()
 const teachers = []
@@ -8,18 +8,29 @@ teachers.length = 0
 teachers.push(...storedTeachers)
 
 //------------------ TEACHER REGISTER ----------------------
-//----------------------------------------------------------
+//----------------------------------------------------------------------------------------
 document.querySelector("#btn-registerTeacher").addEventListener('click', event => {
     event.preventDefault()
+
     const name = document.getElementById('reg-name-teacher').value
     const email = document.getElementById('reg-email-teacher').value
     const password = document.getElementById('reg-password-teacher').value
     const incapacity = document.getElementById('reg-incapacity-teacher').value
-    /* const diplomes = document.getElementById('reg-diplomes-teacher').value */
     const gender = document.querySelector('input[name="gender"]:checked')?.value
     const dateOfBirth = document.getElementById('reg-dateOfBirth-teacher').value
     const locality = document.getElementById('reg-localization-teacher').value
     const aboutMe = document.getElementById('reg-aboutMe-teacher').value
+
+    const fileInput = document.getElementById("fileInput")
+    let diplomes = ""
+
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0]
+        diplomes = file.name
+    } else {
+        alert("Por favor, carregue o diploma do professor.")
+        return
+    }
 
     const disciplineCheckboxes = document.querySelectorAll('.disciplines-grid2 input[type="checkbox"]')
     const disciplines = []
@@ -59,8 +70,7 @@ document.querySelector("#btn-registerTeacher").addEventListener('click', event =
     const maxId = teachers.reduce((max, t) => t.id > max ? t.id : max, 0)
     const id = maxId + 1
 
-    const teacher = addTeacher(id,name,email,password,incapacity,gender,dateOfBirth,locality,"", disciplines, aboutMe)
-
+    const teacher = addTeacher(id, name, email, password, incapacity, gender, dateOfBirth, locality, diplomes, disciplines, aboutMe)
 
     teachers.push(teacher)
     localStorage.setItem("teachers", JSON.stringify(teachers))
@@ -78,8 +88,21 @@ document.querySelector("#btn-registerTeacher").addEventListener('click', event =
     document.getElementById('reg-dateOfBirth-teacher').value = ''
     document.getElementById('reg-localization-teacher').value = ''
     document.getElementById('reg-aboutMe-teacher').value = ''
-
     document.querySelectorAll('.disciplines-grid2 input[type="checkbox"]').forEach(cb => cb.checked = false)
-    
+    document.getElementById('fileInput').value = ''
+    document.querySelector("#drop-zone p").textContent = "Arraste para aqui ou"
+})
 
+//------------------ FILE INPUT + BUTTON ----------------------
+//----------------------------------------------------------------------------------------
+document.querySelector(".btn-registerDrop").addEventListener("click", () => {
+    document.getElementById("fileInput").click()
+})
+
+document.getElementById("fileInput").addEventListener("change", () => {
+    const fileInput = document.getElementById("fileInput")
+    if (fileInput.files.length > 0) {
+        const fileName = fileInput.files[0].name
+        document.querySelector("#drop-zone p").textContent = `Selecionado: ${fileName}`
+    }
 })
