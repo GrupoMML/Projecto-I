@@ -61,6 +61,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Preencher descrição
             document.querySelector('.description-box p').textContent = prof.aboutMe;
+
+            document.addEventListener("DOMContentLoaded", () => {
+            const btnVerDiplomas = document.getElementById("viewDiplomasBtn")
+            if (btnVerDiplomas) {
+                btnVerDiplomas.addEventListener("click", () => {
+                if (!prof.diplomes) {
+                    alert("Este professor não tem diplomas registados.")
+                    return;
+                }
+                const pdfPath = `../../documents/${prof.diplomes}`
+                window.open(pdfPath, "_blank");
+                })
+            } else {
+                console.warn("Botão 'viewDiplomasBtn' não encontrado no DOM");
+            }
+            })
+
         
         // Toggle da sidebar em dispositivos móveis
         const sidebarToggle = document.querySelector('.sidebar-toggle');
@@ -266,6 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         setupRatingModal();
+<<<<<<< HEAD
 
         // Buscar avaliações
         const reviews = getReviews().filter(r => r.teacher === id);
@@ -320,3 +338,8 @@ favouriteBtn.addEventListener("click", () => {
 // Inicializa o botão ao carregar a página
 updateFavouriteButton();
 });
+=======
+});
+
+
+>>>>>>> 12a7820571784e3a1bb0513062270e0da4a88448
