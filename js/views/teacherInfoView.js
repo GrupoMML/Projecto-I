@@ -283,7 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         setupRatingModal();
-<<<<<<< HEAD
 
         // Buscar avaliações
         const reviews = getReviews().filter(r => r.teacher === id);
@@ -338,8 +337,3 @@ favouriteBtn.addEventListener("click", () => {
 // Inicializa o botão ao carregar a página
 updateFavouriteButton();
 });
-=======
-});
-
-
->>>>>>> 12a7820571784e3a1bb0513062270e0da4a88448
